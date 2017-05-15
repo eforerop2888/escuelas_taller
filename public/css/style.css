@@ -1,0 +1,38 @@
+.contenido {
+	padding-left: 215px;
+}
+#logo {
+	width: 40%;
+}
+
+@media (max-width: 768px) {
+	.contenido {
+	  padding-left: 10px;
+	}
+}
+.navbar {
+  height: 70px;
+}
+#sidebar-wrapper {
+  top: 70px;
+}
+.navbar-default {
+  background-color: #e6e6e6;
+}
+.container-fluid {
+  padding-right: 0;
+  padding-left: 0;
+}
+#sidebar-wrapper {
+  background-color: #e6e6e6;
+}
+.sidebar-nav li a {
+  color: #333;
+  padding: 0px 30px;
+}
+.sidebar-nav li a:hover {
+  color: #2962aa;
+}
+.sidebar-nav {
+	width: 200px;
+}
