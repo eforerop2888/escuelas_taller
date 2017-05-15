@@ -13,6 +13,11 @@
 	<div class="container-fluid">
 		@include('layouts.menu')
 		<div class="contenido">
+			<div class="row">
+				<div class="col-md-12">
+					<h2>@yield('subtitle')</h2>
+				</div>
+			</div>
 			@yield('content')
 		</div>
 	</div>

@@ -1,5 +1,6 @@
 @extends('layouts.principal')
 @section('title', 'Crear Escuela')
+@section('subtitle', 'CREAR ESCUELA')
 @section('content')
 	<div class="row">
 			{{Form::open(['route' => 'escuelas.store', 'method' => 'POST', 'id' => 'form-crear-escuela'])}}
@@ -65,9 +66,12 @@
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
-					<label for="permiso">Quien otroga el permiso</label>
-					<input type="texy" id="permiso" name="permiso" class="form-control" placeholder="Quien otroga el permiso">
+					<label for="permiso">Quién otorga el permiso</label>
+					<input type="texy" id="permiso" name="permiso" class="form-control" placeholder="Quién otorga el permiso">
 				</div>
+			</div>
+			<div class="col-md-12">
+				<button type="submit" class="btn btn-default">Enviar</button>
 			</div>
 			{{Form::close()}}
 		</div>

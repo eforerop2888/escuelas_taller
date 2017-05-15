@@ -34,7 +34,7 @@ class EscuelasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return "hola";
     }
 
     /**
