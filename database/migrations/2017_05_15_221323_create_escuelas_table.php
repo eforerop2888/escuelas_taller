@@ -13,10 +13,20 @@ class CreateEscuelasTable extends Migration
    */
   public function up()
   {
-    Schema::create('flights', function (Blueprint $table) {
+    Schema::create('escuelas', function (Blueprint $table) {
       $table->increments('id');
-      $table->string('name');
-      $table->string('airline');
+      $table->string('nombre');
+      $table->string('direccion');
+      $table->string('telefono');
+      $table->string('pagina_web');
+      $table->string('director');
+      $table->string('director_email');
+      $table->string('coordinador');
+      $table->string('coordinador_email');
+      $table->string('coordinador_humano');
+      $table->string('coordinador_humano_email');
+      $table->string('acto_administrativo');
+      $table->string('otorga_permiso');
       $table->timestamps();
     });
   }
@@ -28,6 +38,6 @@ class CreateEscuelasTable extends Migration
    */
   public function down()
   {
-      //
+    Schema::drop('escuelas')
   }
 }
