@@ -38,6 +38,6 @@ class CreateEscuelasTable extends Migration
    */
   public function down()
   {
-    Schema::drop('escuelas')
+    Schema::dropIfExists('escuelas');
   }
 }
