@@ -36,3 +36,6 @@
 .sidebar-nav {
 	width: 200px;
 }
+span strong {
+  color: red;
+}

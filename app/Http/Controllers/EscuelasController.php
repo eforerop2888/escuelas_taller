@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Escuela;
+use App\Http\Requests\RequestStoreEscuelas;
 
 class EscuelasController extends Controller
 {
@@ -32,8 +34,21 @@ class EscuelasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestStoreEscuelas $request)
     {
+        
+        Escuela::create(['nombre' => $request->nombre_escuela,
+                        'pagina_web' => $request->pagina_web,
+                        'direccion' => $request->direccion,
+                        'telefono' => $request->telefono,
+                        'director' => $request->director,
+                        'director_email' => $request->email,
+                        'coordinador' => $request->coordinador,
+                        'coordinador_email' => $request->email_c,
+                        'coordinador_humano' => $request->humano,
+                        'coordinador_humano_email' => $request->email_h,
+                        'acto_administrativo' => $request->acto,
+                        'otorga_permiso' => $request->permiso,]);
         return "hola";
     }
 
