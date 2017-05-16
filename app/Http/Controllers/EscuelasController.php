@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Escuela;
 use App\Http\Requests\RequestStoreEscuelas;
+use App\Escuela;
+use App\Pais;
+use Auth;
 
 class EscuelasController extends Controller
 {
@@ -25,7 +27,8 @@ class EscuelasController extends Controller
      */
     public function create()
     {
-        return view('escuelas/crearEscuela');
+        $paises = Pais::all();
+        return view('escuelas/crearEscuela', ['paises' => $paises]);
     }
 
     /**
@@ -36,7 +39,6 @@ class EscuelasController extends Controller
      */
     public function store(RequestStoreEscuelas $request)
     {
-        
         Escuela::create(['nombre' => $request->nombre_escuela,
                         'pagina_web' => $request->pagina_web,
                         'direccion' => $request->direccion,
@@ -48,7 +50,9 @@ class EscuelasController extends Controller
                         'coordinador_humano' => $request->humano,
                         'coordinador_humano_email' => $request->email_h,
                         'acto_administrativo' => $request->acto,
-                        'otorga_permiso' => $request->permiso,]);
+                        'otorga_permiso' => $request->permiso,
+                        'pais_id' => $request->pais_id,
+                        'user_id' => Auth::user()->id]);
         return "hola";
     }
 

@@ -27,6 +27,10 @@ class CreateEscuelasTable extends Migration
       $table->string('coordinador_humano_email');
       $table->string('acto_administrativo');
       $table->string('otorga_permiso');
+      $table->integer('pais_id')->unsigned();
+      $table->foreign('pais_id')->references('id')->on('paises');
+      $table->integer('user_id')->unsigned();
+      $table->foreign('user_id')->references('id')->on('users');
       $table->timestamps();
     });
   }
