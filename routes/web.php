@@ -15,9 +15,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/*
+	Rutas para el modulo de escuelas
+*/
 Route::resource('escuelas', 'EscuelasController');
 
+/*
+	Rutas para el modulo de programas
+*/
+Route::resource('programas', 'ProgramasController');
 
+/*
+	Rutas para el modulo de estudiantes
+*/
+Route::resource('estudiantes', 'EstudiantesController');
+
+/*
+	Rutas para el modulo de Cooperantes
+*/
+Route::resource('cooperantes', 'CooperantesController');
 
 Auth::routes();
 

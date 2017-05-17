@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\RequestStoreEscuelas;
-use App\Escuela;
-use App\Pais;
-use Auth;
+use App\Programa;
+use App\Cooperante;
+use App\Http\Requests\RequestStoreCooperantes;
 
-class EscuelasController extends Controller
+class CooperantesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,8 +26,8 @@ class EscuelasController extends Controller
      */
     public function create()
     {
-        $paises = Pais::all();
-        return view('escuelas.crearEscuela', ['paises' => $paises]);
+        $programas = Programa::all();
+        return view('cooperantes.crearCooperante', ['programas' => $programas]);
     }
 
     /**
@@ -37,24 +36,17 @@ class EscuelasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RequestStoreEscuelas $request)
+    public function store(RequestStoreCooperantes $request)
     {
-        Escuela::create(['nombre' => $request->nombre_escuela,
-                        'pagina_web' => $request->pagina_web,
-                        'direccion' => $request->direccion,
-                        'telefono' => $request->telefono,
-                        'director' => $request->director,
-                        'director_email' => $request->email,
-                        'coordinador' => $request->coordinador,
-                        'coordinador_email' => $request->email_c,
-                        'coordinador_humano' => $request->humano,
-                        'coordinador_humano_email' => $request->email_h,
-                        'acto_administrativo' => $request->acto,
-                        'otorga_permiso' => $request->permiso,
-                        'pais_id' => $request->pais_id,
-                        'user_id' => Auth::user()->id
+        Cooperante::create(['nombre' => $request->nombre_cooperante,
+                        'persona_contacto' => $request->persona_contacto,
+                        'mail_contacto' => $request->mail_contacto,
+                        'programa_id' => $request->programa,
+                        'tipo_cooperacion' => $request->tipo_cooperacion,
+                        'resultados_significativos' => $request->resultados_significativos,
                     ]);
-        return "hola";
+
+        return "exitoso";
     }
 
     /**

@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\RequestStoreEscuelas;
+use App\Http\Requests\RequestStoreProgramas;
 use App\Escuela;
-use App\Pais;
-use Auth;
+use App\Programa;
 
-class EscuelasController extends Controller
+class ProgramasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,8 +26,8 @@ class EscuelasController extends Controller
      */
     public function create()
     {
-        $paises = Pais::all();
-        return view('escuelas.crearEscuela', ['paises' => $paises]);
+        $escuelas = Escuela::all();
+        return view('programas.crearPrograma', ['escuelas' => $escuelas]);
     }
 
     /**
@@ -37,23 +36,17 @@ class EscuelasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RequestStoreEscuelas $request)
+    public function store(RequestStoreProgramas $request)
     {
-        Escuela::create(['nombre' => $request->nombre_escuela,
-                        'pagina_web' => $request->pagina_web,
-                        'direccion' => $request->direccion,
-                        'telefono' => $request->telefono,
-                        'director' => $request->director,
-                        'director_email' => $request->email,
-                        'coordinador' => $request->coordinador,
-                        'coordinador_email' => $request->email_c,
-                        'coordinador_humano' => $request->humano,
-                        'coordinador_humano_email' => $request->email_h,
-                        'acto_administrativo' => $request->acto,
-                        'otorga_permiso' => $request->permiso,
-                        'pais_id' => $request->pais_id,
-                        'user_id' => Auth::user()->id
-                    ]);
+        Programa::create(['nombre' => $request->nombre_programa,
+                        'duracion_meses' => $request->duracion_meses,
+                        'duracion_horas' => $request->duracion_horas,
+                        'duracion_practicas_horas' => $request->duracion_practica,
+                        'objetivo_programa' => $request->objetivo_programa,
+                        'requisitos_ingreso' => $request->requisitos_ingreso,
+                        'trabajo_egresados' => $request->trabajo_egresados,
+                        'escuela_id' => $request->escuelas_id
+                        ]);
         return "hola";
     }
 
