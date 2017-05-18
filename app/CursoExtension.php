@@ -10,7 +10,7 @@ class CursoExtension extends Model
 
     protected $fillable = [
     	'nombre',
-    	'objetivo',
+    	'objetivo_curso',
     	'duracion',
     	'costo',
     	'contacto',

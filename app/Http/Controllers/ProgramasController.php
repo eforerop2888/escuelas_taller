@@ -16,7 +16,13 @@ class ProgramasController extends Controller
      */
     public function index()
     {
-        //
+        $programas = Programa::select('id',
+            'nombre',
+            'duracion_meses',
+            'duracion_horas',
+            'duracion_practicas_horas')
+        ->get();
+        return view('programas.verProgramas', ['programas' => $programas]);
     }
 
     /**
@@ -47,7 +53,8 @@ class ProgramasController extends Controller
                         'trabajo_egresados' => $request->trabajo_egresados,
                         'escuela_id' => $request->escuelas_id
                         ]);
-        return "hola";
+        $request->session()->flash('success', 'Programa Creado exitosamente');
+        return redirect()->route('programas.index');
     }
 
     /**
@@ -69,7 +76,9 @@ class ProgramasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $programa = Programa::where('id', $id)
+            ->first();
+        return view('programas.verDetallePrograma', ['programa' => $programa]);
     }
 
     /**
@@ -90,8 +99,18 @@ class ProgramasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        $programa = Programa::find($id);
+        try {
+            $programa->delete();
+            $request->session()->flash('success', 'Programa borrado con exito');
+        } catch ( \Exception $e) {
+            if($e->getCode() === '23000') {
+                //var_dump($e->errorInfo);
+                $request->session()->flash('fail', 'El programa ya cuenta con relaciones');
+                }
+        }
+        return redirect()->route('programas.index');
     }
 }

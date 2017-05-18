@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Programa;
-use App\Cooperante;
-use App\Http\Requests\RequestStoreCooperantes;
+use App\Http\Requests\RequestStoreCursosExtension;
+use App\CursoExtension;
 
-class CooperantesController extends Controller
+class CursosExtensionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +15,13 @@ class CooperantesController extends Controller
      */
     public function index()
     {
-        $cooperantes = Cooperante::select('id',
+        $cursosExtension = CursoExtension::select('id',
             'nombre',
-            'persona_contacto',
-            'mail_contacto')
+            'duracion',
+            'costo',
+            'contacto')
             ->get();
-        return view('cooperantes.verCooperantes', ['cooperantes' => $cooperantes]);
+        return view('cursos.verCursos', ['cursosExtension' => $cursosExtension]);
     }
 
     /**
@@ -31,8 +31,7 @@ class CooperantesController extends Controller
      */
     public function create()
     {
-        $programas = Programa::all();
-        return view('cooperantes.crearCooperante', ['programas' => $programas]);
+        return view('cursos.crearCursos');
     }
 
     /**
@@ -41,18 +40,18 @@ class CooperantesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RequestStoreCooperantes $request)
+    public function store(RequestStoreCursosExtension $request)
     {
-        Cooperante::create(['nombre' => $request->nombre_cooperante,
-                        'persona_contacto' => $request->persona_contacto,
-                        'mail_contacto' => $request->mail_contacto,
-                        'programa_id' => $request->programa,
-                        'tipo_cooperacion' => $request->tipo_cooperacion,
-                        'resultados_significativos' => $request->resultados_significativos,
-                    ]);
+        CursoExtension::create([
+            'nombre' => $request->nombre_curso,
+            'objetivo_curso' => $request->objetivo_curso,
+            'duracion' => $request->duracion,
+            'costo' => $request->costo,
+            'contacto' => $request->contacto
+        ]);
 
-        $request->session()->flash('success', 'Cooperante creado exitosamente');
-        return redirect()->route('cooperantes.index');
+        $request->session()->flash('success', 'Curso de extensión creado exitosamente');
+        return redirect()->route('cursos.index');
     }
 
     /**
@@ -74,7 +73,9 @@ class CooperantesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $curso = CursoExtension::where('id', $id)
+            ->first();
+        return view('cursos.verDetalleCurso', ['curso' => $curso]);
     }
 
     /**
@@ -97,16 +98,16 @@ class CooperantesController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        $cooperante = Cooperante::find($id);
+        $curso = CursoExtension::find($id);
         try {
-            $cooperante->delete();
-            $request->session()->flash('success', 'Cooperante borrado con exito');
+            $curso->delete();
+            $request->session()->flash('success', 'Curso borrado con exito');
         } catch ( \Exception $e) {
             if($e->getCode() === '23000') {
                 //var_dump($e->errorInfo);
-                $request->session()->flash('fail', 'El cooperante ya cuenta con relaciones');
+                $request->session()->flash('fail', 'El curso ya cuenta con relaciones');
                 }
         }
-        return redirect()->route('cooperantes.index');
+        return redirect()->route('cursos.index');
     }
 }

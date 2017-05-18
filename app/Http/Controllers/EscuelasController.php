@@ -17,7 +17,13 @@ class EscuelasController extends Controller
      */
     public function index()
     {
-        //
+        $escuelas = Escuela::select('id',
+            'nombre',
+            'direccion',
+            'telefono',
+            'director')
+            ->get();
+        return view('escuelas.verEscuelas', ['escuelas' => $escuelas]);
     }
 
     /**
@@ -54,7 +60,9 @@ class EscuelasController extends Controller
                         'pais_id' => $request->pais_id,
                         'user_id' => Auth::user()->id
                     ]);
-        return "hola";
+
+        $request->session()->flash('success', 'Escuela Creada exitosamente');
+        return redirect()->route('escuelas.index');
     }
 
     /**
@@ -76,7 +84,9 @@ class EscuelasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $escuela = Escuela::where('id', $id)
+            ->first();
+        return view('escuelas.verDetalleEscuela', ['escuela' => $escuela]);
     }
 
     /**
@@ -97,8 +107,18 @@ class EscuelasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        $escuela = Escuela::find($id);
+        try {
+            $escuela->delete();
+            $request->session()->flash('success', 'Escuela borrada con exito');
+        } catch ( \Exception $e) {
+            if($e->getCode() === '23000') {
+                //var_dump($e->errorInfo);
+                $request->session()->flash('fail', 'La escuela ya cuenta con programas relacionados');
+                }
+        }
+        return redirect()->route('escuelas.index');
     }
 }

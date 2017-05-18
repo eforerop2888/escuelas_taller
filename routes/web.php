@@ -35,6 +35,11 @@ Route::resource('estudiantes', 'EstudiantesController');
 */
 Route::resource('cooperantes', 'CooperantesController');
 
+/*
+	Rutas para el modulo de Cursos de extensión
+*/
+Route::resource('cursos', 'CursosExtensionController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
