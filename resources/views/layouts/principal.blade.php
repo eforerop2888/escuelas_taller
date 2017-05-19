@@ -15,12 +15,14 @@
 		@include('layouts.menu')
 		<div class="contenido">
 			@include('layouts.mensajes')
-			<div class="row">
-				<div class="col-md-12">
-					<h2>@yield('subtitle')</h2>
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					@yield('subtitle')
+				</div>
+				<div class="panel-body">
+					@yield('content')
 				</div>
 			</div>
-			@yield('content')
 		</div>
 	</div>
 </body>

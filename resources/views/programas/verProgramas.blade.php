@@ -21,7 +21,7 @@
 				<td>{{$rowprogramas->duracion_horas}}</td>
 				<td>{{$rowprogramas->duracion_practicas_horas}}</td>
 				<td>
-					{{ Form::open(['method' => 'Get', 'route' => ['programas.edit', $rowprogramas->id]]) }}
+					{{ Form::open(['method' => 'Get', 'route' => ['programas.show', $rowprogramas->id]]) }}
 						<button type="submit">
 							<i class="fa fa-eye" aria-hidden="true"></i>
 						</button>

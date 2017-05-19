@@ -19,7 +19,7 @@
 				<td>{{$rowcooperantes->persona_contacto}}</td>
 				<td>{{$rowcooperantes->mail_contacto}}</td>
 				<td>
-					{{ Form::open(['method' => 'Get', 'route' => ['cooperantes.edit', $rowcooperantes->id]]) }}
+					{{ Form::open(['method' => 'Get', 'route' => ['cooperantes.show', $rowcooperantes->id]]) }}
 						<button type="submit">
 							<i class="fa fa-eye" aria-hidden="true"></i>
 						</button>

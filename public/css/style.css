@@ -1,5 +1,6 @@
 .contenido {
 	padding-left: 215px;
+  padding-right: 10px;
 }
 #logo {
 	width: 40%;
@@ -38,4 +39,30 @@
 }
 span strong {
   color: red;
+}
+.user_name {
+  float: right;
+  margin: 20px 40px;
+  display: none;
+}
+
+.escuelas_menu {
+  display: none !important;
+}
+
+.user_name_menu {
+  display: block !important;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper.sidebar-toggle {
+    transition: 0s;
+    left: 200px;
+  }
+  .user_name, .escuelas_menu {
+    display: block !important;
+  }
+  .user_name_menu {
+    display: none !important;
+  }
 }

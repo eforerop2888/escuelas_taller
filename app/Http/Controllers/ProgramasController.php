@@ -65,7 +65,9 @@ class ProgramasController extends Controller
      */
     public function show($id)
     {
-        //
+        $programa = Programa::where('id', $id)
+            ->first();
+        return view('programas.verDetallePrograma', ['programa' => $programa]);
     }
 
     /**
@@ -76,9 +78,10 @@ class ProgramasController extends Controller
      */
     public function edit($id)
     {
-        $programa = Programa::where('id', $id)
-            ->first();
-        return view('programas.verDetallePrograma', ['programa' => $programa]);
+        $programa = Programa::find($id);
+        $escuelas = Escuela::all();
+        return view('programas.editarPrograma', ['programa' => $programa,
+            'escuelas' => $escuelas]);
     }
 
     /**
@@ -90,7 +93,18 @@ class ProgramasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Programa::where('id', $id)
+            ->update(['nombre' => $request->nombre_programa,
+                    'duracion_meses' => $request->duracion_meses,
+                    'duracion_horas' => $request->duracion_horas,
+                    'duracion_practicas_horas' => $request->duracion_practica,
+                    'objetivo_programa' => $request->objetivo_programa,
+                    'requisitos_ingreso' => $request->requisitos_ingreso,
+                    'trabajo_egresados' => $request->trabajo_egresados,
+                    'escuela_id' => $request->escuelas_id
+        ]);
+        $request->session()->flash('success', 'Programa actualizado exitosamente');
+        return redirect()->route('programas.index');
     }
 
     /**

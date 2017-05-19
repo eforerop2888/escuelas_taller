@@ -21,7 +21,7 @@
 				<td>{{$rowescuelas->telefono}}</td>
 				<td>{{$rowescuelas->director}}</td>
 				<td>
-					{{ Form::open(['method' => 'Get', 'route' => ['escuelas.edit', $rowescuelas->id]]) }}
+					{{ Form::open(['method' => 'Get', 'route' => ['escuelas.show', $rowescuelas->id]]) }}
 						<button type="submit">
 							<i class="fa fa-eye" aria-hidden="true"></i>
 						</button>

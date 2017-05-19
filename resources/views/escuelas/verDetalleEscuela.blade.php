@@ -1,7 +1,9 @@
 @extends('layouts.principal')
 @section('title', 'DETALLE ESCUELA')
+@section('subtitle')
+	{{$escuela->nombre}}
+@endsection
 @section('content')
-	<h2>{{$escuela->nombre}}</h2>
 	<div class="table-responsive">
 		<table class="table table-hover">
 			<tr>
@@ -44,5 +46,14 @@
 				<td>{{$escuela->coordinador_humano_email}}</td>
 			</tr>
 		</table>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			{{ Form::open(['method' => 'Get', 'route' => ['escuelas.edit', $escuela->id]]) }}
+				<button type="submit">
+					Editar Escuela <i class="fa fa-edit" aria-hidden="true"></i>
+				</button>
+			{{ Form::close() }}
+		</div>
 	</div>
 @endsection

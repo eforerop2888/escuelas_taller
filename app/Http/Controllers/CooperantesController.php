@@ -63,7 +63,18 @@ class CooperantesController extends Controller
      */
     public function show($id)
     {
-        //
+        $cooperante = Cooperante::where('cooperantes.id', $id)
+            ->join('programas', 'programa_id', '=', 'programas.id')
+            ->select('programas.nombre as nombre_programa',
+             'cooperantes.nombre as nombre_cooperante',
+             'cooperantes.mail_contacto',
+             'cooperantes.persona_contacto',
+             'cooperantes.tipo_cooperacion',
+             'cooperantes.resultados_significativos',
+             'cooperantes.id'
+             )
+            ->first();
+        return view('cooperantes.verDetalleCooperante', ['cooperante' => $cooperante]);
     }
 
     /**
@@ -74,7 +85,10 @@ class CooperantesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cooperante = Cooperante::find($id);
+        $programas = Programa::all();
+        return view('cooperantes.editarCooperante', ['cooperante' => $cooperante,
+            'programas' => $programas]);
     }
 
     /**
@@ -86,7 +100,16 @@ class CooperantesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Cooperante::where('id', $id)
+            ->update(['nombre' => $request->nombre_cooperante,
+                    'persona_contacto' => $request->persona_contacto,
+                    'mail_contacto' => $request->mail_contacto,
+                    'programa_id' => $request->programa,
+                    'tipo_cooperacion' => $request->tipo_cooperacion,
+                    'resultados_significativos' => $request->resultados_significativos,
+        ]);
+        $request->session()->flash('success', 'Cooperante actualizado exitosamente');
+        return redirect()->route('cooperantes.index');
     }
 
     /**

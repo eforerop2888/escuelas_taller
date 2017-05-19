@@ -21,7 +21,7 @@
 				<td>{{$rowcursosExtension->costo}}</td>
 				<td>{{$rowcursosExtension->contacto}}</td>
 				<td>
-					{{ Form::open(['method' => 'Get', 'route' => ['cursos.edit', $rowcursosExtension->id]]) }}
+					{{ Form::open(['method' => 'Get', 'route' => ['cursos.show', $rowcursosExtension->id]]) }}
 						<button type="submit">
 							<i class="fa fa-eye" aria-hidden="true"></i>
 						</button>

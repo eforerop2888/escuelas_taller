@@ -73,7 +73,9 @@ class EscuelasController extends Controller
      */
     public function show($id)
     {
-        //
+        $escuela = Escuela::where('id', $id)
+            ->first();
+        return view('escuelas.verDetalleEscuela', ['escuela' => $escuela]);
     }
 
     /**
@@ -84,9 +86,10 @@ class EscuelasController extends Controller
      */
     public function edit($id)
     {
-        $escuela = Escuela::where('id', $id)
-            ->first();
-        return view('escuelas.verDetalleEscuela', ['escuela' => $escuela]);
+        $escuela = Escuela::find($id);
+        $paises = Pais::all();
+        return view('escuelas.editarEscuela', ['escuela' => $escuela,
+            'paises' => $paises]);
     }
 
     /**
@@ -98,7 +101,23 @@ class EscuelasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Escuela::where('id', $id)
+            ->update(['nombre' => $request->nombre_escuela,
+                    'pagina_web' => $request->pagina_web,
+                    'direccion' => $request->direccion,
+                    'telefono' => $request->telefono,
+                    'director' => $request->director,
+                    'director_email' => $request->email,
+                    'coordinador' => $request->coordinador,
+                    'coordinador_email' => $request->email_c,
+                    'coordinador_humano' => $request->humano,
+                    'coordinador_humano_email' => $request->email_h,
+                    'acto_administrativo' => $request->acto,
+                    'otorga_permiso' => $request->permiso,
+                    'pais_id' => $request->pais_id
+        ]);
+        $request->session()->flash('success', 'Escuela actualizada exitosamente');
+        return redirect()->route('escuelas.index');
     }
 
     /**

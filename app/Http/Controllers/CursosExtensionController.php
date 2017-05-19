@@ -62,7 +62,9 @@ class CursosExtensionController extends Controller
      */
     public function show($id)
     {
-        //
+        $curso = CursoExtension::where('id', $id)
+            ->first();
+        return view('cursos.verDetalleCurso', ['curso' => $curso]);
     }
 
     /**
@@ -73,9 +75,9 @@ class CursosExtensionController extends Controller
      */
     public function edit($id)
     {
-        $curso = CursoExtension::where('id', $id)
-            ->first();
-        return view('cursos.verDetalleCurso', ['curso' => $curso]);
+        $curso = CursoExtension::find($id);
+        return view('cursos.editarCurso', ['curso' => $curso
+            ]);
     }
 
     /**
@@ -87,7 +89,16 @@ class CursosExtensionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        CursoExtension::where('id', $id)
+            ->update([
+                'nombre' => $request->nombre_curso,
+                'objetivo_curso' => $request->objetivo_curso,
+                'duracion' => $request->duracion,
+                'costo' => $request->costo,
+                'contacto' => $request->contacto
+            ]);
+        $request->session()->flash('success', 'Curso actualizado exitosamente');
+        return redirect()->route('cursos.index');
     }
 
     /**

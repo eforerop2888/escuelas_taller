@@ -12,34 +12,36 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
-
-/*
-	Rutas para el modulo de escuelas
-*/
-Route::resource('escuelas', 'EscuelasController');
-
-/*
-	Rutas para el modulo de programas
-*/
-Route::resource('programas', 'ProgramasController');
-
-/*
-	Rutas para el modulo de estudiantes
-*/
-Route::resource('estudiantes', 'EstudiantesController');
-
-/*
-	Rutas para el modulo de Cooperantes
-*/
-Route::resource('cooperantes', 'CooperantesController');
-
-/*
-	Rutas para el modulo de Cursos de extensión
-*/
-Route::resource('cursos', 'CursosExtensionController');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth'], function () {
+	/*
+		Rutas para el modulo de escuelas
+	*/
+	Route::resource('escuelas', 'EscuelasController');
+
+	/*
+		Rutas para el modulo de programas
+	*/
+	Route::resource('programas', 'ProgramasController');
+
+	/*
+		Rutas para el modulo de estudiantes
+	*/
+	Route::resource('estudiantes', 'EstudiantesController');
+
+	/*
+		Rutas para el modulo de Cooperantes
+	*/
+	Route::resource('cooperantes', 'CooperantesController');
+
+	/*
+		Rutas para el modulo de Cursos de extensión
+	*/
+	Route::resource('cursos', 'CursosExtensionController');
+
+	Route::get('/home', 'HomeController@index')->name('home');
+});

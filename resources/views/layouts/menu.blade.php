@@ -10,25 +10,30 @@
 				<img id="logo" src="{{URL::asset('logo.png')}}">
 			</a>
 		</div>
+		<span class="user_name">{{ Auth::user()->name }}</span>
 		<div id="sidebar-wrapper" class="sidebar-toggle">
 			<ul class="sidebar-nav">
-	    	<li>
-      		<a href="#item1">Escuelas taller</a>
-      		<ul>
-      			<li>
-      				<a href="">Crear</a>
-      			</li>
-      			<li>
-      				<a href="">Listar</a>
-      			</li>
-      		</ul>
-	    	</li>
-	    	<li>
-      		<a href="#item2">Usuarios</a>
-	    	</li>
-	    	<li>
-      		<a href="#item3">Programas</a>
-	    	</li>
-	  	</ul>
+		    	<li>
+		    		<a href="#" class="escuelas_menu">Escuelas Taller</a>
+	      			<a href="#" class="user_name_menu">{{ Auth::user()->name }}</a>
+		      		<ul>
+		      			<li>
+		      				<a href="">Crear</a>
+		      			</li>
+		      			<li>
+		      				<a href="">Listar</a>
+		      			</li>
+		      		</ul>
+		    	</li>
+		    	<li>
+	      			<a href="#item2">Usuarios</a>
+		    	</li>
+		    	<li>
+	      			<a href="#item3">Programas</a>
+		    	</li>
+		    	<li>
+		    		<a href="{{route('logout')}}">Cerrar Sesión</a>
+		    	</li>
+		  	</ul>
 		</div>
 </nav>

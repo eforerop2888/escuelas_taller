@@ -22,4 +22,13 @@
 			<tr/>
 		</table>
 	</div>
+	<div class="row">
+		<div class="col-md-12">
+			{{ Form::open(['method' => 'Get', 'route' => ['cursos.edit', $curso->id]]) }}
+				<button type="submit">
+					Editar Curso <i class="fa fa-edit" aria-hidden="true"></i>
+				</button>
+			{{ Form::close() }}
+		</div>
+	</div>
 @endsection
