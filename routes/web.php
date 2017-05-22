@@ -29,6 +29,11 @@ Auth::routes();
 	Route::resource('programas', 'ProgramasController');
 
 	/*
+		Rutas para el modulo de modulos
+	*/
+	Route::resource('modulos', 'ModulosController');
+
+	/*
 		Rutas para el modulo de estudiantes
 	*/
 	Route::resource('estudiantes', 'EstudiantesController');
@@ -42,6 +47,12 @@ Auth::routes();
 		Rutas para el modulo de Cursos de extensión
 	*/
 	Route::resource('cursos', 'CursosExtensionController');
+
+	/*
+		Rutas para el modulo de informes
+	*/
+	Route::get('informes', 'InformesController@index')->name('informes');
+
 	/*
 		Rutas de usuarios Personalizadas
 	*/

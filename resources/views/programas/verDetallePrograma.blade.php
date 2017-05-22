@@ -1,5 +1,5 @@
 @extends('layouts.principal')
-@section('title', 'DETALLE PROGRAMA')
+@section('title', 'Detalle Programa')
 @section('subtitle')
 	{{$programa->nombre}}
 @endsection
@@ -47,6 +47,54 @@
 					Editar Programa <i class="fa fa-edit" aria-hidden="true"></i>
 				</button>
 			{{ Form::close() }}
+		</div>
+	</div>
+	<div class="panel panel-warning">
+		<div class="panel-heading">
+			Estudiantes
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-6">
+				{{ Form::open(['method' => 'Get', 'route' => ['estudiantes.create']]) }}
+					<input type="hidden" name="programa_id" id="programa_id" value="{{$programa->id}}">
+					<button type="submit" class="btn btn-primary">
+						Editar Estudiantes <i class="fa fa-edit" aria-hidden="true"></i>
+					</button>
+				{{ Form::close() }}
+				</div>
+				<div class="col-md-6">
+					{{ Form::open(['method' => 'Delete', 'route' => ['estudiantes.destroy', $programa->id]]) }}
+						<button type="submit" class="btn btn-danger">
+							Borrar información estudiantes <i class="fa fa-eraser" aria-hidden="true"></i>
+						</button>
+					{{ Form::close() }}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="panel panel-danger">
+		<div class="panel-heading">
+			Materias
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-6">
+					{{ Form::open(['method' => 'Get', 'route' => ['modulos.create']]) }}
+						<input type="hidden" name="programa_id_m" id="programa_id_m" value="{{$programa->id}}">
+						<button type="submit" class="btn btn-primary">
+							Agregar Modulo | Matería <i class="fa fa-edit" aria-hidden="true"></i>
+						</button>
+					{{ Form::close() }}
+				</div>
+				<div class="col-md-6">
+					{{ Form::open(['method' => 'Delete', 'route' => ['modulos.destroy', $programa->id]]) }}
+						<button type="submit" class="btn btn-warning">
+							Eliminar Modulo | Matería <i class="fa fa-edit" aria-hidden="true"></i>
+						</button>
+					{{ Form::close() }}
+				</div>
+			</div>
 		</div>
 	</div>
 @endsection

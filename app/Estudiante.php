@@ -17,5 +17,6 @@ class Estudiante extends Model
     	'certificados',
     	'genero_id',
     	'programa_id',
+        'user_id',
     	];
 }
