@@ -19,6 +19,10 @@ class CreateCursosextensionTable extends Migration
             $table->text('objetivo_curso');
             $table->integer('duracion');
             $table->integer('costo');
+            $table->integer('pais_id')->unsigned();
+            $table->foreign('pais_id')->references('id')->on('paises');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('contacto');
             $table->timestamps();
         });

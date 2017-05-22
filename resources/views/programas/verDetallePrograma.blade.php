@@ -1,7 +1,9 @@
 @extends('layouts.principal')
 @section('title', 'DETALLE PROGRAMA')
+@section('subtitle')
+	{{$programa->nombre}}
+@endsection
 @section('content')
-	<h2>{{$programa->nombre}}</h2>
 	<div class="table-responsive">
 		<table class="table table-hover">
 			<tr>
@@ -28,12 +30,20 @@
 				<th>Lugar de trabajo de los egresados</th>
 				<td>{{$programa->trabajo_egresados}}</td>
 			<tr/>
+			<tr>
+				<th>Escuela</th>
+				<td>{{$programa->nombre_escuela}}</td>
+			<tr/>
+			<tr>
+				<th>País</th>
+				<td>{{ucfirst($programa->pais)}}</td>
+			<tr/>
 		</table>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
 			{{ Form::open(['method' => 'Get', 'route' => ['programas.edit', $programa->id]]) }}
-				<button type="submit">
+				<button type="submit" class="btn btn-primary">
 					Editar Programa <i class="fa fa-edit" aria-hidden="true"></i>
 				</button>
 			{{ Form::close() }}

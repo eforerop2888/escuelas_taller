@@ -22,6 +22,8 @@ class CreateCooperantesTable extends Migration
             $table->text('resultados_significativos');
             $table->integer('programa_id')->unsigned();
             $table->foreign('programa_id')->references('id')->on('programas');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\RequestStoreCursosExtension;
 use App\CursoExtension;
+use App\Pais;
+use Auth;
 
 class CursosExtensionController extends Controller
 {
@@ -15,11 +17,13 @@ class CursosExtensionController extends Controller
      */
     public function index()
     {
-        $cursosExtension = CursoExtension::select('id',
+        $cursosExtension = CursoExtension::join('paises','cursos_extension.pais_id','=','paises.id')
+            ->select('cursos_extension.id as id',
             'nombre',
             'duracion',
             'costo',
-            'contacto')
+            'contacto',
+            'paises.pais')
             ->get();
         return view('cursos.verCursos', ['cursosExtension' => $cursosExtension]);
     }
@@ -31,7 +35,8 @@ class CursosExtensionController extends Controller
      */
     public function create()
     {
-        return view('cursos.crearCursos');
+        $paises = Pais::all();
+        return view('cursos.crearCursos', ['paises' => $paises]);
     }
 
     /**
@@ -47,7 +52,9 @@ class CursosExtensionController extends Controller
             'objetivo_curso' => $request->objetivo_curso,
             'duracion' => $request->duracion,
             'costo' => $request->costo,
-            'contacto' => $request->contacto
+            'contacto' => $request->contacto,
+            'pais_id' => $request->pais_id,
+            'user_id' => Auth::user()->id
         ]);
 
         $request->session()->flash('success', 'Curso de extensión creado exitosamente');
@@ -62,7 +69,15 @@ class CursosExtensionController extends Controller
      */
     public function show($id)
     {
-        $curso = CursoExtension::where('id', $id)
+        $curso = CursoExtension::join('paises','cursos_extension.pais_id','=','paises.id')
+            ->select('cursos_extension.id as id',
+            'nombre',
+            'duracion',
+            'costo',
+            'contacto',
+            'objetivo_curso',
+            'paises.pais')
+            ->where('cursos_extension.id', $id)
             ->first();
         return view('cursos.verDetalleCurso', ['curso' => $curso]);
     }
@@ -75,9 +90,10 @@ class CursosExtensionController extends Controller
      */
     public function edit($id)
     {
+        $paises = Pais::all();
         $curso = CursoExtension::find($id);
-        return view('cursos.editarCurso', ['curso' => $curso
-            ]);
+        return view('cursos.editarCurso', ['curso' => $curso,
+            'paises' => $paises]);
     }
 
     /**
@@ -95,7 +111,9 @@ class CursosExtensionController extends Controller
                 'objetivo_curso' => $request->objetivo_curso,
                 'duracion' => $request->duracion,
                 'costo' => $request->costo,
-                'contacto' => $request->contacto
+                'contacto' => $request->contacto,
+                'pais_id' => $request->pais_id,
+                'user_id' => Auth::user()->id
             ]);
         $request->session()->flash('success', 'Curso actualizado exitosamente');
         return redirect()->route('cursos.index');

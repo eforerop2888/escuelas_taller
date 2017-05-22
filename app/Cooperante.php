@@ -14,6 +14,7 @@ class Cooperante extends Model
     	'persona_contacto',
     	'tipo_cooperacion',
     	'resultados_significativos',
-    	'programa_id'
+    	'programa_id',
+    	'user_id'
     ];
 }

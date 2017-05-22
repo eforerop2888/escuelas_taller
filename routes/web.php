@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['middleware' => 'auth'], function () {
+//Route::group(['middleware' => 'auth'], function () {
 	/*
 		Rutas para el modulo de escuelas
 	*/
@@ -42,6 +42,11 @@ Route::group(['middleware' => 'auth'], function () {
 		Rutas para el modulo de Cursos de extensión
 	*/
 	Route::resource('cursos', 'CursosExtensionController');
+	/*
+		Rutas de usuarios Personalizadas
+	*/
+
+	Route::resource('usuarios', 'Auth\UsuariosController');
 
 	Route::get('/home', 'HomeController@index')->name('home');
-});
+//});

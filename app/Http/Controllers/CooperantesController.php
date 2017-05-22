@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Programa;
 use App\Cooperante;
 use App\Http\Requests\RequestStoreCooperantes;
+use Auth;
 
 class CooperantesController extends Controller
 {
@@ -16,10 +17,15 @@ class CooperantesController extends Controller
      */
     public function index()
     {
-        $cooperantes = Cooperante::select('id',
-            'nombre',
+        $cooperantes = Cooperante::join('programas','cooperantes.programa_id','=','programas.id')
+            ->join('users','programas.user_id','=','users.id')
+            ->join('paises','users.pais_id','=','paises.id')
+            ->select('cooperantes.id as id',
+            'cooperantes.nombre as nombre',
             'persona_contacto',
-            'mail_contacto')
+            'mail_contacto',
+            'paises.pais',
+            'programas.nombre as nombre_programa')
             ->get();
         return view('cooperantes.verCooperantes', ['cooperantes' => $cooperantes]);
     }
@@ -31,7 +37,12 @@ class CooperantesController extends Controller
      */
     public function create()
     {
-        $programas = Programa::all();
+        $programas = Programa::join('users','programas.user_id','=','users.id')
+            ->join('paises','users.pais_id','=','paises.id')
+            ->select('programas.id as id',
+                'programas.nombre as nombre')
+            ->where('paises.id', Auth::user()->pais_id)
+            ->get();
         return view('cooperantes.crearCooperante', ['programas' => $programas]);
     }
 
@@ -49,6 +60,7 @@ class CooperantesController extends Controller
                         'programa_id' => $request->programa,
                         'tipo_cooperacion' => $request->tipo_cooperacion,
                         'resultados_significativos' => $request->resultados_significativos,
+                        'user_id' => Auth::user()->id
                     ]);
 
         $request->session()->flash('success', 'Cooperante creado exitosamente');
@@ -64,15 +76,19 @@ class CooperantesController extends Controller
     public function show($id)
     {
         $cooperante = Cooperante::where('cooperantes.id', $id)
-            ->join('programas', 'programa_id', '=', 'programas.id')
-            ->select('programas.nombre as nombre_programa',
-             'cooperantes.nombre as nombre_cooperante',
-             'cooperantes.mail_contacto',
-             'cooperantes.persona_contacto',
-             'cooperantes.tipo_cooperacion',
-             'cooperantes.resultados_significativos',
-             'cooperantes.id'
-             )
+            ->join('programas','cooperantes.programa_id','=','programas.id')
+            ->join('users','programas.user_id','=','users.id')
+            ->join('paises','users.pais_id','=','paises.id')
+            ->select('cooperantes.id as id',
+            'cooperantes.nombre as nombre_cooperante',
+            'cooperantes.tipo_cooperacion',
+            'cooperantes.resultados_significativos',
+            'paises.pais',
+            'programas.nombre as nombre_programa',
+            'persona_contacto',
+            'mail_contacto',
+            'paises.pais',
+            'programas.nombre as nombre_programa')
             ->first();
         return view('cooperantes.verDetalleCooperante', ['cooperante' => $cooperante]);
     }
@@ -107,6 +123,7 @@ class CooperantesController extends Controller
                     'programa_id' => $request->programa,
                     'tipo_cooperacion' => $request->tipo_cooperacion,
                     'resultados_significativos' => $request->resultados_significativos,
+                    'user_id' => Auth::user()->id
         ]);
         $request->session()->flash('success', 'Cooperante actualizado exitosamente');
         return redirect()->route('cooperantes.index');

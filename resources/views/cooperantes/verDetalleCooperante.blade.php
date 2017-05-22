@@ -1,7 +1,9 @@
 @extends('layouts.principal')
 @section('title', 'DETALLE COOPERANTE')
+@section('subtitle')
+	Cooperante: {{$cooperante->nombre_cooperante}}
+@endsection
 @section('content')
-	<h2>{{$cooperante->nombre_cooperante}}</h2>
 	<div class="table-responsive">
 		<table class="table table-hover">
 			<tr>
@@ -24,12 +26,20 @@
 				<th>Resultados más significativos</th>
 				<td>{{$cooperante->resultados_significativos}}</td>
 			<tr/>
+			<tr>
+				<th>Programa</th>
+				<td>{{$cooperante->nombre_programa}}</td>
+			<tr/>
+			<tr>
+				<th>Pais</th>
+				<td>{{ucfirst($cooperante->pais)}}</td>
+			<tr/>
 		</table>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
 			{{ Form::open(['method' => 'Get', 'route' => ['cooperantes.edit', $cooperante->id]]) }}
-				<button type="submit">
+				<button type="submit" class="btn btn-primary">
 					Editar Escuela <i class="fa fa-edit" aria-hidden="true"></i>
 				</button>
 			{{ Form::close() }}
