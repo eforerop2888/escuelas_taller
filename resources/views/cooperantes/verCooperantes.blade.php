@@ -8,6 +8,8 @@
 			<th>Nombre</th>
 			<th>Persona contacto</th>
 			<th>Mail del contacto</th>
+			<th>Programa</th>
+			<th>País</th>
 			<th>Ver</th>
 			<th>Eliminar</th>
 		</tr>
@@ -18,16 +20,18 @@
 				<td>{{$rowcooperantes->nombre}}</td>
 				<td>{{$rowcooperantes->persona_contacto}}</td>
 				<td>{{$rowcooperantes->mail_contacto}}</td>
+				<td>{{$rowcooperantes->nombre_programa}}</td>
+				<td>{{ucfirst($rowcooperantes->pais)}}</td>
 				<td>
 					{{ Form::open(['method' => 'Get', 'route' => ['cooperantes.show', $rowcooperantes->id]]) }}
-						<button type="submit">
+						<button type="submit" class="btn btn-warning">
 							<i class="fa fa-eye" aria-hidden="true"></i>
 						</button>
 					{{ Form::close() }}
 				</td>
 				<td>
 					{{ Form::open(['method' => 'Delete', 'route' => ['cooperantes.destroy', $rowcooperantes->id]]) }}
-						<button type="submit">
+						<button type="submit" class="btn btn-warning">
 							<i class="fa fa-eraser" aria-hidden="true" alt="borrar"></i>
 						</button>
 					{{ Form::close() }}

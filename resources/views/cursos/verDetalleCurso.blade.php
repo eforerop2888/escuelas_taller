@@ -1,7 +1,9 @@
 @extends('layouts.principal')
 @section('title', 'DETALLE CURSO')
+@section('subtitle')
+	{{$curso->nombre}}
+@endsection
 @section('content')
-	<h2>{{$curso->nombre}}</h2>
 	<div class="table-responsive">
 		<table class="table table-hover">
 			<tr>
@@ -20,12 +22,16 @@
 				<th>Contacto</th>
 				<td>{{$curso->contacto}}</td>
 			<tr/>
+			<tr>
+				<th>Pais</th>
+				<td>{{ucfirst($curso->pais)}}</td>
+			<tr/>
 		</table>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
 			{{ Form::open(['method' => 'Get', 'route' => ['cursos.edit', $curso->id]]) }}
-				<button type="submit">
+				<button type="submit" class="btn btn-primary">
 					Editar Curso <i class="fa fa-edit" aria-hidden="true"></i>
 				</button>
 			{{ Form::close() }}

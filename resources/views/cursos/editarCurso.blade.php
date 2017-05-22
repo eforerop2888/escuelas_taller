@@ -52,7 +52,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('objetivo_curso') ? ' has-error ' : ''}}">
 					<label for="objetivo_curso">Objetivo del curso</label>
 					<textarea id="objetivo_curso" name="objetivo_curso" class="form-control" required>{{$curso->objetivo_curso}}</textarea>
@@ -63,10 +63,31 @@
 		        	@endif
 				</div>
 			</div>
+			<div class="col-md-6">
+				<div class="form-group {{ $errors->has('pais_id') ? ' has-error ' : ''}}">
+					<label for="pais_id">País</label>
+					<select id="pais_id" name="pais_id" class="form-control" required>
+						@foreach ($paises as $rowpaises)
+							@if(Auth::user()->pais_id == $rowpaises->id)
+								<option value="{{$rowpaises->id}}" selected>{{ucfirst($rowpaises->pais)}}</option>
+							@else
+								@if(Auth::user()->role_id == 1)
+									<option value="{{$rowpaises->id}}">{{ucfirst($rowpaises->pais)}}</option>
+								@endif
+							@endif
+						@endforeach
+					</select>
+					@if ($errors->has('pais_id'))
+			          <span>
+			            <strong>{{ $errors->first('pais_id') }}</strong>
+			          </span>
+			      	@endif
+				</div>
+			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<button type="submit" class="btn btn-default">Guardar</button>
+				<button type="submit" class="btn btn-primary">Guardar</button>
 			</div>
 		</div>
 	{{Form::close()}}

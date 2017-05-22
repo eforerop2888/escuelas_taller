@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Pais;
+use App\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -67,6 +68,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'pais_id' => $data['pais_id'],
+            'role_id' => $data['role_id'],
             'password' => bcrypt($data['password']),
         ]);
     }
@@ -74,6 +76,9 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         $paises = Pais::all();
-        return view('auth.register', ['paises' => $paises]);
+        $roles = Role::all();
+        return view('auth.register', ['paises' => $paises,
+            'roles' => $roles]);
     }
+
 }

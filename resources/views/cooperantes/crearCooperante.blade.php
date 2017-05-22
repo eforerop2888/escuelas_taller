@@ -7,7 +7,7 @@
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('nombre_cooperante') ? ' has-error ' : ''}}">
 					<label for="nombre_cooperante">Nombre de cooperante</label>
-					<input type="text" id="nombre_cooperante" name="nombre_cooperante" class="form-control" required placeholder="Nombre de cooperante" autofocus>
+					<input type="text" id="nombre_cooperante" name="nombre_cooperante" class="form-control" value="{{old('nombre_cooperante')}}" required placeholder="Nombre de cooperante" autofocus>
 					@if ($errors->has('nombre_cooperante'))
             <span>
               <strong>{{ $errors->first('nombre_cooperante') }}</strong>
@@ -18,7 +18,7 @@
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('persona_contacto') ? ' has-error ' : ''}}">
 					<label for="persona_contacto">Persona de contacto</label>
-					<input type="text" id="persona_contacto" name="persona_contacto" class="form-control" required placeholder="Persona de contacto">
+					<input type="text" id="persona_contacto" name="persona_contacto" class="form-control" value="{{old('persona_contacto')}}" required placeholder="Persona de contacto">
 					@if ($errors->has('persona_contacto'))
 			            <span>
 			              <strong>{{ $errors->first('persona_contacto') }}</strong>
@@ -31,7 +31,7 @@
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('mail_contacto') ? ' has-error ' : ''}}">
 					<label for="mail_contacto">Mail del contacto</label>
-					<input type="email" id="mail_contacto" name="mail_contacto" class="form-control" required placeholder="Mail del contacto">
+					<input type="email" id="mail_contacto" name="mail_contacto" class="form-control" value="{{old('mail_contacto')}}" required placeholder="Mail del contacto">
 					@if ($errors->has('mail_contacto'))
 			            <span>
 			              <strong>{{ $errors->first('mail_contacto') }}</strong>
@@ -44,7 +44,7 @@
 					<label for="programa">Programa en el que coopera</label>
 					<select id="programa" name="programa" class="form-control" required>
 						@foreach($programas as $rowProgramas)
-							<option value="{{$rowProgramas->id}}">{{$rowProgramas->nombre}}</option>
+							<option value="{{$rowProgramas->id}}">{{ucfirst($rowProgramas->nombre)}}</option>
 						@endforeach
 					</select>
 					@if ($errors->has('programa'))
@@ -59,7 +59,7 @@
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('tipo_cooperacion') ? ' has-error ' : ''}}">
 					<label for="tipo_cooperacion">Tipo de cooperación</label>
-					<textarea id="tipo_cooperacion" name="tipo_cooperacion" class="form-control" required></textarea>
+					<textarea id="tipo_cooperacion" name="tipo_cooperacion" class="form-control" required>{{old('tipo_cooperacion')}}</textarea>
 					@if ($errors->has('tipo_cooperacion'))
 			            <span>
 			              <strong>{{ $errors->first('tipo_cooperacion') }}</strong>
@@ -70,7 +70,7 @@
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('resultados_significativos') ? ' has-error ' : ''}}">
 					<label for="resultados_significativos">Resultados más significativos</label>
-					<textarea id="resultados_significativos" name="resultados_significativos" class="form-control" required></textarea>
+					<textarea id="resultados_significativos" name="resultados_significativos" class="form-control" required>{{old('resultados_significativos')}}</textarea>
 					@if ($errors->has('resultados_significativos'))
 			            <span>
 			              <strong>{{ $errors->first('resultados_significativos') }}</strong>
@@ -81,7 +81,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<button type="submit" class="btn btn-default">Guardar</button>
+				<button type="submit" class="btn btn-primary">Guardar</button>
 			</div>
 		</div>
 	{{Form::close()}}

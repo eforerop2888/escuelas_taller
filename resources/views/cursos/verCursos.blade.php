@@ -6,9 +6,10 @@
 		<tr>
 			<th>#</th>
 			<th>Nombre</th>
-			<th>Duración (meses)</th>
-			<th>Duración (horas)</th>
-			<th>Duración Practicas (horas)</th>
+			<th>Duración</th>
+			<th>Costo</th>
+			<th>Contacto</th>
+			<th>País</th>
 			<th>Ver</th>
 			<th>Eliminar</th>
 		</tr>
@@ -20,9 +21,10 @@
 				<td>{{$rowcursosExtension->duracion}}</td>
 				<td>{{$rowcursosExtension->costo}}</td>
 				<td>{{$rowcursosExtension->contacto}}</td>
+				<td>{{ucfirst($rowcursosExtension->pais)}}</td>
 				<td>
 					{{ Form::open(['method' => 'Get', 'route' => ['cursos.show', $rowcursosExtension->id]]) }}
-						<button type="submit">
+						<button type="submit" class="btn btn-warning">
 							<i class="fa fa-eye" aria-hidden="true"></i>
 						</button>
 					{{ Form::close() }}
@@ -30,7 +32,7 @@
 				</td>
 				<td>
 					{{ Form::open(['method' => 'Delete', 'route' => ['cursos.destroy', $rowcursosExtension->id]]) }}
-						<button type="submit">
+						<button type="submit" class="btn btn-warning">
 							<i class="fa fa-eraser" aria-hidden="true" alt="borrar"></i>
 						</button>
 					{{ Form::close() }}

@@ -9,6 +9,7 @@
 			<th>Dirección</th>
 			<th>Teléfono</th>
 			<th>Director</th>
+			<th>País</th>
 			<th>Ver</th>
 			<th>Eliminar</th>
 		</tr>
@@ -20,6 +21,7 @@
 				<td>{{$rowescuelas->direccion}}</td>
 				<td>{{$rowescuelas->telefono}}</td>
 				<td>{{$rowescuelas->director}}</td>
+				<td>{{ucfirst($rowescuelas->pais)}}</td>
 				<td>
 					{{ Form::open(['method' => 'Get', 'route' => ['escuelas.show', $rowescuelas->id]]) }}
 						<button type="submit" class="btn btn-warning">

@@ -7,7 +7,7 @@
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('nombre_programa') ? ' has-error ' : ''}}">
 					<label for="nombre_programa">Nombre Programa</label>
-					<input type="text" id="nombre_programa" name="nombre_programa" class="form-control" required placeholder="Nombre Programa" autofocus>
+					<input type="text" id="nombre_programa" name="nombre_programa" class="form-control" value="{{old('nombre_programa')}}" required placeholder="Nombre Programa" autofocus>
 					@if ($errors->has('nombre_programa'))
             <span>
               <strong>{{ $errors->first('nombre_programa') }}</strong>
@@ -18,7 +18,7 @@
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('duracion_meses') ? ' has-error ' : ''}}">
 					<label for="duracion_meses">Duración meses</label>
-					<input type="number" id="duracion_meses" name="duracion_meses" class="form-control" required placeholder="Duración meses">
+					<input type="number" id="duracion_meses" name="duracion_meses" class="form-control" value="{{old('duracion_meses')}}" required placeholder="Duración meses">
 					@if ($errors->has('duracion_meses'))
 			            <span>
 			              <strong>{{ $errors->first('duracion_meses') }}</strong>
@@ -31,7 +31,7 @@
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('duracion_horas') ? ' has-error ' : ''}}">
 					<label for="duracion_horas">Duracion horas</label>
-					<input type="number" id="duracion_horas" name="duracion_horas" class="form-control" required placeholder="Duracion horas">
+					<input type="number" id="duracion_horas" name="duracion_horas" class="form-control" value="{{old('duracion_horas')}}" required placeholder="Duracion horas">
 					@if ($errors->has('duracion_horas'))
 			            <span>
 			              <strong>{{ $errors->first('duracion_horas') }}</strong>
@@ -42,7 +42,7 @@
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('duracion_practica') ? ' has-error ' : ''}}">
 					<label for="duracion_practica">Duracion Practica (Horas)</label>
-					<input type="number" id="duracion_practica" name="duracion_practica" class="form-control" required placeholder="Duracion Practica (Horas)">
+					<input type="number" id="duracion_practica" name="duracion_practica" class="form-control" value="{{old('duracion_practica')}}" required placeholder="Duracion Practica (Horas)">
 					@if ($errors->has('duracion_practica'))
 			            <span>
 			              <strong>{{ $errors->first('duracion_practica') }}</strong>
@@ -55,7 +55,7 @@
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('objetivo_programa') ? ' has-error ' : ''}}">
 					<label for="objetivo_programa">Objetivo del Programa</label>
-					<textarea id="objetivo_programa" name="objetivo_programa" class="form-control" required></textarea>
+					<textarea id="objetivo_programa" name="objetivo_programa" class="form-control" value="{{old('objetivo_programa')}}" required></textarea>
 					@if ($errors->has('objetivo_programa'))
 			            <span>
 			              <strong>{{ $errors->first('objetivo_programa') }}</strong>
@@ -66,7 +66,7 @@
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('requisitos_ingreso') ? ' has-error ' : ''}}">
 					<label for="requisitos_ingreso">Requisitos de Ingreso</label>
-					<textarea id="requisitos_ingreso" name="requisitos_ingreso" class="form-control" required></textarea>
+					<textarea id="requisitos_ingreso" name="requisitos_ingreso" class="form-control" value="{{old('requisitos_ingreso')}}" required></textarea>
 					@if ($errors->has('requisitos_ingreso'))
 			            <span>
 			              <strong>{{ $errors->first('requisitos_ingreso') }}</strong>
@@ -79,7 +79,7 @@
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('trabajo_egresados') ? ' has-error ' : ''}}">
 					<label for="trabajo_egresados">En donde trabajan los egresados</label>
-					<textarea id="trabajo_egresados" name="trabajo_egresados" class="form-control" required></textarea>
+					<textarea id="trabajo_egresados" name="trabajo_egresados" class="form-control" value="{{old('trabajo_egresados')}}" required></textarea>
 					@if ($errors->has('trabajo_egresados'))
 			            <span>
 			              <strong>{{ $errors->first('trabajo_egresados') }}</strong>
@@ -90,7 +90,7 @@
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('escuelas_id') ? ' has-error ' : ''}}">
 					<label for="escuelas_id">Seleccionar Escuela</label>
-					<select id="escuelas_id" name="escuelas_id" class="form-control">
+					<select id="escuelas_id" name="escuelas_id" required class="form-control">
 						@foreach($escuelas as $rowEscuelas)
 							<option value="{{$rowEscuelas->id}}">{{$rowEscuelas->nombre}}</option>
 						@endforeach
@@ -105,7 +105,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<button type="submit" class="btn btn-default">Guardar</button>
+				<button type="submit" class="btn btn-primary">Guardar</button>
 			</div>
 		</div>
 	{{Form::close()}}

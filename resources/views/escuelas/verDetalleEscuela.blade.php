@@ -7,6 +7,10 @@
 	<div class="table-responsive">
 		<table class="table table-hover">
 			<tr>
+				<th>País</th>
+				<td colspan="2">{{ucfirst($escuela->pais)}}</td>
+			</tr>
+			<tr>
 				<th>Dirección</th>
 				<td colspan="2">{{$escuela->direccion}}</td>
 			</tr>
@@ -48,10 +52,18 @@
 		</table>
 	</div>
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-6 col-xs-6">
 			{{ Form::open(['method' => 'Get', 'route' => ['escuelas.edit', $escuela->id]]) }}
-				<button type="submit">
+				<button type="submit" class="btn btn-primary">
 					Editar Escuela <i class="fa fa-edit" aria-hidden="true"></i>
+				</button>
+			{{ Form::close() }}
+		</div>
+		<div class="col-md-6 col-xs-6">
+			{{ Form::open(['method' => 'Get', 'route' => ['programas.create']]) }}
+				<input type="hidden" name="escuela" value="{{$escuela->id}}">
+				<button type="submit" class="btn btn-warning">
+					Crear Programa <i class="fa fa-edit" aria-hidden="true"></i>
 				</button>
 			{{ Form::close() }}
 		</div>

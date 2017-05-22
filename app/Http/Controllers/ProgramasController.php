@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\RequestStoreProgramas;
 use App\Escuela;
 use App\Programa;
+use Auth;
 
 class ProgramasController extends Controller
 {
@@ -16,12 +17,19 @@ class ProgramasController extends Controller
      */
     public function index()
     {
-        $programas = Programa::select('id',
-            'nombre',
-            'duracion_meses',
-            'duracion_horas',
-            'duracion_practicas_horas')
-        ->get();
+        $programas = Programa::join('escuelas','programas.escuela_id','=','escuelas.id')
+            ->join('paises','escuelas.pais_id','=','paises.id')
+            ->select('programas.id as id',
+            'programas.nombre as nombre',
+            'programas.duracion_meses',
+            'programas.duracion_horas',
+            'programas.duracion_practicas_horas',
+            'escuelas.nombre as nombre_escuela',
+            'paises.pais');
+        if (Auth::user()->role_id != 1) {
+            $programas = $programas->where('pais_id', Auth::user()->pais_id);       
+        }
+        $programas = $programas->get();
         return view('programas.verProgramas', ['programas' => $programas]);
     }
 
@@ -30,9 +38,14 @@ class ProgramasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $escuelas = Escuela::all();
+        if($request->escuela){
+            $escuelas = Escuela::where('id', $request->escuela)
+                ->get();        
+            }else{
+                $escuelas = Escuela::all();
+            }
         return view('programas.crearPrograma', ['escuelas' => $escuelas]);
     }
 
@@ -51,7 +64,8 @@ class ProgramasController extends Controller
                         'objetivo_programa' => $request->objetivo_programa,
                         'requisitos_ingreso' => $request->requisitos_ingreso,
                         'trabajo_egresados' => $request->trabajo_egresados,
-                        'escuela_id' => $request->escuelas_id
+                        'escuela_id' => $request->escuelas_id,
+                        'user_id' => Auth::user()->id,
                         ]);
         $request->session()->flash('success', 'Programa Creado exitosamente');
         return redirect()->route('programas.index');
@@ -65,7 +79,19 @@ class ProgramasController extends Controller
      */
     public function show($id)
     {
-        $programa = Programa::where('id', $id)
+        $programa = Programa::join('escuelas','programas.escuela_id','=','escuelas.id')
+            ->join('paises','escuelas.pais_id','=','paises.id')
+            ->select('programas.id as id',
+            'programas.nombre as nombre',
+            'programas.duracion_meses',
+            'programas.duracion_horas',
+            'programas.duracion_practicas_horas',
+            'programas.objetivo_programa',
+            'programas.requisitos_ingreso',
+            'programas.trabajo_egresados',
+            'escuelas.nombre as nombre_escuela',
+            'paises.pais')
+            ->where('programas.id', $id)
             ->first();
         return view('programas.verDetallePrograma', ['programa' => $programa]);
     }
@@ -79,7 +105,9 @@ class ProgramasController extends Controller
     public function edit($id)
     {
         $programa = Programa::find($id);
-        $escuelas = Escuela::all();
+        $escuelas = Escuela::join('programas','escuelas.id','=','programas.escuela_id')
+            ->where('escuelas.pais_id', Auth::user()->pais_id)
+            ->get();
         return view('programas.editarPrograma', ['programa' => $programa,
             'escuelas' => $escuelas]);
     }
@@ -101,7 +129,8 @@ class ProgramasController extends Controller
                     'objetivo_programa' => $request->objetivo_programa,
                     'requisitos_ingreso' => $request->requisitos_ingreso,
                     'trabajo_egresados' => $request->trabajo_egresados,
-                    'escuela_id' => $request->escuelas_id
+                    'escuela_id' => $request->escuelas_id,
+                    'user_id' => Auth::user()->id,
         ]);
         $request->session()->flash('success', 'Programa actualizado exitosamente');
         return redirect()->route('programas.index');

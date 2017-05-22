@@ -42,7 +42,7 @@
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('telefono') ? ' has-error ' : ''}}">
 					<label for="telefono">Teléfono</label>
-					<input type="text" id="telefono" name="telefono" class="form-control" required placeholder="Teléfono" value="{{$escuela->telefono}}"{{$escuela->telefono}}"">
+					<input type="number" id="telefono" name="telefono" class="form-control" required placeholder="Teléfono" value="{{$escuela->telefono}}"}}"">
 					@if ($errors->has('telefono'))
 	          <span>
 	            <strong>{{ $errors->first('telefono') }}</strong>
@@ -156,7 +156,9 @@
 							@if($escuela->pais_id == $rowpaises->id)
 								<option value="{{$rowpaises->id}}" selected="selected">{{ucfirst($rowpaises->pais)}}</option>
 							@else
-								<option value="{{$rowpaises->id}}">{{ucfirst($rowpaises->pais)}}</option>
+								@if(Auth::user()->role_id == 1)
+									<option value="{{$rowpaises->id}}">{{ucfirst($rowpaises->pais)}}</option>
+								@endif
 							@endif
 						@endforeach
 					</select>
@@ -170,7 +172,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<button type="submit" class="btn btn-default">Guardar</button>
+				<button type="submit" class="btn btn-primary">Guardar</button>
 			</div>
 		</div>
 	{{Form::close()}}

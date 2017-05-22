@@ -17,12 +17,17 @@ class EscuelasController extends Controller
      */
     public function index()
     {
-        $escuelas = Escuela::select('id',
-            'nombre',
-            'direccion',
-            'telefono',
-            'director')
-            ->get();
+        $escuelas = Escuela::join('paises', 'escuelas.pais_id', '=', 'paises.id')
+            ->select('escuelas.id as id',
+            'escuelas.nombre',
+            'escuelas.direccion',
+            'escuelas.telefono',
+            'escuelas.director',
+            'paises.pais as pais');
+        if (Auth::user()->role_id != 1) {
+            $escuelas = $escuelas->where('pais_id', Auth::user()->pais_id);       
+        }
+        $escuelas = $escuelas->get();
         return view('escuelas.verEscuelas', ['escuelas' => $escuelas]);
     }
 
@@ -73,7 +78,23 @@ class EscuelasController extends Controller
      */
     public function show($id)
     {
-        $escuela = Escuela::where('id', $id)
+        $escuela = Escuela::join('paises', 'escuelas.pais_id', '=', 'paises.id')
+            ->where('escuelas.id', $id)
+            ->select('escuelas.id as id',
+            'escuelas.nombre',
+            'escuelas.direccion',
+            'escuelas.telefono',
+            'escuelas.director',
+            'escuelas.director_email',
+            'escuelas.coordinador',
+            'escuelas.coordinador_email',
+            'escuelas.coordinador_humano',
+            'escuelas.coordinador_humano_email',
+            'escuelas.pagina_web',
+            'escuelas.created_at',
+            'escuelas.acto_administrativo',
+            'escuelas.otorga_permiso',
+            'paises.pais as pais')
             ->first();
         return view('escuelas.verDetalleEscuela', ['escuela' => $escuela]);
     }
@@ -99,7 +120,7 @@ class EscuelasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RequestStoreEscuelas $request, $id)
     {
         Escuela::where('id', $id)
             ->update(['nombre' => $request->nombre_escuela,
