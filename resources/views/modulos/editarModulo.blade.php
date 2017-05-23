@@ -1,8 +1,8 @@
 @extends('layouts.principal')
-@section('title', 'Crear Módulo')
-@section('subtitle', 'Crear Módulo')
+@section('title', 'Editar Módulo')
+@section('subtitle', 'EDITAR MÓDULO')
 @section('content')
-	{{Form::open(['route' => 'modulos.store', 'method' => 'POST', 'id' => 'form-crear-modulo'])}}
+	{{Form::open(['route' => ['modulos.update', $modulo->id_modulos], 'method' => 'PUT', 'id' => 'form-editar-modulo'])}}
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('nombre_modulo') ? ' has-error ' : ''}}">

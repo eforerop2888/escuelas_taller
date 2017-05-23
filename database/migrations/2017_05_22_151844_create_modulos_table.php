@@ -24,6 +24,7 @@ class CreateModulosTable extends Migration
             $table->text('experiencia');
             $table->integer('user_id');
             $table->integer('programa_id');
+            $table->timestamps();
         });
 
     }

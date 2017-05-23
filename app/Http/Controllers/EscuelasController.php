@@ -78,25 +78,7 @@ class EscuelasController extends Controller
      */
     public function show($id)
     {
-        $escuela = Escuela::join('paises', 'escuelas.pais_id', '=', 'paises.id')
-            ->where('escuelas.id', $id)
-            ->select('escuelas.id as id',
-            'escuelas.nombre',
-            'escuelas.direccion',
-            'escuelas.telefono',
-            'escuelas.director',
-            'escuelas.director_email',
-            'escuelas.coordinador',
-            'escuelas.coordinador_email',
-            'escuelas.coordinador_humano',
-            'escuelas.coordinador_humano_email',
-            'escuelas.pagina_web',
-            'escuelas.created_at',
-            'escuelas.acto_administrativo',
-            'escuelas.otorga_permiso',
-            'paises.pais as pais')
-            ->first();
-        return view('escuelas.verDetalleEscuela', ['escuela' => $escuela]);
+        //
     }
 
     /**

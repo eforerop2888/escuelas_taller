@@ -18,5 +18,5 @@ class Modulo extends Model
     	'experiencia',
     	'user_id',
     	'programa_id',
-    ]
+    ];
 }

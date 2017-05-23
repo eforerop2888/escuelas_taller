@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\RequestStoreModulos;
 use App\Programa;
+use App\Modulo;
 use Auth;
 
 class ModulosController extends Controller
@@ -40,7 +41,18 @@ class ModulosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Modulo::create(['nombre' => $request->nombre_modulo,
+                        'tipo_modulo' => $request->tipo_modulo,
+                        'duracion' => $request->duracion,
+                        'objetivo' => $request->objetivo,
+                        'nombre_maestro' => $request->nombre_maestro,
+                        'mail_maestro' => $request->mail_maestro,
+                        'experiencia' => $request->experiencia,
+                        'programa_id' => $request->programa,
+                        'user_id' => Auth::user()->id,
+                    ]);
+        $request->session()->flash('success', 'Módulo Creado exitosamente');
+        return redirect()->route('programas.show', $request->programa);
     }
 
     /**
@@ -51,7 +63,16 @@ class ModulosController extends Controller
      */
     public function show($id)
     {
-        //
+        $modulo = Modulo::join('tipos_modulos','modulos.tipo_modulo','=','tipos_modulos.id')
+            ->join('programas','modulos.programa_id','=','programas.id')
+            ->select('*',
+                'modulos.id as id_modulos',
+                'programas.nombre as nombre_programa',
+                'modulos.nombre as nombre_modulo',
+                'programas.id as id_programa')
+            ->where('modulos.id', $id)
+            ->first();
+        return view('modulos.verDetalleModulo', ['modulo' => $modulo]);
     }
 
     /**
@@ -60,9 +81,20 @@ class ModulosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
-        //
+        $modulo = Modulo::join('tipos_modulos','modulos.tipo_modulo','=','tipos_modulos.id')
+            ->join('programas','modulos.programa_id','=','programas.id')
+            ->select('*',
+                'modulos.id as id_modulos',
+                'programas.nombre as nombre_programa',
+                'modulos.nombre as nombre_modulo')
+            ->where('modulos.id', $id)
+            ->first();
+        $programas = Programa::where('id', $request->programa_id)
+            ->get();
+        return view('modulos.editarModulo', ['modulo' => $modulo,
+         'programas' => $programas]);
     }
 
     /**
@@ -83,8 +115,19 @@ class ModulosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        $modulo = Modulo::find($id);
+        try {
+            $modulo->delete();
+            $request->session()->flash('success', 'Módulo borrado con exito');
+        } catch ( \Exception $e) {
+            if($e->getCode() === '23000') {
+                //var_dump($e->errorInfo);
+                $request->session()->flash('fail', 'El módulo ya cuenta con relaciones');
+                }
+        }
+        $request->session()->flash('success', 'Módulo eliminado exitosamente');
+        return redirect()->route('programas.show', $request->id_programam);
     }
 }

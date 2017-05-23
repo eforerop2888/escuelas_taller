@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class TiposModulosSeeder extends Seeder
+class TiposModulosTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

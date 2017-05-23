@@ -180,6 +180,7 @@ class EstudiantesController extends Controller
                 $request->session()->flash('fail', 'La información de estudiantes ya cuenta con relaciones');
                 }
         }
+        $request->session()->flash('success', 'Información Estudiantes eliminada exitosamente');
         return redirect()->route('programas.show', $id);
     }
 }

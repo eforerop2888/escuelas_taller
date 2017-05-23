@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\RequestStoreProgramas;
 use App\Escuela;
 use App\Programa;
+use App\Estudiante;
+use App\Modulo;
+use Illuminate\Support\Facades\DB;
 use Auth;
 
 class ProgramasController extends Controller
@@ -93,7 +96,31 @@ class ProgramasController extends Controller
             'paises.pais')
             ->where('programas.id', $id)
             ->first();
-        return view('programas.verDetallePrograma', ['programa' => $programa]);
+        $modulos = Modulo::join('tipos_modulos','modulos.tipo_modulo','=','tipos_modulos.id')
+            ->select('*', 'modulos.id as id_modulos')
+            ->where('programa_id', $id)
+            ->get();
+        $estudiantes_mujeres = Estudiante::where('programa_id', $id)
+            ->where('genero_id', 1)
+            ->first();
+        $estudiantes_hombres = Estudiante::where('programa_id', $id)
+            ->where('genero_id', 2)
+            ->first();
+        $estudiantes_mujeres_t = Estudiante::where('programa_id', $id)
+            ->select(DB::raw('SUM(etnia) + SUM(victimas) + SUM(excombatientes) + SUM(desplazados) + SUM(pobreza) as sumaTotal'))
+            ->where('genero_id', 1)
+            ->first();
+        $estudiantes_hombres_t = Estudiante::where('programa_id', $id)
+            ->select(DB::raw('SUM(etnia) + SUM(victimas) + SUM(excombatientes) + SUM(desplazados) + SUM(pobreza) as sumaTotal'))
+            ->where('genero_id', 2)
+            ->first();
+        return view('programas.verDetallePrograma', ['programa' => $programa,
+            'estudiantes_mujeres' => $estudiantes_mujeres,
+            'estudiantes_hombres' => $estudiantes_hombres,
+            'estudiantes_mujeres_t' => $estudiantes_mujeres_t,
+            'estudiantes_hombres_t' => $estudiantes_hombres_t,
+            'modulos' => $modulos,
+            ]);
     }
 
     /**
