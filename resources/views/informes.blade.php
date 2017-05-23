@@ -2,6 +2,7 @@
 @section('title', 'Informes')
 @section('subtitle', 'INFORMES')
 @section('content')
+{!! Charts::assets() !!}
 	<div class="row">
 		<div class="col-md-6">
 			<div class="form-group">
@@ -21,5 +22,21 @@
 				</select>
 			</div>
 		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+	 		{!! $chartEscuelas->render() !!}
+	 	</div>
+	 	<div class="col-md-6">
+	 		{!! $chartProgramas->render() !!}
+	 	</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+	 		{!! $chartPoblaciones->render() !!}
+	 	</div>
+	 	<div class="col-md-6">
+	 		
+	 	</div>
 	</div>
 @endsection

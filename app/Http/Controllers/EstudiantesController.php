@@ -80,7 +80,7 @@ class EstudiantesController extends Controller
         ->update(['causas_desercion' => $request->causas_desercion]);
 
         $request->session()->flash('success', 'Información de los estudiantes creada exitosamente');
-        return redirect()->route('programas.show', $id);
+        return redirect()->route('programas.show', $request->programa);
     }
 
     /**
