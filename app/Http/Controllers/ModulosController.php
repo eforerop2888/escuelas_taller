@@ -106,7 +106,17 @@ class ModulosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Modulo::where('id', $id)
+            ->update(['nombre' => $request->nombre_modulo,
+                        'tipo_modulo' => $request->tipo_modulo,
+                        'duracion' => $request->duracion,
+                        'objetivo' => $request->objetivo,
+                        'nombre_maestro' => $request->nombre_maestro,
+                        'mail_maestro' => $request->mail_maestro,
+                        'experiencia' => $request->experiencia,
+                    ]);
+        $request->session()->flash('success', 'Módulo Actualizado exitosamente');
+        return redirect()->route('programas.show', $request->programa);
     }
 
     /**

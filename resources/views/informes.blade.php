@@ -52,6 +52,27 @@
 					</div>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<label for="informe">Tipo de informe</label>
+						<select name="pais" id="pais" class="form-control">
+							<option value="1">Escuelas</option>
+							<option value="2">Programas</option>
+							<option value="3">Estudiantes</option>
+							<option value="4">Cooperantes</option>
+							<option value="5">Cursos</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<button type="submit" class="btn btn-primary">
+						Generar Informe <i class="fa fa-edit" aria-hidden="true"></i>
+					</button>
+				</div>
+			</div>
 		</div>
 	</div>
 @endsection

@@ -6,7 +6,7 @@
 			Detalle programa {{$programa->nombre}}
 		</div>
 		<div class="panel-body">
-			@if( !empty($programa))
+			@if( $programa->count())
 				<div class="table-responsive">
 					<table class="table table-hover">
 						<tr>
@@ -67,6 +67,7 @@
 			Estudiantes
 		</div>
 		<div class="panel-body">
+		{{$estudiantes_mujeres}}
 		@if( !empty($estudiantes_mujeres) && !empty($estudiantes_hombres))
 			<div class="table-responsive">
 				<table class="table table-hover">
@@ -137,7 +138,7 @@
 			Módulos | Materias
 		</div>
 		<div class="panel-body">
-			@if( !empty($modulos))
+			@if( $modulos->count())
 				<div class="table-responsive">
 					<table class="table table-hover">
 						<tr>
