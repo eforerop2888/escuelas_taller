@@ -52,6 +52,8 @@ Auth::routes();
 		Rutas para el modulo de informes
 	*/
 	Route::get('informes', 'InformesController@index')->name('informes');
+	Route::post('listaescuelas', 'InformesController@listaEscuelas')->name('informes.listaescuelas');
+	Route::post('informeespecifico', 'InformesController@generarInforme')->name('informes.informeespecifico');
 
 	/*
 		Rutas de usuarios Personalizadas

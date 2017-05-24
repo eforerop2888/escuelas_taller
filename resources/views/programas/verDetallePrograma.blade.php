@@ -67,7 +67,6 @@
 			Estudiantes
 		</div>
 		<div class="panel-body">
-		{{$estudiantes_mujeres}}
 		@if( !empty($estudiantes_mujeres) && !empty($estudiantes_hombres))
 			<div class="table-responsive">
 				<table class="table table-hover">

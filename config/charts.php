@@ -148,7 +148,7 @@ return [
                 'js/plottable.min.js',
             ],
             'styles' => [
-                'js/plottable.css',
+                'css/plottable.css',
             ],
         ],
 
