@@ -8,6 +8,7 @@ use App\User;
 use App\Escuela;
 use App\Programa;
 use App\Estudiante;
+use App\Cooperante;
 use Charts;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -131,7 +132,19 @@ class InformesController extends Controller
     public function generarInforme(Request $request){
         switch ($request->tipo_informe) {
             case 1:
-               
+                $cooperantes = Cooperante::join('programas','cooperantes.programa_id','=','programas.id')
+                ->join('users','programas.user_id','=','users.id')
+                ->join('paises','users.pais_id','=','paises.id')
+                ->join('escuelas','programas.escuela_id','=','escuelas.id')
+                ->select('cooperantes.id as id',
+                'cooperantes.nombre as nombre',
+                'persona_contacto',
+                'mail_contacto',
+                'paises.pais',
+                'programas.nombre as nombre_programa')
+                ->where('escuelas.id', $request->escuela)
+                ->get();
+            return view('informes.informeEspecificoCooperantes', ['cooperantes' => $cooperantes]);
                 break;
             case 2:
                 echo "i es igual a 1";
@@ -151,7 +164,7 @@ class InformesController extends Controller
                     ->select(DB::raw('SUM(etnia) + SUM(victimas) + SUM(excombatientes) + SUM(desplazados) + SUM(pobreza) as sumaTotal'))
                     ->where('genero_id', 2)
                     ->first();
-                return view('informeEspecifico', 
+                return view('informes.informeEspecificoEstudiantes', 
                     ['estudiantes_mujeres' => $estudiantes_mujeres,
                     'estudiantes_hombres' => $estudiantes_hombres,
                     'estudiantes_mujeres_t' => $estudiantes_mujeres_t,
@@ -169,7 +182,7 @@ class InformesController extends Controller
                     'paises.pais')
                     ->where('escuela_id', $request->escuela)
                     ->get();
-                return view('informeEspecifico', ['programas' => $programas]);
+                return view('informes.informeEspecificoProgramas', ['programas' => $programas]);
                 break;
         }
         
