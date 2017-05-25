@@ -116,7 +116,9 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<button type="submit" class="btn btn-primary">Guardar</button>
+				<button type="submit" class="btn btn-primary">
+					<i class="fa fa-floppy-o" aria-hidden="true"></i> 
+					Guardar</button>
 			</div>
 		</div>
 	{{Form::close()}}

@@ -40,8 +40,8 @@
 		<div class="col-md-12">
 			{{ Form::open(['method' => 'Get', 'route' => ['modulos.edit', $modulo->id_modulos]]) }}
 				<input type="hidden" name="programa_id" id="programa_id" value="{{$modulo->id_programa}}">
-				<button type="submit" class="btn btn-primary">
-					Editar Modulo <i class="fa fa-edit" aria-hidden="true"></i>
+				<button type="submit" class="btn btn-warning">
+					<i class="fa fa-edit" aria-hidden="true"></i> Editar Modulo 
 				</button>
 			{{ Form::close() }}
 		</div>

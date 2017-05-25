@@ -54,16 +54,16 @@
 	<div class="row">
 		<div class="col-md-6 col-xs-6">
 			{{ Form::open(['method' => 'Get', 'route' => ['escuelas.edit', $escuela->id]]) }}
-				<button type="submit" class="btn btn-primary">
-					Editar Escuela <i class="fa fa-edit" aria-hidden="true"></i>
+				<button type="submit" class="btn btn-warning">
+					<i class="fa fa-edit" aria-hidden="true"></i> Editar Escuela
 				</button>
 			{{ Form::close() }}
 		</div>
 		<div class="col-md-6 col-xs-6">
 			{{ Form::open(['method' => 'Get', 'route' => ['programas.create']]) }}
 				<input type="hidden" name="escuela" value="{{$escuela->id}}">
-				<button type="submit" class="btn btn-warning">
-					Crear Programa <i class="fa fa-edit" aria-hidden="true"></i>
+				<button type="submit" class="btn btn-primary">
+					<i class="fa fa-pencil" aria-hidden="true"></i> Crear Programa
 				</button>
 			{{ Form::close() }}
 		</div>

@@ -24,14 +24,14 @@
 				<td>{{ucfirst($rowcooperantes->pais)}}</td>
 				<td>
 					{{ Form::open(['method' => 'Get', 'route' => ['cooperantes.show', $rowcooperantes->id]]) }}
-						<button type="submit" class="btn btn-warning">
+						<button type="submit" class="btn btn-success">
 							<i class="fa fa-eye" aria-hidden="true"></i>
 						</button>
 					{{ Form::close() }}
 				</td>
 				<td>
 					{{ Form::open(['method' => 'Delete', 'route' => ['cooperantes.destroy', $rowcooperantes->id]]) }}
-						<button type="submit" class="btn btn-warning">
+						<button type="submit" class="btn btn-danger">
 							<i class="fa fa-eraser" aria-hidden="true" alt="borrar"></i>
 						</button>
 					{{ Form::close() }}

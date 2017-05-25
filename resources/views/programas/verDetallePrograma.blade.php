@@ -47,15 +47,17 @@
 			<div class="row">
 				<div class="col-md-6">
 					{{ Form::open(['method' => 'Get', 'route' => ['programas.edit', $programa->id]]) }}
-						<button type="submit" class="btn btn-primary">
-							Editar Programa <i class="fa fa-edit" aria-hidden="true"></i>
+						<button type="submit" class="btn btn-warning">
+							<i class="fa fa-edit" aria-hidden="true"></i>
+							Editar Programa
 						</button>
 					{{ Form::close() }}
 				</div>
 				<div class="col-md-6">
 					{{ Form::open(['method' => 'Delete', 'route' => ['programas.destroy', $programa->id]]) }}
 						<button type="submit" class="btn btn-danger">
-							Eliminar Programa <i class="fa fa-eraser" aria-hidden="true"></i>
+							<i class="fa fa-eraser" aria-hidden="true"></i>
+							Eliminar Programa
 						</button>
 					{{ Form::close() }}
 				</div>
@@ -117,15 +119,16 @@
 				<div class="col-md-6">
 				{{ Form::open(['method' => 'Get', 'route' => ['estudiantes.create']]) }}
 					<input type="hidden" name="programa_id" id="programa_id" value="{{$programa->id}}">
-					<button type="submit" class="btn btn-primary">
-						Editar Estudiantes <i class="fa fa-edit" aria-hidden="true"></i>
+					<button type="submit" class="btn btn-warning">
+						<i class="fa fa-edit" aria-hidden="true"></i>
+						Editar Estudiantes
 					</button>
 				{{ Form::close() }}
 				</div>
 				<div class="col-md-6">
 					{{ Form::open(['method' => 'Delete', 'route' => ['estudiantes.destroy', $programa->id]]) }}
 						<button type="submit" class="btn btn-danger">
-							Borrar información estudiantes <i class="fa fa-eraser" aria-hidden="true"></i>
+							<i class="fa fa-eraser" aria-hidden="true"></i> Eliminar información estudiantes
 						</button>
 					{{ Form::close() }}
 				</div>
@@ -156,7 +159,7 @@
 								<td>{{ucfirst($rowmodulos->nombre_maestro)}}</td>
 								<td>
 									{{ Form::open(['method' => 'Get', 'route' => ['modulos.show', $rowmodulos->id_modulos]]) }}
-										<button type="submit" class="btn btn-warning">
+										<button type="submit" class="btn btn-success">
 											<i class="fa fa-eye" aria-hidden="true"></i>
 										</button>
 									{{ Form::close() }}
@@ -164,7 +167,7 @@
 								<td>
 									{{ Form::open(['method' => 'Delete', 'route' => ['modulos.destroy', $rowmodulos->id_modulos]]) }}
 										<input type="hidden" name="id_programam" value="{{$programa->id}}">
-										<button type="submit" class="btn btn-warning">
+										<button type="submit" class="btn btn-danger">
 											<i class="fa fa-eraser" aria-hidden="true"></i>
 										</button>
 									{{ Form::close() }}
@@ -179,7 +182,7 @@
 					{{ Form::open(['method' => 'Get', 'route' => ['modulos.create']]) }}
 						<input type="hidden" name="programa_id_m" id="programa_id_m" value="{{$programa->id}}">
 						<button type="submit" class="btn btn-primary">
-							Agregar Modulo | Matería <i class="fa fa-edit" aria-hidden="true"></i>
+							<i class="fa fa-pencil" aria-hidden="true"></i> Crear Modulo | Matería
 						</button>
 					{{ Form::close() }}
 				</div>

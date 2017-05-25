@@ -189,7 +189,7 @@
 			<div class="col-md-12">
 				<input type="hidden" name="id_mujeres" id="id_mujeres" value="{{$estudiantes_mujeres->id}}">
 				<input type="hidden" name="id_hombres" id="id_hombres" value="{{$estudiantes_hombres->id}}">
-				<button type="submit" class="btn btn-primary">Guardar</button>
+				<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
 			</div>
 		</div>
 	{{Form::close()}}

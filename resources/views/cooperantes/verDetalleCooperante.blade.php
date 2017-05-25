@@ -39,8 +39,8 @@
 	<div class="row">
 		<div class="col-md-12">
 			{{ Form::open(['method' => 'Get', 'route' => ['cooperantes.edit', $cooperante->id]]) }}
-				<button type="submit" class="btn btn-primary">
-					Editar Escuela <i class="fa fa-edit" aria-hidden="true"></i>
+				<button type="submit" class="btn btn-warning">
+					<i class="fa fa-edit" aria-hidden="true"></i> Editar Cooperante
 				</button>
 			{{ Form::close() }}
 		</div>

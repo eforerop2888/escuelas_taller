@@ -21,7 +21,7 @@
 				<td>{{ucfirst($rowusuarios->role)}}</td>
 				<td>
 					{{ Form::open(['method' => 'Delete', 'route' => ['usuarios.destroy', $rowusuarios->id_users]]) }}
-						<button type="submit">
+						<button type="submit" class="btn btn-danger">
 							<i class="fa fa-eraser" aria-hidden="true" alt="borrar"></i>
 						</button>
 					{{ Form::close() }}

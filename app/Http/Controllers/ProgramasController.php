@@ -45,9 +45,11 @@ class ProgramasController extends Controller
     {
         if($request->escuela){
             $escuelas = Escuela::where('id', $request->escuela)
+                ->where('pais_id', Auth::user()->pais_id)
                 ->get();        
             }else{
-                $escuelas = Escuela::all();
+                $escuelas = Escuela::where('pais_id', Auth::user()->pais_id)
+                    ->get();
             }
         return view('programas.crearPrograma', ['escuelas' => $escuelas]);
     }
@@ -132,8 +134,7 @@ class ProgramasController extends Controller
     public function edit($id)
     {
         $programa = Programa::find($id);
-        $escuelas = Escuela::join('programas','escuelas.id','=','programas.escuela_id')
-            ->where('escuelas.pais_id', Auth::user()->pais_id)
+        $escuelas = Escuela::where('escuelas.pais_id', Auth::user()->pais_id)
             ->get();
         return view('programas.editarPrograma', ['programa' => $programa,
             'escuelas' => $escuelas]);
@@ -160,7 +161,7 @@ class ProgramasController extends Controller
                     'user_id' => Auth::user()->id,
         ]);
         $request->session()->flash('success', 'Programa actualizado exitosamente');
-        return redirect()->route('programas.index');
+        return redirect()->route('programas.show', $id);
     }
 
     /**

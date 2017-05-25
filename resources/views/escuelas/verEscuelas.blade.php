@@ -24,14 +24,14 @@
 				<td>{{ucfirst($rowescuelas->pais)}}</td>
 				<td>
 					{{ Form::open(['method' => 'Get', 'route' => ['escuelas.show', $rowescuelas->id]]) }}
-						<button type="submit" class="btn btn-warning">
+						<button type="submit" class="btn btn-success">
 							<i class="fa fa-eye" aria-hidden="true"></i>
 						</button>
 					{{ Form::close() }}
 				</td>
 				<td>
 					{{ Form::open(['method' => 'Delete', 'route' => ['escuelas.destroy', $rowescuelas->id]]) }}
-						<button type="submit" class="btn btn-warning">
+						<button type="submit" class="btn btn-danger">
 							<i class="fa fa-eraser" aria-hidden="true"></i>
 						</button>
 					{{ Form::close() }}

@@ -18,12 +18,18 @@
 				 	</div>
 				</div>
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-1"></div>
+					<div class="col-md-10">
 				 		{!! $chartPoblaciones->render() !!}
 				 	</div>
-				 	<div class="col-md-6">
+				 	<div class="col-md-1"></div>
+				</div>
+				<div class="row">
+					<div class="col-md-1"></div>
+				 	<div class="col-md-10">
 				 		{!! $chartAnos->render() !!}
 				 	</div>
+				 	<div class="col-md-1"></div>
 				</div>
 			</div>
 		</div>
@@ -72,7 +78,8 @@
 				<div class="col-md-12">
 					<input type="hidden" name="token" id="token" value="{{csrf_token()}}">
 					<button type="submit" class="btn btn-primary">
-						Generar Informe <i class="fa fa-edit" aria-hidden="true"></i>
+						<i class="fa fa-file-excel-o" aria-hidden="true"></i>
+						Generar Informe
 					</button>
 				</div>
 			</div>
