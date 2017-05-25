@@ -12,6 +12,7 @@ use App\Cooperante;
 use Charts;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class InformesController extends Controller
 {
@@ -132,19 +133,8 @@ class InformesController extends Controller
     public function generarInforme(Request $request){
         switch ($request->tipo_informe) {
             case 1:
-                $cooperantes = Cooperante::join('programas','cooperantes.programa_id','=','programas.id')
-                ->join('users','programas.user_id','=','users.id')
-                ->join('paises','users.pais_id','=','paises.id')
-                ->join('escuelas','programas.escuela_id','=','escuelas.id')
-                ->select('cooperantes.id as id',
-                'cooperantes.nombre as nombre',
-                'persona_contacto',
-                'mail_contacto',
-                'paises.pais',
-                'programas.nombre as nombre_programa')
-                ->where('escuelas.id', $request->escuela)
-                ->get();
-            return view('informes.informeEspecificoCooperantes', ['cooperantes' => $cooperantes]);
+                $cooperantes = $this->reporteCooperantes($request);
+                return view('informes.informeEspecificoCooperantes', ['cooperantes' => $cooperantes, 'escuela' => $request->escuela]);
                 break;
             case 2:
                 echo "i es igual a 1";
@@ -171,20 +161,100 @@ class InformesController extends Controller
                     'estudiantes_hombres_t' => $estudiantes_hombres_t]);
                 break;
             case 4:
-                $programas = Programa::join('escuelas','programas.escuela_id','=','escuelas.id')
-                    ->join('paises','escuelas.pais_id','=','paises.id')
-                    ->select('programas.id as id',
-                    'programas.nombre as nombre',
-                    'programas.duracion_meses',
-                    'programas.duracion_horas',
-                    'programas.duracion_practicas_horas',
-                    'escuelas.nombre as nombre_escuela',
-                    'paises.pais')
-                    ->where('escuela_id', $request->escuela)
-                    ->get();
-                return view('informes.informeEspecificoProgramas', ['programas' => $programas]);
+                $programas = $this->reporteProgramas($request);
+                return view('informes.informeEspecificoProgramas', ['programas' => $programas, 'escuela' => $request->escuela]);
                 break;
         }
         
+    }
+
+    public function showExcel(Request $request){
+        switch ($request->tipo_informe) {
+            case 1:
+                $cooperantes = $this->reporteCooperantes($request);
+                $infoExcel = []; 
+                $infoExcel[] = ['#',
+                    'Nombre',
+                    'Persona Contacto',
+                    'Mail del contacto',
+                    'Tipo de Cooperación',
+                    'Resultados Significativos', 
+                    'Programa',
+                    'País'];
+                $this->ejecutarExcel('Cooperantes', $infoExcel, $cooperantes);
+                break;
+            case 2:
+                # code...
+                break;
+            case 3:
+                # code...
+                break;
+            case 4:
+                $programas = $this->reporteProgramas($request);
+                $infoExcel = []; 
+                $infoExcel[] = ['#',
+                    'Nombre',
+                    'Duración (meses)',
+                    'Duración (horas)',
+                    'Duración Practicas (horas)',
+                    'Objetivo', 
+                    'Requisitos Ingreso', 
+                    'Trabajo Egresados',
+                    'Escuela',
+                    'Pais'];
+                $this->ejecutarExcel('Programas', $infoExcel, $programas);
+                break;
+            
+        }
+    }
+
+    private function reporteCooperantes(Request $request){
+        $cooperantes = Cooperante::join('programas','cooperantes.programa_id','=','programas.id')
+            ->join('users','programas.user_id','=','users.id')
+            ->join('paises','users.pais_id','=','paises.id')
+            ->join('escuelas','programas.escuela_id','=','escuelas.id')
+            ->select('cooperantes.id as id',
+            'cooperantes.nombre as nombre',
+            'persona_contacto',
+            'mail_contacto',
+            'tipo_cooperacion',
+            'resultados_significativos',
+            'programas.nombre as nombre_programa',
+            'paises.pais')
+            ->where('escuelas.id', $request->escuela)
+            ->get();
+        return $cooperantes;
+    }
+
+    private function reporteProgramas(Request $request){
+        $programas = Programa::join('escuelas','programas.escuela_id','=','escuelas.id')
+            ->join('paises','escuelas.pais_id','=','paises.id')
+            ->select('programas.id as id',
+            'programas.nombre as nombre',
+            'programas.duracion_meses',
+            'programas.duracion_horas',
+            'programas.duracion_practicas_horas',
+            'programas.objetivo_programa',
+            'programas.requisitos_ingreso',
+            'programas.trabajo_egresados',
+            'escuelas.nombre as nombre_escuela',
+            'paises.pais')
+            ->where('escuela_id', $request->escuela)
+            ->get();
+        return $programas;
+    }
+
+    private function ejecutarExcel($nombreInforme, array $infoExcel, $info){
+        Excel::create($nombreInforme, 
+            function($excel) use ($info, $nombreInforme, $infoExcel) {
+            $excel->sheet($nombreInforme, function($sheet) use (
+                $info, $infoExcel) {
+                foreach($info as $rowinfo) 
+                { 
+                    $infoExcel[] = $rowinfo->toArray();
+                }
+                $sheet->fromArray($infoExcel, null, 'A1', false, false);
+            });
+        })->export('xls');
     }
 }

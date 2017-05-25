@@ -177,9 +177,14 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        /*Laravel charts
+        /*
+         * Laravel charts
          */
         ConsoleTVs\Charts\ChartsServiceProvider::class,
+        /*
+         * Laravel Excel
+         */
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
@@ -232,6 +237,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
 
     ],

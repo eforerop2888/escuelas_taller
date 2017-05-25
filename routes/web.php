@@ -54,6 +54,7 @@ Auth::routes();
 	Route::get('informes', 'InformesController@index')->name('informes');
 	Route::post('listaescuelas', 'InformesController@listaEscuelas')->name('informes.listaescuelas');
 	Route::post('informeespecifico', 'InformesController@generarInforme')->name('informes.informeespecifico');
+	Route::post('exportarinforme', 'InformesController@showExcel')->name('informes.exportarinforme');
 
 	/*
 		Rutas de usuarios Personalizadas
