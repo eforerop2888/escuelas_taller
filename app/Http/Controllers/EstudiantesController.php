@@ -48,32 +48,25 @@ class EstudiantesController extends Controller
     public function store(RequestStoreEstudiantes $request)
     {
         /*
-         Insertando informacion estudiantes mujeres
+         Insertando informacion estudiantes
         */
         Estudiante::create([
-            'etnia' => $request->etnia_mujeres,
-            'victimas' => $request->victimas_mujeres,
-            'excombatientes' => $request->excombatientes_mujeres,
-            'desplazados' => $request->desplazados_mujeres,
-            'pobreza' => $request->pobreza_mujeres,
-            'certificados' => $request->certificados_mujeres,
+            'etnia_mujeres' => $request->etnia_mujeres,
+            'etnia_hombres' => $request->etnia_hombres,
+            'victimas_mujeres' => $request->victimas_mujeres,
+            'victimas_hombres' => $request->victimas_hombres,
+            'excombatientes_mujeres' => $request->excombatientes_mujeres,
+            'excombatientes_hombres' => $request->excombatientes_hombres,
+            'desplazados_mujeres' => $request->desplazados_mujeres,
+            'desplazados_hombres' => $request->desplazados_hombres,
+            'pobreza_mujeres' => $request->pobreza_mujeres,
+            'pobreza_hombres' => $request->pobreza_hombres,
+            'certificados_mujeres' => $request->certificados_mujeres,
+            'certificados_hombres' => $request->certificados_hombres,
+            'total_mujeres' => $request->total_mujeres,
+            'total_hombres' => $request->total_hombres,
             'programa_id' => $request->programa,
             'user_id' => Auth::user()->id,
-            'genero_id' => 1,
-        ]);
-        /*
-         Insertando informacion estudiantes hombres
-        */
-        Estudiante::create([
-            'etnia' => $request->etnia_hombres,
-            'victimas' => $request->victimas_hombres,
-            'excombatientes' => $request->excombatientes_hombres,
-            'desplazados' => $request->desplazados_hombres,
-            'pobreza' => $request->pobreza_hombres,
-            'certificados' => $request->certificados_hombres,
-            'programa_id' => $request->programa,
-            'user_id' => Auth::user()->id,
-            'genero_id' => 2,
         ]);
 
         Programa::where('id', $request->programa)
@@ -104,18 +97,13 @@ class EstudiantesController extends Controller
     {
         $programas = Programa::where('id', $id)
             ->get();
-        $estudiantes_mujeres = Estudiante::where('programa_id', $id)
-            ->where('genero_id', 1)
-            ->first();
-        $estudiantes_hombres = Estudiante::where('programa_id', $id)
-            ->where('genero_id', 2)
+        $estudiantes = Estudiante::where('programa_id', $id)
             ->first();
         $programaD = Programa::where('id', $id)
             ->select('causas_desercion', 'id')
             ->first();
         return view('estudiantes.editarEstudiantes', ['programas' => $programas,
-            'estudiantes_mujeres' => $estudiantes_mujeres,
-            'estudiantes_hombres' => $estudiantes_hombres,
+            'estudiantes' => $estudiantes,
             'programaD' => $programaD]);
     }
 
@@ -129,30 +117,25 @@ class EstudiantesController extends Controller
     public function update(RequestStoreEstudiantes $request, $id)
     {
         /*
-         Actualizando informacion estudiantes mujeres
+         Actualizando informacion estudiantes
         */
         Estudiante::where('programa_id', $id)
-            ->where('id', $request->id_mujeres)
+            ->where('id', $request->id_estudiantes)
             ->update([
-            'etnia' => $request->etnia_mujeres,
-            'victimas' => $request->victimas_mujeres,
-            'excombatientes' => $request->excombatientes_mujeres,
-            'desplazados' => $request->desplazados_mujeres,
-            'pobreza' => $request->pobreza_mujeres,
-            'certificados' => $request->certificados_mujeres,
-        ]);
-        /*
-         Insertando informacion estudiantes hombres
-        */
-        Estudiante::where('programa_id', $id)
-            ->where('id', $request->id_hombres)
-            ->update([
-            'etnia' => $request->etnia_hombres,
-            'victimas' => $request->victimas_hombres,
-            'excombatientes' => $request->excombatientes_hombres,
-            'desplazados' => $request->desplazados_hombres,
-            'pobreza' => $request->pobreza_hombres,
-            'certificados' => $request->certificados_hombres,
+            'etnia_mujeres' => $request->etnia_mujeres,
+            'etnia_hombres' => $request->etnia_hombres,
+            'victimas_mujeres' => $request->victimas_mujeres,
+            'victimas_hombres' => $request->victimas_hombres,
+            'excombatientes_mujeres' => $request->excombatientes_mujeres,
+            'excombatientes_hombres' => $request->excombatientes_hombres,
+            'desplazados_mujeres' => $request->desplazados_mujeres,
+            'desplazados_hombres' => $request->desplazados_hombres,
+            'pobreza_mujeres' => $request->pobreza_mujeres,
+            'pobreza_hombres' => $request->pobreza_hombres,
+            'certificados_mujeres' => $request->certificados_mujeres,
+            'certificados_hombres' => $request->certificados_hombres,
+            'total_mujeres' => $request->total_mujeres,
+            'total_hombres' => $request->total_hombres,
         ]);
 
         Programa::where('id', $id)
@@ -168,7 +151,7 @@ class EstudiantesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
         $estudiantes = Estudiante::where('programa_id', $id);
         try {

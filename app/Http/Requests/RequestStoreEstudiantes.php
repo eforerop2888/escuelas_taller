@@ -25,6 +25,8 @@ class RequestStoreEstudiantes extends FormRequest
     {
         return [
             'programa' => 'required',
+            'total_hombres' => 'required|numeric',
+            'total_mujeres' => 'required|numeric',
             'etnia_hombres' => 'required|numeric',
             'etnia_mujeres' => 'required|numeric',
             'victimas_hombres' => 'required|numeric',

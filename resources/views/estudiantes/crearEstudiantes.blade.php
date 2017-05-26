@@ -24,6 +24,31 @@
 		</div>
 		<div class="row">
 			<div class="col-md-4 col-xs-4">
+				<label>Total</label>
+			</div>
+			<div class="col-md-4 col-xs-4">
+				<div class="form-group {{ $errors->has('total_hombres') ? ' has-error ' : ''}}">
+					<input type="number" class="sumar_hombres" id="total_hombres" name="total_hombres" class="form-control" required value="{{old('total_hombres')}}" placeholder="Total Hombres" autofocus>
+					@if ($errors->has('total_hombres'))
+	          			<span>
+	          			  <strong>{{ $errors->first('total_hombres') }}</strong>
+	          			</span>
+	      			@endif
+				</div>
+			</div>
+			<div class="col-md-4 col-xs-4">
+				<div class="form-group {{ $errors->has('total_mujeres') ? ' has-error ' : ''}}">
+					<input type="number" class="sumar_mujeres" id="total_mujeres" name="total_mujeres" class="form-control" required value="{{old('total_mujeres')}}" placeholder="Total Mujeres">
+					@if ($errors->has('total_mujeres'))
+			          <span>
+			            <strong>{{ $errors->first('total_mujeres') }}</strong>
+			          </span>
+			      	@endif
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-xs-4">
 				<label>Etnia</label>
 			</div>
 			<div class="col-md-4 col-xs-4">
@@ -193,11 +218,4 @@
 			</div>
 		</div>
 	{{Form::close()}}
-@endsection
-@section('scripts')
-	<!--<script type="text/javascript">
-		$('.sumar_hombres').change(function(){
-
-		});
-	</script>-->
 @endsection

@@ -44,64 +44,56 @@ class InformesController extends Controller
 		/*
 		* Chart Tipo de poblacion
 		*/
-		$poblacion_mujer = Estudiante::select(DB::raw('SUM(etnia) as etnia'),
-			DB::raw('SUM(victimas) as victimas'),
-			DB::raw('SUM(excombatientes) as excombatientes'),
-			DB::raw('SUM(desplazados) as desplazados'),
-			DB::raw('SUM(pobreza) as pobreza'),
-			DB::raw('SUM(certificados) as certificados'))
-			->where('genero_id', 1)
-            ->first();
-        $poblacion_hombre = Estudiante::select(DB::raw('SUM(etnia) as etnia'),
-        	DB::raw('SUM(victimas) as victimas'),
-			DB::raw('SUM(excombatientes) as excombatientes'),
-			DB::raw('SUM(desplazados) as desplazados'),
-			DB::raw('SUM(pobreza) as pobreza'),
-			DB::raw('SUM(certificados) as certificados'))
-			->where('genero_id', 2)
+		$poblacion = Estudiante::select(
+            DB::raw('SUM(etnia_mujeres) as etnia_mujeres'),
+			DB::raw('SUM(victimas_mujeres) as victimas_mujeres'),
+			DB::raw('SUM(excombatientes_mujeres) as excombatientes_mujeres'),
+			DB::raw('SUM(desplazados_mujeres) as desplazados_mujeres'),
+			DB::raw('SUM(pobreza_mujeres) as pobreza_mujeres'),
+			DB::raw('SUM(certificados_mujeres) as certificados_mujeres'),
+            DB::raw('SUM(etnia_hombres) as etnia_hombres'),
+            DB::raw('SUM(victimas_hombres) as victimas_hombres'),
+            DB::raw('SUM(excombatientes_hombres) as excombatientes_hombres'),
+            DB::raw('SUM(desplazados_hombres) as desplazados_hombres'),
+            DB::raw('SUM(pobreza_hombres) as pobreza_hombres'),
+            DB::raw('SUM(certificados_hombres) as certificados_hombres'))
             ->first();
 		$chartPoblaciones = Charts::multi('bar', 'material')
 			->title("Tipos de población")
             ->dimensions(0, 400)
             ->template("material")
             ->responsive(false)
-    		->dataset('Hombre', [$poblacion_hombre->etnia,
-    		 	$poblacion_hombre->victimas,
-    		 	$poblacion_hombre->excombatientes,
-    		 	$poblacion_hombre->desplazados,
-    		 	$poblacion_hombre->pobreza])
-    		->dataset('Mujer', [$poblacion_mujer->etnia,
-    		 	$poblacion_mujer->victimas,
-    		 	$poblacion_mujer->excombatientes,
-    		 	$poblacion_mujer->desplazados,
-    		 	$poblacion_mujer->pobreza,])
+    		->dataset('Hombre', [$poblacion->etnia_hombres,
+    		 	$poblacion->victimas_hombres,
+    		 	$poblacion->excombatientes_hombres,
+    		 	$poblacion->desplazados_hombres,
+    		 	$poblacion->pobreza_hombres])
+    		->dataset('Mujer', [$poblacion->etnia_mujeres,
+    		 	$poblacion->victimas_mujeres,
+    		 	$poblacion->excombatientes_mujeres,
+    		 	$poblacion->desplazados_mujeres,
+    		 	$poblacion->pobreza_mujeres,])
     		->labels(['Etnia', 'Victimas', 'Excombatientes', 'Desplazados', 'Pobreza']);
     	/*
     	* Chart Población Atendida
     	*/
-    	$añosPoblacionMujera = Estudiante::select(DB::raw('SUM(etnia) + SUM(victimas) + SUM(excombatientes) + SUM(desplazados) + SUM(pobreza) as sumaTotal'))
+    	$añosPoblacionMujera = Estudiante::select(DB::raw('SUM(etnia_mujeres) + SUM(victimas_mujeres) + SUM(excombatientes_mujeres) + SUM(desplazados_mujeres) + SUM(pobreza_mujeres) as sumaTotal'))
     		->whereYear('created_at', Carbon::now()->year)
-    		->where('genero_id', 1)
     		->first();
-    	$añosPoblacionHombrea = Estudiante::select(DB::raw('SUM(etnia) + SUM(victimas) + SUM(excombatientes) + SUM(desplazados) + SUM(pobreza) as sumaTotal'))
+    	$añosPoblacionHombrea = Estudiante::select(DB::raw('SUM(etnia_hombres) + SUM(victimas_hombres) + SUM(excombatientes_hombres) + SUM(desplazados_hombres) + SUM(pobreza_hombres) as sumaTotal'))
     		->whereYear('created_at', Carbon::now()->year)
-    		->where('genero_id', 2)
     		->first();
-    	$añosPoblacionMujera1 = Estudiante::select(DB::raw('SUM(etnia) + SUM(victimas) + SUM(excombatientes) + SUM(desplazados) + SUM(pobreza) as sumaTotal'))
+    	$añosPoblacionMujera1 = Estudiante::select(DB::raw('SUM(etnia_mujeres) + SUM(victimas_mujeres) + SUM(excombatientes_mujeres) + SUM(desplazados_mujeres) + SUM(pobreza_mujeres) as sumaTotal'))
     		->whereYear('created_at', Carbon::now()->year - 1)
-    		->where('genero_id', 1)
     		->first();
-    	$añosPoblacionHombrea1 = Estudiante::select(DB::raw('SUM(etnia) + SUM(victimas) + SUM(excombatientes) + SUM(desplazados) + SUM(pobreza) as sumaTotal'))
+    	$añosPoblacionHombrea1 = Estudiante::select(DB::raw('SUM(etnia_hombres) + SUM(victimas_hombres) + SUM(excombatientes_hombres) + SUM(desplazados_hombres) + SUM(pobreza_hombres) as sumaTotal'))
     		->whereYear('created_at', Carbon::now()->year - 1)
-    		->where('genero_id', 2)
     		->first();
-    	$añosPoblacionMujera2 = Estudiante::select(DB::raw('SUM(etnia) + SUM(victimas) + SUM(excombatientes) + SUM(desplazados) + SUM(pobreza) as sumaTotal'))
+    	$añosPoblacionMujera2 = Estudiante::select(DB::raw('SUM(etnia_mujeres) + SUM(victimas_mujeres) + SUM(excombatientes_mujeres) + SUM(desplazados_mujeres) + SUM(pobreza_mujeres) as sumaTotal'))
     		->whereYear('created_at', Carbon::now()->year - 2)
-    		->where('genero_id', 1)
     		->first();
-    	$añosPoblacionHombrea2 = Estudiante::select(DB::raw('SUM(etnia) + SUM(victimas) + SUM(excombatientes) + SUM(desplazados) + SUM(pobreza) as sumaTotal'))
+    	$añosPoblacionHombrea2 = Estudiante::select(DB::raw('SUM(etnia_hombres) + SUM(victimas_hombres) + SUM(excombatientes_hombres) + SUM(desplazados_hombres) + SUM(pobreza_hombres) as sumaTotal'))
     		->whereYear('created_at', Carbon::now()->year - 2)
-    		->where('genero_id', 2)
     		->first();
     	$chartAnos = Charts::multi('bar', 'material')
 			->title("Poblacion Atendida")
@@ -140,25 +132,9 @@ class InformesController extends Controller
                 echo "i es igual a 1";
                 break;
             case 3:
-                $estudiantes_mujeres = Estudiante::where('programa_id', $request->escuela)
-                    ->where('genero_id', 1)
-                    ->first();
-                $estudiantes_hombres = Estudiante::where('programa_id', $request->escuela)
-                    ->where('genero_id', 2)
-                    ->first();
-                $estudiantes_mujeres_t = Estudiante::where('programa_id', $request->escuela)
-                    ->select(DB::raw('SUM(etnia) + SUM(victimas) + SUM(excombatientes) + SUM(desplazados) + SUM(pobreza) as sumaTotal'))
-                    ->where('genero_id', 1)
-                    ->first();
-                $estudiantes_hombres_t = Estudiante::where('programa_id', $request->escuela)
-                    ->select(DB::raw('SUM(etnia) + SUM(victimas) + SUM(excombatientes) + SUM(desplazados) + SUM(pobreza) as sumaTotal'))
-                    ->where('genero_id', 2)
-                    ->first();
+                $estudiantes = $this->reporteEstudiantes($request);
                 return view('informes.informeEspecificoEstudiantes', 
-                    ['estudiantes_mujeres' => $estudiantes_mujeres,
-                    'estudiantes_hombres' => $estudiantes_hombres,
-                    'estudiantes_mujeres_t' => $estudiantes_mujeres_t,
-                    'estudiantes_hombres_t' => $estudiantes_hombres_t]);
+                    ['estudiantes' => $estudiantes, 'pais' => $request->pais]);
                 break;
             case 4:
                 $programas = $this->reporteProgramas($request);
@@ -187,7 +163,26 @@ class InformesController extends Controller
                 # code...
                 break;
             case 3:
-                # code...
+                $estudiantes = $this->reporteEstudiantes($request);
+                $infoExcel = []; 
+                $infoExcel[] = [
+                    'Escuela',
+                    'Mujeres de Etnia',
+                    'Hombres de Etnia',
+                    'Victimas Hombres',
+                    'Victimas Mujeres',
+                    'Hombres Excombatientes',
+                    'Mujeres Excombatientes',
+                    'Hombres Desplazados',
+                    'Mujeres Desplazadas',
+                    'Pobreza Hombres',
+                    'Pobreza Mujeres',
+                    'Hombres Certificados',
+                    'Mujeres Certificadas',
+                    'Total Hombres',
+                    'Total Mujeres'
+                    ];
+                $this->ejecutarExcel('Programas', $infoExcel, $estudiantes);
                 break;
             case 4:
                 $programas = $this->reporteProgramas($request);
@@ -242,6 +237,31 @@ class InformesController extends Controller
             ->where('escuela_id', $request->escuela)
             ->get();
         return $programas;
+    }
+
+    private function reporteEstudiantes(Request $request){
+        $estudiantes = Estudiante::join('programas','estudiantes.programa_id','=','programas.id')
+                    ->join('escuelas','programas.escuela_id','=','escuelas.id')
+                    ->join('paises','escuelas.pais_id','=','paises.id')
+                    ->select('escuelas.nombre as nombre_escuela',
+                        'estudiantes.etnia_hombres',
+                        'estudiantes.etnia_mujeres',
+                        'estudiantes.victimas_hombres',
+                        'estudiantes.victimas_mujeres',
+                        'estudiantes.excombatientes_hombres',
+                        'estudiantes.excombatientes_mujeres',
+                        'estudiantes.desplazados_hombres',
+                        'estudiantes.desplazados_mujeres',
+                        'estudiantes.pobreza_hombres',
+                        'estudiantes.pobreza_mujeres',
+                        'estudiantes.certificados_hombres',
+                        'estudiantes.certificados_mujeres',
+                        'estudiantes.total_hombres',
+                        'estudiantes.total_mujeres'
+                        )
+                    ->where('paises.id', $request->pais)
+                    ->get();
+        return $estudiantes;
     }
 
     private function ejecutarExcel($nombreInforme, array $infoExcel, $info){

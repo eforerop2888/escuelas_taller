@@ -34,7 +34,8 @@
 				<input type="hidden" name="escuela" id="escuela" value="{{$escuela}}">
 				<input type="hidden" name="tipo_informe" id="tipo_informe" value="1">
 				<button type="submit" class="btn btn-primary">
-					Exportar a excel <i class="fa fa-edit" aria-hidden="true"></i>
+					<i class="fa fa-file-excel-o" aria-hidden="true"></i>
+					Exportar a excel
 				</button>
 			{{ Form::close() }}
 		</div>

@@ -69,7 +69,7 @@
 			Estudiantes
 		</div>
 		<div class="panel-body">
-		@if( !empty($estudiantes_mujeres) && !empty($estudiantes_hombres))
+		@if( !empty($estudiantes))
 			<div class="table-responsive">
 				<table class="table table-hover">
 					<tr>
@@ -79,38 +79,38 @@
 					</tr>
 					<tr>
 						<th>Etnia</th>
-						<td>{{$estudiantes_mujeres->etnia}}</td>
-						<td>{{$estudiantes_hombres->etnia}}</td>
+						<td>{{$estudiantes->etnia_mujeres}}</td>
+						<td>{{$estudiantes->etnia_hombres}}</td>
 					</tr>
 					<tr>
 						<th>Victimas</th>
-						<td>{{$estudiantes_mujeres->victimas}}</td>
-						<td>{{$estudiantes_hombres->victimas}}</td>
+						<td>{{$estudiantes->victimas_mujeres}}</td>
+						<td>{{$estudiantes->victimas_hombres}}</td>
 					<tr/>
 					<tr>
 						<th>Excombatientes</th>
-						<td>{{$estudiantes_mujeres->excombatientes}}</td>
-						<td>{{$estudiantes_hombres->excombatientes}}</td>
+						<td>{{$estudiantes->excombatientes_mujeres}}</td>
+						<td>{{$estudiantes->excombatientes_hombres}}</td>
 					<tr/>
 					<tr>
 						<th>Desplazados</th>
-						<td>{{$estudiantes_mujeres->desplazados}}</td>
-						<td>{{$estudiantes_hombres->desplazados}}</td>
+						<td>{{$estudiantes->desplazados_mujeres}}</td>
+						<td>{{$estudiantes->desplazados_hombres}}</td>
 					<tr/>
 					<tr>
 						<th>Pobreza</th>
-						<td>{{$estudiantes_mujeres->pobreza}}</td>
-						<td>{{$estudiantes_hombres->pobreza}}</td>
+						<td>{{$estudiantes->pobreza_mujeres}}</td>
+						<td>{{$estudiantes->pobreza_hombres}}</td>
 					<tr/>
 					<tr>
 						<th>Estudiantes Certificados</th>
-						<td>{{$estudiantes_mujeres->certificados}}</td>
-						<td>{{$estudiantes_hombres->certificados}}</td>
+						<td>{{$estudiantes->certificados_mujeres}}</td>
+						<td>{{$estudiantes->certificados_hombres}}</td>
 					<tr/>
 					<tr>
 						<th>Total</th>
-						<td>{{$estudiantes_mujeres_t->sumaTotal}}</td>
-						<td>{{$estudiantes_hombres_t->sumaTotal}}</td>
+						<td>{{$estudiantes->total_mujeres}}</td>
+						<td>{{$estudiantes->total_hombres}}</td>
 					</tr>
 				</table>
 			</div>

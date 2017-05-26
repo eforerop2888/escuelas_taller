@@ -15,14 +15,20 @@ class CreateEstudiantesTable extends Migration
     {
         Schema::create('estudiantes', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('etnia');
-            $table->integer('victimas');
-            $table->integer('excombatientes');
-            $table->integer('desplazados');
-            $table->integer('pobreza');
-            $table->integer('certificados');
-            $table->integer('genero_id')->unsigned();
-            $table->foreign('genero_id')->references('id')->on('generos');
+            $table->integer('etnia_mujeres');
+            $table->integer('etnia_hombres');
+            $table->integer('victimas_mujeres');
+            $table->integer('victimas_hombres');
+            $table->integer('excombatientes_mujeres');
+            $table->integer('excombatientes_hombres');
+            $table->integer('desplazados_mujeres');
+            $table->integer('desplazados_hombres');
+            $table->integer('pobreza_mujeres');
+            $table->integer('pobreza_hombres');
+            $table->integer('certificados_mujeres');
+            $table->integer('certificados_hombres');
+            $table->integer('total_mujeres');
+            $table->integer('total_hombres');
             $table->integer('programa_id')->unsigned();
             $table->foreign('programa_id')->references('id')->on('programas');
             $table->integer('user_id')->unsigned();

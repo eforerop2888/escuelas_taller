@@ -5,45 +5,57 @@
 	<div class="table-responsive">
 		<table class="table table-hover">
 			<tr>
-				<th></th>
-				<th>Mujeres</th>
-				<th>Hombres</th>
+				<th>#</th>
+				<th>Escuela</th>
+				<th>Mujeres de Etnia </th>
+				<th>Hombres de Etnia </th>
+				<th>Victimas Hombres</th>
+				<th>Victimas Mujeres</th>
+				<th>Hombres Excombatientes</th>
+				<th>Mujeres Excombatientes</th>
+				<th>Hombres Desplazados</th>
+				<th>Mujeres Desplazadas </th>
+				<th>Pobreza Hombres</th>
+				<th>Pobreza Mujeres</th>
+				<th>Hombres Certificados</th>
+				<th>Mujeres Certificadas</th>
+				<th>Total Hombres</th>
+				<th>Total Mujeres</th>
 			</tr>
-			<tr>
-				<th>Etnia</th>
-				<td>{{$estudiantes_mujeres->etnia}}</td>
-				<td>{{$estudiantes_hombres->etnia}}</td>
-			</tr>
-			<tr>
-				<th>Victimas</th>
-				<td>{{$estudiantes_mujeres->victimas}}</td>
-				<td>{{$estudiantes_hombres->victimas}}</td>
-			<tr/>
-			<tr>
-				<th>Excombatientes</th>
-				<td>{{$estudiantes_mujeres->excombatientes}}</td>
-				<td>{{$estudiantes_hombres->excombatientes}}</td>
-			<tr/>
-			<tr>
-				<th>Desplazados</th>
-				<td>{{$estudiantes_mujeres->desplazados}}</td>
-				<td>{{$estudiantes_hombres->desplazados}}</td>
-			<tr/>
-			<tr>
-				<th>Pobreza</th>
-				<td>{{$estudiantes_mujeres->pobreza}}</td>
-				<td>{{$estudiantes_hombres->pobreza}}</td>
-			<tr/>
-			<tr>
-				<th>Estudiantes Certificados</th>
-				<td>{{$estudiantes_mujeres->certificados}}</td>
-				<td>{{$estudiantes_hombres->certificados}}</td>
-			<tr/>
-			<tr>
-				<th>Total</th>
-				<td>{{$estudiantes_mujeres_t->sumaTotal}}</td>
-				<td>{{$estudiantes_hombres_t->sumaTotal}}</td>
-			</tr>
+			@php ($i = 1)
+			@foreach($estudiantes as $rowestudiantes)
+				<tr>
+					<td>{{$i}}</td>
+					<td>{{$rowestudiantes->nombre_escuela}}</td>
+					<td>{{$rowestudiantes->etnia_mujeres}}</td>
+					<td>{{$rowestudiantes->etnia_hombres}}</td>
+					<td>{{$rowestudiantes->victimas_hombres}}</td>
+					<td>{{$rowestudiantes->victimas_mujeres}}</td>
+					<td>{{$rowestudiantes->excombatientes_hombres}}</td>
+					<td>{{$rowestudiantes->excombatientes_mujeres}}</td>
+					<td>{{$rowestudiantes->desplazados_hombres}}</td>
+					<td>{{$rowestudiantes->desplazados_mujeres}}</td>
+					<td>{{$rowestudiantes->pobreza_hombres}}</td>
+					<td>{{$rowestudiantes->pobreza_mujeres}}</td>
+					<td>{{$rowestudiantes->certificados_hombres}}</td>
+					<td>{{$rowestudiantes->certificados_mujeres}}</td>
+					<td>{{$rowestudiantes->total_hombres}}</td>
+					<td>{{$rowestudiantes->total_mujeres}}</td>
+				</tr>
+			@php ($i++)
+			@endforeach
 		</table>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			{{ Form::open(['method' => 'Post', 'route' => 'informes.exportarinforme']) }}
+				<input type="hidden" name="pais" id="pais" value="{{$pais}}">
+				<input type="hidden" name="tipo_informe" id="tipo_informe" value="3">
+				<button type="submit" class="btn btn-primary">
+					<i class="fa fa-file-excel-o" aria-hidden="true"></i>
+					Exportar a excel
+				</button>
+			{{ Form::close() }}
+		</div>
 	</div>
 @endsection
