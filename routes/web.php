@@ -10,14 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('auth.login');
+Route::group(['middleware' => 'loggin'], function(){
+	Route::get('/', function () {
+	    return view('auth.login');
+	});
 });
 
 Auth::routes();
 
-//Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth'], function () {
 	/*
 		Rutas para el modulo de escuelas
 	*/
@@ -63,4 +64,4 @@ Auth::routes();
 	Route::resource('usuarios', 'Auth\UsuariosController');
 
 	Route::get('/home', 'HomeController@index')->name('home');
-//});
+});

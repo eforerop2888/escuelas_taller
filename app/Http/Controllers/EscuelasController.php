@@ -24,9 +24,9 @@ class EscuelasController extends Controller
             'escuelas.telefono',
             'escuelas.director',
             'paises.pais as pais');
-        if (Auth::user()->role_id != 1) {
-            $escuelas = $escuelas->where('pais_id', Auth::user()->pais_id);       
-        }
+        //if (Auth::user()->role_id != 1) {
+        $escuelas = $escuelas->where('pais_id', Auth::user()->pais_id);       
+        //}
         $escuelas = $escuelas->get();
         return view('escuelas.verEscuelas', ['escuelas' => $escuelas]);
     }
@@ -38,7 +38,8 @@ class EscuelasController extends Controller
      */
     public function create()
     {
-        $paises = Pais::all();
+        $paises = Pais::where('id', Auth::user()->pais_id)
+            ->get();
         return view('escuelas.crearEscuela', ['paises' => $paises]);
     }
 
@@ -108,7 +109,8 @@ class EscuelasController extends Controller
     public function edit($id)
     {
         $escuela = Escuela::find($id);
-        $paises = Pais::all();
+        $paises = Pais::where('id', Auth::user()->pais_id)
+            ->get();
         return view('escuelas.editarEscuela', ['escuela' => $escuela,
             'paises' => $paises]);
     }

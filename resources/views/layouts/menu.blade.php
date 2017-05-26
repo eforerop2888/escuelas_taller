@@ -6,7 +6,7 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 			</a>
-			<a class="navbar-brand" href="home.xhtml">
+			<a class="navbar-brand" href="{{route('informes')}}">
 				<img id="logo" src="{{URL::asset('logo.png')}}">
 			</a>
 		</div>
@@ -114,10 +114,11 @@
 		      		</ul>
 		    	</li>
 		    	<li>
-		    		<a href="{{route('logout')}}">
+		    		<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
 		    			<i class="fa fa-times" aria-hidden="true"></i>
 						Cerrar Sesión
-					</a>
+		    		</a>
+		    		<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
 		    	</li>
 		  	</ul>
 		</div>

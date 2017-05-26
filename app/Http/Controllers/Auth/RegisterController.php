@@ -8,6 +8,7 @@ use App\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -79,6 +80,20 @@ class RegisterController extends Controller
         $roles = Role::all();
         return view('auth.register', ['paises' => $paises,
             'roles' => $roles]);
+    }
+
+    public function register(Request $request)
+    {
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }else{
+            $this->create($request->all());
+            return redirect('/informes');
+        }
     }
 
 }

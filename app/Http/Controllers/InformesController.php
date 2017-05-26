@@ -14,6 +14,7 @@ use Charts;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Requests\RequestGenerateInform;
 
 class InformesController extends Controller
 {
@@ -123,7 +124,7 @@ class InformesController extends Controller
         echo $escuelas;
     }
 
-    public function generarInforme(Request $request){
+    public function generarInforme(RequestGenerateInform $request){
         switch ($request->tipo_informe) {
             case 1:
                 $cooperantes = $this->reporteCooperantes($request);
