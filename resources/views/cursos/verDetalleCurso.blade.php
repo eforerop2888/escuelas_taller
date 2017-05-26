@@ -1,7 +1,7 @@
 @extends('layouts.principal')
 @section('title', 'DETALLE CURSO')
 @section('subtitle')
-	{{$curso->nombre}}
+	{{$curso->nombre_curso}}
 @endsection
 @section('content')
 	<div class="table-responsive">
@@ -23,8 +23,8 @@
 				<td>{{$curso->contacto}}</td>
 			<tr/>
 			<tr>
-				<th>Pais</th>
-				<td>{{ucfirst($curso->pais)}}</td>
+				<th>Escuela</th>
+				<td>{{ucfirst($curso->nombre_escuela)}}</td>
 			<tr/>
 		</table>
 	</div>

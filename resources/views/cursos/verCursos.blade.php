@@ -9,7 +9,7 @@
 			<th>Duración</th>
 			<th>Costo</th>
 			<th>Contacto</th>
-			<th>País</th>
+			<th>Escuela</th>
 			<th>Ver</th>
 			<th>Eliminar</th>
 		</tr>
@@ -17,11 +17,11 @@
 		@foreach($cursosExtension as $rowcursosExtension)
 			<tr>
 				<td>{{$i}}</td>
-				<td>{{$rowcursosExtension->nombre}}</td>
+				<td>{{ucfirst($rowcursosExtension->nombre_curso)}}</td>
 				<td>{{$rowcursosExtension->duracion}}</td>
 				<td>{{$rowcursosExtension->costo}}</td>
 				<td>{{$rowcursosExtension->contacto}}</td>
-				<td>{{ucfirst($rowcursosExtension->pais)}}</td>
+				<td>{{ucfirst($rowcursosExtension->nombre_escuela)}}</td>
 				<td>
 					{{ Form::open(['method' => 'Get', 'route' => ['cursos.show', $rowcursosExtension->id]]) }}
 						<button type="submit" class="btn btn-success">

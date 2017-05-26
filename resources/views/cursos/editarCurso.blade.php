@@ -64,22 +64,16 @@
 				</div>
 			</div>
 			<div class="col-md-6">
-				<div class="form-group {{ $errors->has('pais_id') ? ' has-error ' : ''}}">
-					<label for="pais_id">País</label>
-					<select id="pais_id" name="pais_id" class="form-control" required>
-						@foreach ($paises as $rowpaises)
-							@if(Auth::user()->pais_id == $rowpaises->id)
-								<option value="{{$rowpaises->id}}" selected>{{ucfirst($rowpaises->pais)}}</option>
-							@else
-								@if(Auth::user()->role_id == 1)
-									<option value="{{$rowpaises->id}}">{{ucfirst($rowpaises->pais)}}</option>
-								@endif
-							@endif
+				<div class="form-group {{ $errors->has('escuela_id') ? ' has-error ' : ''}}">
+					<label for="escuela_id">Escuela</label>
+					<select id="escuela_id" name="escuela_id" class="form-control" required>
+						@foreach ($escuelas as $rowescuelas)
+							<option value="{{$rowescuelas->id}}" selected>{{ucfirst($rowescuelas->nombre)}}</option>
 						@endforeach
 					</select>
-					@if ($errors->has('pais_id'))
+					@if ($errors->has('escuela_id'))
 			          <span>
-			            <strong>{{ $errors->first('pais_id') }}</strong>
+			            <strong>{{ $errors->first('escuela_id') }}</strong>
 			          </span>
 			      	@endif
 				</div>

@@ -9,6 +9,7 @@ use App\Escuela;
 use App\Programa;
 use App\Estudiante;
 use App\Cooperante;
+use App\CursoExtension;
 use Charts;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -129,7 +130,9 @@ class InformesController extends Controller
                 return view('informes.informeEspecificoCooperantes', ['cooperantes' => $cooperantes, 'escuela' => $request->escuela]);
                 break;
             case 2:
-                echo "i es igual a 1";
+                $cursos = $this->reporteCursos($request);
+                return view('informes.informeEspecificoCursos', 
+                    ['cursos' => $cursos, 'escuela' => $request->escuela]);
                 break;
             case 3:
                 $estudiantes = $this->reporteEstudiantes($request);
@@ -160,7 +163,17 @@ class InformesController extends Controller
                 $this->ejecutarExcel('Cooperantes', $infoExcel, $cooperantes);
                 break;
             case 2:
-                # code...
+                $cursos = $this->reporteCursos($request);
+                $infoExcel = []; 
+                $infoExcel[] = [
+                    '#',
+                    'Nombre',
+                    'Duración',
+                    'Costo',
+                    'Contacto',
+                    'Escuela',
+                    ];
+                $this->ejecutarExcel('Cursos Extension', $infoExcel, $cursos);
                 break;
             case 3:
                 $estudiantes = $this->reporteEstudiantes($request);
@@ -239,7 +252,8 @@ class InformesController extends Controller
         return $programas;
     }
 
-    private function reporteEstudiantes(Request $request){
+    private function reporteEstudiantes(Request $request)
+    {
         $estudiantes = Estudiante::join('programas','estudiantes.programa_id','=','programas.id')
                     ->join('escuelas','programas.escuela_id','=','escuelas.id')
                     ->join('paises','escuelas.pais_id','=','paises.id')
@@ -262,6 +276,19 @@ class InformesController extends Controller
                     ->where('paises.id', $request->pais)
                     ->get();
         return $estudiantes;
+    }
+
+    private function reporteCursos(Request $request)
+    {
+        $cursosExtension = CursoExtension::join('escuelas','cursos_extension.escuela_id','=','escuelas.id')
+            ->select('cursos_extension.id as id',
+            'cursos_extension.nombre as nombre_curso',
+            'duracion',
+            'costo',
+            'contacto',
+            'escuelas.nombre as nombre_escuela')
+            ->get();
+        return $cursosExtension;
     }
 
     private function ejecutarExcel($nombreInforme, array $infoExcel, $info){

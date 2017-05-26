@@ -14,7 +14,7 @@ class CursoExtension extends Model
     	'duracion',
     	'costo',
     	'contacto',
-    	'pais_id',
+    	'escuela_id',
     	'user_id',
     ];
 }
