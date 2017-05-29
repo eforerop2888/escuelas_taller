@@ -23,6 +23,8 @@ class Estudiante extends Model
         'certificados_hombres',
         'total_mujeres',
         'total_hombres',
+        'causas_desercion',
+        'observaciones',
     	'programa_id',
         'user_id',
     	];

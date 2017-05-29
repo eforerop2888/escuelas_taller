@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Log;
+use Auth;
 use Illuminate\Http\Request;
 use App\Pais;
 use App\User;
@@ -20,6 +22,7 @@ class InformesController extends Controller
 {
     public function index()
     {
+       
     	/*
 		* Chart escuela por país
     	*/

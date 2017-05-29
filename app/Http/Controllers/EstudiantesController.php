@@ -65,12 +65,11 @@ class EstudiantesController extends Controller
             'certificados_hombres' => $request->certificados_hombres,
             'total_mujeres' => $request->total_mujeres,
             'total_hombres' => $request->total_hombres,
+            'causas_desercion' => $request->causas_desercion,
+            'observaciones' => $request->observaciones,
             'programa_id' => $request->programa,
             'user_id' => Auth::user()->id,
         ]);
-
-        Programa::where('id', $request->programa)
-        ->update(['causas_desercion' => $request->causas_desercion]);
 
         $request->session()->flash('success', 'Información de los estudiantes creada exitosamente');
         return redirect()->route('programas.show', $request->programa);
@@ -100,7 +99,7 @@ class EstudiantesController extends Controller
         $estudiantes = Estudiante::where('programa_id', $id)
             ->first();
         $programaD = Programa::where('id', $id)
-            ->select('causas_desercion', 'id')
+            ->select('id')
             ->first();
         return view('estudiantes.editarEstudiantes', ['programas' => $programas,
             'estudiantes' => $estudiantes,
@@ -136,10 +135,9 @@ class EstudiantesController extends Controller
             'certificados_hombres' => $request->certificados_hombres,
             'total_mujeres' => $request->total_mujeres,
             'total_hombres' => $request->total_hombres,
+            'causas_desercion' => $request->causas_desercion,
+            'observaciones' => $request->observaciones,
         ]);
-
-        Programa::where('id', $id)
-        ->update(['causas_desercion' => $request->causas_desercion]);
 
         $request->session()->flash('success', 'Información de los estudiantes actualizada exitosamente');
         return redirect()->route('programas.show', $id);

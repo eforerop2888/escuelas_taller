@@ -11,16 +11,16 @@
 				<td>{{$curso->objetivo_curso}}</td>
 			</tr>
 			<tr>
-				<th>Duración</th>
+				<th>Duración (Horas)</th>
 				<td>{{$curso->duracion}}</td>
 			<tr/>
 			<tr>
-				<th>Costo</th>
+				<th>Costo Aproximado (USD)</th>
 				<td>{{$curso->costo}}</td>
 			<tr/>
 			<tr>
-				<th>Contacto</th>
-				<td>{{$curso->contacto}}</td>
+				<th>Temas</th>
+				<td>{{$curso->temas}}</td>
 			<tr/>
 			<tr>
 				<th>Escuela</th>

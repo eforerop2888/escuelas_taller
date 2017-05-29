@@ -15,6 +15,12 @@ class CooperantesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('access', ['only' => ['index']]);
+    }
+
     public function index()
     {
         $cooperantes = Cooperante::join('programas','cooperantes.programa_id','=','programas.id')

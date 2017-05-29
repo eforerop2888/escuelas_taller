@@ -22,7 +22,6 @@ class CreateProgramasTable extends Migration
       $table->text('objetivo_programa');
       $table->text('requisitos_ingreso');
       $table->text('trabajo_egresados');
-      $table->text('causas_desercion')->nullable();
       $table->integer('escuela_id')->unsigned();
       $table->foreign('escuela_id')->references('id')->on('escuelas');
       $table->integer('user_id')->unsigned();

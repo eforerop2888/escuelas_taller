@@ -13,7 +13,7 @@ class CursoExtension extends Model
     	'objetivo_curso',
     	'duracion',
     	'costo',
-    	'contacto',
+    	'temas',
     	'escuela_id',
     	'user_id',
     ];

@@ -30,7 +30,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('duracion_horas') ? ' has-error ' : ''}}">
-					<label for="duracion_horas">Duracion horas</label>
+					<label for="duracion_horas">Duracion en total (horas)</label>
 					<input type="number" id="duracion_horas" name="duracion_horas" class="form-control" value="{{old('duracion_horas')}}" required placeholder="Duracion horas">
 					@if ($errors->has('duracion_horas'))
 			            <span>
@@ -78,7 +78,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('trabajo_egresados') ? ' has-error ' : ''}}">
-					<label for="trabajo_egresados">En donde trabajan los egresados</label>
+					<label for="trabajo_egresados">Perfil de espacios laborales</label>
 					<textarea id="trabajo_egresados" name="trabajo_egresados" class="form-control" value="{{old('trabajo_egresados')}}" required></textarea>
 					@if ($errors->has('trabajo_egresados'))
 			            <span>

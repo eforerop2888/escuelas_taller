@@ -16,6 +16,12 @@ class CursosExtensionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('access', ['only' => ['index']]);
+    }
+
     public function index()
     {
         $cursosExtension = CursoExtension::join('escuelas','cursos_extension.escuela_id','=','escuelas.id')
@@ -23,7 +29,6 @@ class CursosExtensionController extends Controller
             'cursos_extension.nombre as nombre_curso',
             'duracion',
             'costo',
-            'contacto',
             'escuelas.nombre as nombre_escuela')
             ->get();
         return view('cursos.verCursos', ['cursosExtension' => $cursosExtension]);
@@ -54,7 +59,7 @@ class CursosExtensionController extends Controller
             'objetivo_curso' => $request->objetivo_curso,
             'duracion' => $request->duracion,
             'costo' => $request->costo,
-            'contacto' => $request->contacto,
+            'temas' => $request->temas,
             'escuela_id' => $request->escuela_id,
             'user_id' => Auth::user()->id
         ]);
@@ -76,7 +81,7 @@ class CursosExtensionController extends Controller
             'cursos_extension.nombre as nombre_curso',
             'duracion',
             'costo',
-            'contacto',
+            'temas',
             'objetivo_curso',
             'escuelas.nombre as nombre_escuela')
             ->where('cursos_extension.id', $id)
@@ -114,7 +119,7 @@ class CursosExtensionController extends Controller
                 'objetivo_curso' => $request->objetivo_curso,
                 'duracion' => $request->duracion,
                 'costo' => $request->costo,
-                'contacto' => $request->contacto,
+                'temas' => $request->temas,
                 'escuela_id' => $request->escuela_id,
                 'user_id' => Auth::user()->id
             ]);

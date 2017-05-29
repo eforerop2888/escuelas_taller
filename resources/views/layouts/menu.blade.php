@@ -106,6 +106,12 @@
 	      			</a>
 	      			<ul>
 		      			<li>
+		      				<a href="{{route('register')}}">
+		      					<i class="fa fa-pencil" aria-hidden="true"></i>
+		      					Crear
+		      				</a>
+		      			</li>
+		      			<li>
 		      				<a href="{{route('usuarios.index')}}">
 		      					<i class="fa fa-list-ol" aria-hidden="true"></i>
 		      					Listar

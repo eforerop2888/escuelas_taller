@@ -28,7 +28,7 @@ class RequestStoreCursosExtension extends FormRequest
             'objetivo_curso' => 'required',
             'duracion' => 'required|numeric',
             'costo' => 'required|numeric',
-            'contacto' => 'required'
+            'temas' => 'required'
         ];
     }
 }

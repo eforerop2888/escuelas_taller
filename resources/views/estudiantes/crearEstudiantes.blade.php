@@ -23,8 +23,17 @@
 			</div>
 		</div>
 		<div class="row">
+			<div class="col-md-4 col-xs-4"></div>
+			<div class="col-md-4 col-xs-4 titulo_generos">
+				<h4>Hombres</h4>
+			</div>
+			<div class="col-md-4 col-xs-4 titulo_generos">
+				<h4>Mujeres</h4>
+			</div>
+		</div>
+		<div class="row">
 			<div class="col-md-4 col-xs-4">
-				<label>Total</label>
+				<label>Estudiantes Matriculados</label>
 			</div>
 			<div class="col-md-4 col-xs-4">
 				<div class="form-group {{ $errors->has('total_hombres') ? ' has-error ' : ''}}">
@@ -173,12 +182,15 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-4 col-xs-4">
-				<label>Estudiantes Certificados</label>
+			<div class="col-md-12">
+				<h3>Estudiantes Certificados<h3>
 			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-xs-4"></div>
 			<div class="col-md-4 col-xs-4">
 				<div class="form-group {{ $errors->has('certificados_hombres') ? ' has-error ' : ''}}">
-					<input type="number" class="sumar_hombres" id="certificados_hombres" name="certificados_hombres" class="form-control" required value="{{old('certificados_hombres')}}" placeholder="Estudiantes Certificados Hombres" autofocus>
+					<input type="number" class="sumar_hombres" id="certificados_hombres" name="certificados_hombres" class="form-control" required value="{{old('certificados_hombres')}}" placeholder="Hombres" autofocus>
 					@if ($errors->has('certificados_hombres'))
 			          <span>
 			            <strong>{{ $errors->first('certificados_hombres') }}</strong>
@@ -188,7 +200,7 @@
 			</div>
 			<div class="col-md-4 col-xs-4">
 				<div class="form-group {{ $errors->has('certificados_mujeres') ? ' has-error ' : ''}}">
-					<input type="number" class="sumar_mujeres" id="certificados_mujeres" name="certificados_mujeres" class="form-control" required value="{{old('certificados_mujeres')}}" placeholder="Estudiantes certificados Mujeres">
+					<input type="number" class="sumar_mujeres" id="certificados_mujeres" name="certificados_mujeres" class="form-control" required value="{{old('certificados_mujeres')}}" placeholder="Mujeres">
 					@if ($errors->has('certificados_mujeres'))
 			          <span>
 			            <strong>{{ $errors->first('certificados_mujeres') }}</strong>
@@ -198,13 +210,24 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('causas_desercion') ? ' has-error ' : ''}}">
 					<label for="causas_desercion">Causas de deserción</label>
 					<textarea id="causas_desercion" name="causas_desercion" class="form-control" required value="{{old('causas_desercion')}}"></textarea>
 					@if ($errors->has('causas_desercion'))
 			            <span>
 			              <strong>{{ $errors->first('causas_desercion') }}</strong>
+			            </span>
+		        	@endif
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group {{ $errors->has('Observaciones') ? ' has-error ' : ''}}">
+					<label for="observaciones">Observaciones Adicionales</label>
+					<textarea id="observaciones" name="observaciones" class="form-control" required value="{{old('observaciones')}}"></textarea>
+					@if ($errors->has('observaciones'))
+			            <span>
+			              <strong>{{ $errors->first('observaciones') }}</strong>
 			            </span>
 		        	@endif
 				</div>

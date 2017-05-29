@@ -23,7 +23,7 @@ class CreateCursosextensionTable extends Migration
             $table->foreign('escuela_id')->references('id')->on('escuelas');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('contacto');
+            $table->text('temas');
             $table->timestamps();
         });
     }

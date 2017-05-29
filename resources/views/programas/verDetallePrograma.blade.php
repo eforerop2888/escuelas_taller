@@ -14,7 +14,7 @@
 							<td>{{$programa->duracion_meses}}</td>
 						</tr>
 						<tr>
-							<th>Duración (Horas)</th>
+							<th>Duración en total (Horas)</th>
 							<td>{{$programa->duracion_horas}}</td>
 						<tr/>
 						<tr>
@@ -30,7 +30,7 @@
 							<td>{{$programa->requisitos_ingreso}}</td>
 						<tr/>
 						<tr>
-							<th>Lugar de trabajo de los egresados</th>
+							<th>Perfil de espacios laborales</th>
 							<td>{{$programa->trabajo_egresados}}</td>
 						<tr/>
 						<tr>
@@ -53,14 +53,16 @@
 						</button>
 					{{ Form::close() }}
 				</div>
-				<div class="col-md-6">
-					{{ Form::open(['method' => 'Delete', 'route' => ['programas.destroy', $programa->id]]) }}
-						<button type="submit" class="btn btn-danger">
-							<i class="fa fa-eraser" aria-hidden="true"></i>
-							Eliminar Programa
-						</button>
-					{{ Form::close() }}
-				</div>
+				@if(Auth::user()->role_id == 1)
+					<div class="col-md-6">
+						{{ Form::open(['method' => 'Delete', 'route' => ['programas.destroy', $programa->id], 'class' => 'form-eliminar']) }}
+							<button type="submit" class="btn btn-danger">
+								<i class="fa fa-eraser" aria-hidden="true"></i>
+								Eliminar Programa
+							</button>
+						{{ Form::close() }}
+					</div>
+				@endif
 			</div>
 		</div>
 	</div>
@@ -112,6 +114,14 @@
 						<td>{{$estudiantes->total_mujeres}}</td>
 						<td>{{$estudiantes->total_hombres}}</td>
 					</tr>
+					<tr>
+						<th>Causas Deserción</th>
+						<td colspan="2">{{$estudiantes->causas_desercion}}</td>
+					</tr>
+					<tr>
+						<th>Observaciones</th>
+						<td colspan="2">{{$estudiantes->observaciones}}</td>
+					</tr>
 				</table>
 			</div>
 		@endif
@@ -125,13 +135,15 @@
 					</button>
 				{{ Form::close() }}
 				</div>
-				<div class="col-md-6">
-					{{ Form::open(['method' => 'Delete', 'route' => ['estudiantes.destroy', $programa->id]]) }}
-						<button type="submit" class="btn btn-danger">
-							<i class="fa fa-eraser" aria-hidden="true"></i> Eliminar información estudiantes
-						</button>
-					{{ Form::close() }}
-				</div>
+				@if( !empty($estudiantes) && Auth::user()->role_id == 1 )
+					<div class="col-md-6">
+						{{ Form::open(['method' => 'Delete', 'route' => ['estudiantes.destroy', $programa->id], 'class' => 'form-eliminar']) }}
+							<button type="submit" class="btn btn-danger">
+								<i class="fa fa-eraser" aria-hidden="true"></i> Eliminar información estudiantes
+							</button>
+						{{ Form::close() }}
+					</div>
+				@endif
 			</div>
 		</div>
 	</div>

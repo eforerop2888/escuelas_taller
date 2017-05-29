@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/informes';
+    protected $redirectTo = '/usuarios';
 
     /**
      * Create a new controller instance.
@@ -39,7 +39,8 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest', ['except' => ['showRegistrationForm', 'register']]);
+        $this->middleware('auth',  ['only' => ['showRegistrationForm']]);
     }
 
     /**
@@ -51,7 +52,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -92,7 +93,8 @@ class RegisterController extends Controller
             );
         }else{
             $this->create($request->all());
-            return redirect('/informes');
+            $request->session()->flash('success', 'Usuario creado exitosamente');
+            return redirect($this->redirectTo);
         }
     }
 

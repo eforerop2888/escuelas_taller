@@ -16,12 +16,12 @@
 				</div>
 			</div>
 			<div class="col-md-6">
-				<div class="form-group {{ $errors->has('contacto') ? ' has-error ' : ''}}">
-					<label for="contacto">Contacto</label>
-					<input type="text" id="contacto" name="contacto" class="form-control" value="{{old('contacto')}}" required placeholder="Contacto">
-					@if ($errors->has('contacto'))
+				<div class="form-group {{ $errors->has('temas') ? ' has-error ' : ''}}">
+					<label for="temas">Temas</label>
+					<textarea id="temas" name="temas" class="form-control" required>{{old('temas')}}</textarea>
+					@if ($errors->has('temas'))
 			            <span>
-			              <strong>{{ $errors->first('contacto') }}</strong>
+			              <strong>{{ $errors->first('temas') }}</strong>
 			            </span>
 			      	@endif
 				</div>
@@ -30,7 +30,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('duracion') ? ' has-error ' : ''}}">
-					<label for="duracion">Duración del curso</label>
+					<label for="duracion">Duración del curso (Horas)</label>
 					<input type="number" id="duracion" name="duracion" class="form-control" value="{{old('duracion')}}" required placeholder="Duración del curso">
 					@if ($errors->has('duracion'))
 			            <span>
@@ -41,7 +41,7 @@
 			</div>
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('costo') ? ' has-error ' : ''}}">
-					<label for="costo">Costo del curso</label>
+					<label for="costo">Costo Aproximado (USD)</label>
 					<input type="number" id="costo" name="costo" class="form-control" value="{{old('costo')}}" required placeholder="Costo del curso">
 					@if ($errors->has('costo'))
 			          <span>
