@@ -12,10 +12,21 @@ class PaisesTableSeeder extends Seeder
     public function run()
     {
         DB::table('paises')->insert([
-            'pais' => 'colombia',
-        ]);
-        DB::table('paises')->insert([
-            'pais' => 'bolivia',
+            ['pais' => 'argentina'],
+            ['pais' => 'bolivia'],
+            ['pais' => 'chile'],
+            ['pais' => 'colombia'],
+            ['pais' => 'cuba'],
+            ['pais' => 'ecuador'],
+            ['pais' => 'guatemala'],
+            ['pais' => 'honduras'],
+            ['pais' => 'méxico'],
+            ['pais' => 'panamá'],
+            ['pais' => 'paraguay'],
+            ['pais' => 'perú'],
+            ['pais' => 'república dominicana'],
+            ['pais' => 'uruguay'],
+            ['pais' => 'venezuela']
         ]);
     }
 }

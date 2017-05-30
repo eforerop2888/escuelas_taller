@@ -182,6 +182,31 @@
 			</div>
 		</div>
 		<div class="row">
+			<div class="col-md-4 col-xs-4">
+				<label>Cabeza de familia</label>
+			</div>
+			<div class="col-md-4 col-xs-4">
+				<div class="form-group {{ $errors->has('cabeza_hombres') ? ' has-error ' : ''}}">
+					<input type="number" class="sumar_hombres" id="cabeza_hombres" name="cabeza_hombres" class="form-control" required value="{{old('cabeza_hombres')}}" placeholder="Cabeza de familia hombres" autofocus>
+					@if ($errors->has('cabeza_hombres'))
+			          <span>
+			            <strong>{{ $errors->first('cabeza_hombres') }}</strong>
+			          </span>
+			      	@endif
+				</div>
+			</div>
+			<div class="col-md-4 col-xs-4">
+				<div class="form-group {{ $errors->has('cabeza_mujeres') ? ' has-error ' : ''}}">
+					<input type="number" class="sumar_mujeres" id="cabeza_mujeres" name="cabeza_mujeres" class="form-control" required value="{{old('cabeza_mujeres')}}" placeholder="Cabeza de familia mujeres">
+					@if ($errors->has('cabeza_mujeres'))
+			          <span>
+			            <strong>{{ $errors->first('cabeza_mujeres') }}</strong>
+			          </span>
+			      	@endif
+				</div>
+			</div>
+		</div>
+		<div class="row">
 			<div class="col-md-12">
 				<h3>Estudiantes Certificados<h3>
 			</div>

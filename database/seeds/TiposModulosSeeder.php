@@ -12,10 +12,8 @@ class TiposModulosTableSeeder extends Seeder
     public function run()
     {
         DB::table('tipos_modulos')->insert([
-            'tipo' => 'practico',
-        ]);
-        DB::table('tipos_modulos')->insert([
-            'tipo' => 'teorico',
+            ['tipo' => 'practico'],
+            ['tipo' => 'teorico']
         ]);
     }
 }

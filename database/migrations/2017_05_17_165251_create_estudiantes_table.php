@@ -25,6 +25,8 @@ class CreateEstudiantesTable extends Migration
             $table->integer('desplazados_hombres');
             $table->integer('pobreza_mujeres');
             $table->integer('pobreza_hombres');
+            $table->integer('cabeza_mujeres');
+            $table->integer('cabeza_hombres');
             $table->integer('certificados_mujeres');
             $table->integer('certificados_hombres');
             $table->integer('total_mujeres');

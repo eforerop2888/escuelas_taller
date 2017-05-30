@@ -37,6 +37,8 @@ class RequestStoreEstudiantes extends FormRequest
             'desplazados_mujeres' => 'required|numeric',
             'pobreza_hombres' => 'required|numeric',
             'pobreza_mujeres' => 'required|numeric',
+            'cabeza_hombres' => 'required|numeric',
+            'cabeza_mujeres' => 'required|numeric',
             'certificados_hombres' => 'required|numeric',
             'certificados_mujeres' => 'required|numeric',
             'causas_desercion' => 'required',

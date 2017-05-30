@@ -16,7 +16,7 @@ class DeniedAccess
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->role_id == 1) {
+        if (Auth::user()->role_id != 1) {
             $request->session()->flash('fail', 'Acceso denegado a este recurso, necesitas el rol de administrador');
             return redirect('/informes');
         }

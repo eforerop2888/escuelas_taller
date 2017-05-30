@@ -10,6 +10,7 @@
 				<th>Email</th>
 				<th>País</th>
 				<th>Rol</th>
+				<th>Ver</th>
 				@if(Auth::user()->role_id == 1)
 					<th>Eliminar</th>
 				@endif
@@ -22,6 +23,13 @@
 					<td>{{$rowusuarios->email}}</td>
 					<td>{{ucfirst($rowusuarios->pais)}}</td>
 					<td>{{ucfirst($rowusuarios->role)}}</td>
+					<td>
+						{{ Form::open(['method' => 'Get', 'route' => ['usuarios.show', $rowusuarios->id_users]]) }}
+							<button type="submit" class="btn btn-success">
+								<i class="fa fa-eye" aria-hidden="true"></i>
+							</button>
+						{{ Form::close() }}
+					</td>
 					@if(Auth::user()->role_id == 1)
 						<td>
 							{{ Form::open(['method' => 'Delete', 'route' => ['usuarios.destroy', $rowusuarios->id_users], 'class' => 'form-eliminar']) }}

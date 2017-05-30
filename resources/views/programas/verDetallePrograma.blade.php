@@ -80,6 +80,11 @@
 						<th>Hombres</th>
 					</tr>
 					<tr>
+						<th>Estudiantes Matriculados</th>
+						<td>{{$estudiantes->total_mujeres}}</td>
+						<td>{{$estudiantes->total_hombres}}</td>
+					</tr>
+					<tr>
 						<th>Etnia</th>
 						<td>{{$estudiantes->etnia_mujeres}}</td>
 						<td>{{$estudiantes->etnia_hombres}}</td>
@@ -105,15 +110,15 @@
 						<td>{{$estudiantes->pobreza_hombres}}</td>
 					<tr/>
 					<tr>
+						<th>Cabeza de familia</th>
+						<td>{{$estudiantes->cabeza_mujeres}}</td>
+						<td>{{$estudiantes->cabeza_hombres}}</td>
+					<tr/>
+					<tr>
 						<th>Estudiantes Certificados</th>
 						<td>{{$estudiantes->certificados_mujeres}}</td>
 						<td>{{$estudiantes->certificados_hombres}}</td>
 					<tr/>
-					<tr>
-						<th>Total</th>
-						<td>{{$estudiantes->total_mujeres}}</td>
-						<td>{{$estudiantes->total_hombres}}</td>
-					</tr>
 					<tr>
 						<th>Causas Deserción</th>
 						<td colspan="2">{{$estudiantes->causas_desercion}}</td>

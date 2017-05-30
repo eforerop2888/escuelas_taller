@@ -19,6 +19,8 @@ class Estudiante extends Model
         'desplazados_hombres',
         'pobreza_mujeres',
         'pobreza_hombres',
+        'cabeza_mujeres',
+        'cabeza_hombres',
         'certificados_mujeres',
         'certificados_hombres',
         'total_mujeres',
