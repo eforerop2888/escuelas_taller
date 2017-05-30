@@ -312,4 +312,104 @@ class InformesController extends Controller
             });
         })->export('xls');
     }
+
+    public function generarGraficos(Request $request){
+
+        /*
+        * Chart Tipo de poblacion
+        */
+        $poblacion = Estudiante::select(
+            DB::raw('SUM(etnia_mujeres) as etnia_mujeres'),
+            DB::raw('SUM(victimas_mujeres) as victimas_mujeres'),
+            DB::raw('SUM(excombatientes_mujeres) as excombatientes_mujeres'),
+            DB::raw('SUM(desplazados_mujeres) as desplazados_mujeres'),
+            DB::raw('SUM(pobreza_mujeres) as pobreza_mujeres'),
+            DB::raw('SUM(cabeza_mujeres) as cabeza_mujeres'),
+            DB::raw('SUM(certificados_mujeres) as certificados_mujeres'),
+            DB::raw('SUM(etnia_hombres) as etnia_hombres'),
+            DB::raw('SUM(victimas_hombres) as victimas_hombres'),
+            DB::raw('SUM(excombatientes_hombres) as excombatientes_hombres'),
+            DB::raw('SUM(desplazados_hombres) as desplazados_hombres'),
+            DB::raw('SUM(pobreza_hombres) as pobreza_hombres'),
+            DB::raw('SUM(cabeza_hombres) as cabeza_hombres'),
+            DB::raw('SUM(certificados_hombres) as certificados_hombres'))
+            ->join('programas', 'estudiantes.programa_id', '=', 'programas.id')
+            ->join('escuelas', 'programas.escuela_id', '=', 'escuelas.id')
+            ->where('escuelas.pais_id', $request->pais)
+            ->first();
+        $chartPoblaciones = Charts::multi('bar', 'material')
+            ->title("Tipos de población")
+            ->dimensions(0, 400)
+            ->template("material")
+            ->responsive(false)
+            ->dataset('Hombre', [$poblacion->etnia_hombres,
+                $poblacion->victimas_hombres,
+                $poblacion->excombatientes_hombres,
+                $poblacion->desplazados_hombres,
+                $poblacion->pobreza_hombres,
+                $poblacion->cabeza_hombres,])
+            ->dataset('Mujer', [$poblacion->etnia_mujeres,
+                $poblacion->victimas_mujeres,
+                $poblacion->excombatientes_mujeres,
+                $poblacion->desplazados_mujeres,
+                $poblacion->pobreza_mujeres,
+                $poblacion->cabeza_mujeres,])
+            ->labels(['Etnia', 'Victimas', 'Excombatientes', 'Desplazados', 'Pobreza', 'Cabeza de familia']);
+        /*
+        * Chart Población Atendida
+        */
+        $añosPoblacionMujera = Estudiante::select(DB::raw('SUM(etnia_mujeres) + SUM(victimas_mujeres) + SUM(excombatientes_mujeres) + SUM(desplazados_mujeres) + SUM(pobreza_mujeres) + SUM(cabeza_mujeres) as sumaTotal'))
+            ->join('programas', 'estudiantes.programa_id', '=', 'programas.id')
+            ->join('escuelas', 'programas.escuela_id', '=', 'escuelas.id')
+            ->where('escuelas.pais_id', $request->pais)            
+            ->whereYear('estudiantes.created_at', Carbon::now()->year)
+            ->first();
+        $añosPoblacionHombrea = Estudiante::select(DB::raw('SUM(etnia_hombres) + SUM(victimas_hombres) + SUM(excombatientes_hombres) + SUM(desplazados_hombres) + SUM(pobreza_hombres) + SUM(cabeza_hombres) as sumaTotal'))
+            ->join('programas', 'estudiantes.programa_id', '=', 'programas.id')
+            ->join('escuelas', 'programas.escuela_id', '=', 'escuelas.id')
+            ->where('escuelas.pais_id', $request->pais)
+            ->whereYear('estudiantes.created_at', Carbon::now()->year)
+            ->first();
+        $añosPoblacionMujera1 = Estudiante::select(DB::raw('SUM(etnia_mujeres) + SUM(victimas_mujeres) + SUM(excombatientes_mujeres) + SUM(desplazados_mujeres) + SUM(pobreza_mujeres) + SUM(cabeza_mujeres) as sumaTotal'))
+            ->join('programas', 'estudiantes.programa_id', '=', 'programas.id')
+            ->join('escuelas', 'programas.escuela_id', '=', 'escuelas.id')
+            ->where('escuelas.pais_id', $request->pais)
+            ->whereYear('estudiantes.created_at', Carbon::now()->year - 1)
+            ->first();
+        $añosPoblacionHombrea1 = Estudiante::select(DB::raw('SUM(etnia_hombres) + SUM(victimas_hombres) + SUM(excombatientes_hombres) + SUM(desplazados_hombres) + SUM(pobreza_hombres) + SUM(cabeza_hombres) as sumaTotal'))
+            ->join('programas', 'estudiantes.programa_id', '=', 'programas.id')
+            ->join('escuelas', 'programas.escuela_id', '=', 'escuelas.id')
+            ->where('escuelas.pais_id', $request->pais)
+            ->whereYear('estudiantes.created_at', Carbon::now()->year - 1)
+            ->first();
+        $añosPoblacionMujera2 = Estudiante::select(DB::raw('SUM(etnia_mujeres) + SUM(victimas_mujeres) + SUM(excombatientes_mujeres) + SUM(desplazados_mujeres) + SUM(pobreza_mujeres)  + SUM(cabeza_mujeres) as sumaTotal'))
+            ->join('programas', 'estudiantes.programa_id', '=', 'programas.id')
+            ->join('escuelas', 'programas.escuela_id', '=', 'escuelas.id')
+            ->where('escuelas.pais_id', $request->pais)
+            ->whereYear('estudiantes.created_at', Carbon::now()->year - 2)
+            ->first();
+        $añosPoblacionHombrea2 = Estudiante::select(DB::raw('SUM(etnia_hombres) + SUM(victimas_hombres) + SUM(excombatientes_hombres) + SUM(desplazados_hombres) + SUM(pobreza_hombres)  + SUM(cabeza_hombres) as sumaTotal'))
+            ->join('programas', 'estudiantes.programa_id', '=', 'programas.id')
+            ->join('escuelas', 'programas.escuela_id', '=', 'escuelas.id')
+            ->where('escuelas.pais_id', $request->pais)
+            ->whereYear('estudiantes.created_at', Carbon::now()->year - 2)
+            ->first();
+        $chartAnos = Charts::multi('bar', 'material')
+            ->title("Poblacion Atendida")
+            ->dimensions(0, 400)
+            ->template("material")
+            ->responsive(false)
+            ->dataset('Hombre', [$añosPoblacionHombrea2->sumaTotal,
+                $añosPoblacionHombrea1->sumaTotal,
+                $añosPoblacionHombrea->sumaTotal])
+            ->dataset('Mujer', [$añosPoblacionMujera2->sumaTotal,
+                $añosPoblacionMujera1->sumaTotal,
+                $añosPoblacionMujera->sumaTotal])
+            ->labels([Carbon::now()->year - 2, Carbon::now()->year - 1, Carbon::now()->year]);
+
+        return view('informes.graficosEspecificos', [
+            'chartPoblaciones' => $chartPoblaciones,
+            'chartAnos' => $chartAnos]);
+                
+    }
 }

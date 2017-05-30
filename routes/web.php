@@ -56,6 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('listaescuelas', 'InformesController@listaEscuelas')->name('informes.listaescuelas');
 	Route::post('informeespecifico', 'InformesController@generarInforme')->name('informes.informeespecifico');
 	Route::post('exportarinforme', 'InformesController@showExcel')->name('informes.exportarinforme');
+	Route::post('graficoespecifico', 'InformesController@generarGraficos')->name('informes.graficoespecifico');
 
 	/*
 		Rutas de usuarios Personalizadas
