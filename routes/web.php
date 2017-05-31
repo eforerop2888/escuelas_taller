@@ -18,7 +18,14 @@ Route::group(['middleware' => 'loggin'], function(){
 
 Auth::routes();
 
-Route::group(['middleware' => 'auth'], function () {
+/*
+	Rutas de usuarios Personalizadas
+*/
+
+Route::resource('usuarios', 'Auth\UsuariosController');
+Route::get('contraseña', 'Auth\UsuariosController@formPassword')->name('contraseña');
+
+Route::group(['middleware' => ['auth', 'password']], function () {
 	/*
 		Rutas para el modulo de escuelas
 	*/
@@ -57,12 +64,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('informeespecifico', 'InformesController@generarInforme')->name('informes.informeespecifico');
 	Route::post('exportarinforme', 'InformesController@showExcel')->name('informes.exportarinforme');
 	Route::post('graficoespecifico', 'InformesController@generarGraficos')->name('informes.graficoespecifico');
-
-	/*
-		Rutas de usuarios Personalizadas
-	*/
-
-	Route::resource('usuarios', 'Auth\UsuariosController');
 
 	Route::get('/home', 'HomeController@index')->name('home');
 });

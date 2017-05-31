@@ -58,5 +58,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'loggin' => \App\Http\Middleware\Loggin::class,
         'access' => \App\Http\Middleware\DeniedAccess::class,
+        'password' => \App\Http\Middleware\EmailChange::class,
     ];
 }

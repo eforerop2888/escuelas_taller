@@ -15,6 +15,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'admin',
             'email' => 'desarrolloweb@kiokapro.com',
+            'passwordChange' => 1,
             'pais_id' => 4,
             'role_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),

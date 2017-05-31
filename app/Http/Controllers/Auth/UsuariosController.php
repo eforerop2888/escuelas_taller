@@ -11,6 +11,11 @@ use App\User;
 
 class UsuariosController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('password',  ['except' => ['formPassword']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -143,5 +148,9 @@ class UsuariosController extends Controller
                 }
         }
         return redirect()->route('usuarios.index');
+    }
+
+    public function formPassword(){
+        return view('auth.changePassword');
     }
 }
