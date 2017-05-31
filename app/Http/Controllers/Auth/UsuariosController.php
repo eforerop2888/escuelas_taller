@@ -13,7 +13,7 @@ class UsuariosController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('password',  ['except' => ['formPassword']]);
+        $this->middleware('password',  ['except' => ['formPassword', 'updatePassword']]);
     }
 
     /**
@@ -152,5 +152,15 @@ class UsuariosController extends Controller
 
     public function formPassword(){
         return view('auth.changePassword');
+    }
+
+    public function updatePassword($id, Request $request){
+        User::where('id', $id)
+            ->update([
+                'password' => bcrypt($request->password),
+                'passwordChange' => 1
+        ]);
+        $request->session()->flash('success', 'Contraseña cambiada con exito');
+        return redirect()->route('informes');
     }
 }

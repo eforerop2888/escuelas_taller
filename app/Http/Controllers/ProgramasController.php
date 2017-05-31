@@ -7,6 +7,7 @@ use App\Http\Requests\RequestStoreProgramas;
 use App\Escuela;
 use App\Programa;
 use App\Estudiante;
+use App\Estado;
 use App\Modulo;
 use Illuminate\Support\Facades\DB;
 use Auth;
@@ -43,6 +44,7 @@ class ProgramasController extends Controller
      */
     public function create(Request $request)
     {
+        $estados = Estado::all();
         if($request->escuela){
             $escuelas = Escuela::where('id', $request->escuela)
                 ->where('pais_id', Auth::user()->pais_id)
@@ -51,7 +53,7 @@ class ProgramasController extends Controller
                 $escuelas = Escuela::where('pais_id', Auth::user()->pais_id)
                     ->get();
             }
-        return view('programas.crearPrograma', ['escuelas' => $escuelas]);
+        return view('programas.crearPrograma', ['escuelas' => $escuelas, 'estados' => $estados]);
     }
 
     /**
@@ -69,6 +71,7 @@ class ProgramasController extends Controller
                         'objetivo_programa' => $request->objetivo_programa,
                         'requisitos_ingreso' => $request->requisitos_ingreso,
                         'trabajo_egresados' => $request->trabajo_egresados,
+                        'estado_id' => $request->estado,
                         'escuela_id' => $request->escuelas_id,
                         'user_id' => Auth::user()->id,
                         ]);
@@ -118,11 +121,12 @@ class ProgramasController extends Controller
      */
     public function edit($id)
     {
+        $estados = Estado::all();
         $programa = Programa::find($id);
         $escuelas = Escuela::where('escuelas.pais_id', Auth::user()->pais_id)
             ->get();
         return view('programas.editarPrograma', ['programa' => $programa,
-            'escuelas' => $escuelas]);
+            'escuelas' => $escuelas, 'estados' => $estados]);
     }
 
     /**
@@ -143,6 +147,7 @@ class ProgramasController extends Controller
                     'requisitos_ingreso' => $request->requisitos_ingreso,
                     'trabajo_egresados' => $request->trabajo_egresados,
                     'escuela_id' => $request->escuelas_id,
+                    'estado_id' => $request->estado,
                     'user_id' => Auth::user()->id,
         ]);
         $request->session()->flash('success', 'Programa actualizado exitosamente');

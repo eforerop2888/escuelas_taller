@@ -105,6 +105,23 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
+				<div class="form-group {{ $errors->has('estado') ? ' has-error ' : ''}}">
+					<label for="estado">Seleccionar Estado</label>
+					<select id="estado" name="estado" required class="form-control">
+						@foreach($estados as $rowEstados)
+							<option value="{{$rowEstados->id}}">{{$rowEstados->estado}}</option>
+						@endforeach
+					</select>
+					@if ($errors->has('estado'))
+			            <span>
+			              <strong>{{ $errors->first('estado') }}</strong>
+			            </span>
+		        	@endif
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
 				<button type="submit" class="btn btn-primary">
 					<i class="fa fa-floppy-o" aria-hidden="true"></i> 
 					Guardar

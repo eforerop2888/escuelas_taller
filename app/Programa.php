@@ -16,6 +16,7 @@ class Programa extends Model
     'objetivo_programa',
     'requisitos_ingreso',
     'trabajo_egresados',
+    'estado_id',
     'escuela_id',
     'user_id'
     ];

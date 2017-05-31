@@ -108,6 +108,27 @@
 			</div>
 		</div>
 		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group {{ $errors->has('estado') ? ' has-error ' : ''}}">
+					<label for="estado">Seleccionar Estado</label>
+					<select id="estado" name="estado" class="form-control">
+						@foreach($estados as $rowEstados)
+							@if($programa->estado_id == $rowEstados->id)
+								<option value="{{$rowEstados->id}}" selected="selected">{{ucfirst($rowEstados->estado)}}</option>
+							@else
+								<option value="{{$rowEstados->id}}">{{ucfirst($rowEstados->estado)}}</option>
+							@endif
+						@endforeach
+					</select>
+					@if ($errors->has('estado'))
+			            <span>
+			              <strong>{{ $errors->first('estado') }}</strong>
+			            </span>
+		        	@endif
+				</div>
+			</div>
+		</div>
+		<div class="row">
 			<div class="col-md-12">
 				<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>
 				Guardar</button>

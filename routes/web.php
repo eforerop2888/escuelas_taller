@@ -24,6 +24,7 @@ Auth::routes();
 
 Route::resource('usuarios', 'Auth\UsuariosController');
 Route::get('contraseña', 'Auth\UsuariosController@formPassword')->name('contraseña');
+Route::put('updatePassword/{id}', 'Auth\UsuariosController@updatePassword')->name('contraseña.updatePassword');
 
 Route::group(['middleware' => ['auth', 'password']], function () {
 	/*

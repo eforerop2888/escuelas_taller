@@ -26,6 +26,8 @@ class CreateProgramasTable extends Migration
       $table->foreign('escuela_id')->references('id')->on('escuelas');
       $table->integer('user_id')->unsigned();
       $table->foreign('user_id')->references('id')->on('users');
+      $table->integer('estado_id')->unsigned();
+      $table->foreign('estado_id')->references('id')->on('estados');
       $table->timestamps();
     });
   }

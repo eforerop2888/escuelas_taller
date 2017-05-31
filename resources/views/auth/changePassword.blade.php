@@ -7,7 +7,7 @@
             <div class="panel panel-primary auth register">
                 <div class="panel-heading">Ingresa tu nueva contraseña</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('usuarios.update', Auth::user()->id) }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('contraseña.updatePassword', Auth::user()->id) }}">
                         <input name="_method" type="hidden" value="PUT">
                         {{ csrf_field() }}
 
@@ -16,7 +16,6 @@
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password">
-
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
