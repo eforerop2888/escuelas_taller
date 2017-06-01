@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\RequestStoreProgramas;
 use App\Escuela;
 use App\Programa;
+use App\Pais;
 use App\Estudiante;
 use App\Estado;
 use App\Modulo;
@@ -23,18 +24,23 @@ class ProgramasController extends Controller
     {
         $programas = Programa::join('escuelas','programas.escuela_id','=','escuelas.id')
             ->join('paises','escuelas.pais_id','=','paises.id')
+            ->join('estados','programas.estado_id','=','estados.id')
             ->select('programas.id as id',
             'programas.nombre as nombre',
             'programas.duracion_meses',
             'programas.duracion_horas',
             'programas.duracion_practicas_horas',
+            'estados.estado',
             'escuelas.nombre as nombre_escuela',
-            'paises.pais');
+            'paises.pais')
+            ->orderBy('escuelas.nombre', 'ASC')
+            ->orderBy('programas.nombre', 'DESC');
         if (Auth::user()->role_id != 1) {
             $programas = $programas->where('pais_id', Auth::user()->pais_id);       
         }
         $programas = $programas->get();
-        return view('programas.verProgramas', ['programas' => $programas]);
+        $pais = Pais::find(Auth::user()->pais_id);
+        return view('programas.verProgramas', ['programas' => $programas, 'pais' => $pais]);
     }
 
     /**
@@ -89,6 +95,7 @@ class ProgramasController extends Controller
     {
         $programa = Programa::join('escuelas','programas.escuela_id','=','escuelas.id')
             ->join('paises','escuelas.pais_id','=','paises.id')
+            ->join('estados','programas.estado_id','=','estados.id')
             ->select('programas.id as id',
             'programas.nombre as nombre',
             'programas.duracion_meses',
@@ -97,6 +104,7 @@ class ProgramasController extends Controller
             'programas.objetivo_programa',
             'programas.requisitos_ingreso',
             'programas.trabajo_egresados',
+            'estados.estado',
             'escuelas.nombre as nombre_escuela',
             'paises.pais')
             ->where('programas.id', $id)

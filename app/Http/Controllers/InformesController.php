@@ -178,7 +178,7 @@ class InformesController extends Controller
                     'Nombre',
                     'Duración',
                     'Costo',
-                    'Contacto',
+                    'Temas',
                     'Escuela',
                     ];
                 $this->ejecutarExcel('Cursos Extension', $infoExcel, $cursos);
@@ -293,7 +293,7 @@ class InformesController extends Controller
             'cursos_extension.nombre as nombre_curso',
             'duracion',
             'costo',
-            'contacto',
+            'temas',
             'escuelas.nombre as nombre_escuela')
             ->get();
         return $cursosExtension;

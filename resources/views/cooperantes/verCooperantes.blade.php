@@ -1,6 +1,8 @@
 @extends('layouts.principal')
 @section('title', 'Ver Cooperantes')
-@section('subtitle', 'LISTADO DE COOPERANTES')
+@section('subtitle')
+	LISTADO DE COOPERANTES {{strtoupper($pais->pais)}}
+@endsection
 @section('content')
 	@if($cooperantes->count())
 		<table class="table table-hover">

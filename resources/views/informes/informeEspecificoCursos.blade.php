@@ -9,7 +9,7 @@
 				<th>Nombre</th>
 				<th>Duración</th>
 				<th>Costo</th>
-				<th>Contacto</th>
+				<th>Temas</th>
 				<th>Escuela</th>
 			</tr>
 			@php ($i = 1)
@@ -19,7 +19,7 @@
 					<td>{{$rowcursos->nombre_escuela}}</td>
 					<td>{{$rowcursos->duracion}}</td>
 					<td>{{$rowcursos->costo}}</td>
-					<td>{{$rowcursos->contacto}}</td>
+					<td>{{$rowcursos->temas}}</td>
 					<td>{{$rowcursos->nombre_escuela}}</td>
 				</tr>
 			@php ($i++)

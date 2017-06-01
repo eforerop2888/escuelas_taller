@@ -1,6 +1,6 @@
 @extends('layouts.principal')
 @section('title', 'Crear Escuela')
-@section('subtitle', 'CREAR ESCUELA')
+@section('subtitle', 'ESCUELAS - CREAR')
 @section('content')
 	{{Form::open(['route' => 'escuelas.store', 'method' => 'POST', 'id' => 'form-crear-escuela'])}}
 		<div class="row">

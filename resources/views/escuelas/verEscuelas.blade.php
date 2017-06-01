@@ -1,6 +1,8 @@
 @extends('layouts.principal')
 @section('title', 'Listado Escuelas')
-@section('subtitle', 'LISTADO DE ESCUELAS')
+@section('subtitle')
+	LISTADO DE ESCUELAS {{strtoupper($pais->pais)}}
+@endsection
 @section('content')
 	@if ($escuelas->count())
 		<table class="table table-hover">

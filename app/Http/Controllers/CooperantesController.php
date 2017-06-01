@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Programa;
 use App\Cooperante;
+use App\Pais;
 use App\Http\Requests\RequestStoreCooperantes;
 use Auth;
 
@@ -23,6 +24,7 @@ class CooperantesController extends Controller
 
     public function index()
     {
+        $pais = Pais::find(Auth::user()->pais_id);
         $cooperantes = Cooperante::join('programas','cooperantes.programa_id','=','programas.id')
             ->join('users','programas.user_id','=','users.id')
             ->join('paises','users.pais_id','=','paises.id')
@@ -33,7 +35,8 @@ class CooperantesController extends Controller
             'paises.pais',
             'programas.nombre as nombre_programa')
             ->get();
-        return view('cooperantes.verCooperantes', ['cooperantes' => $cooperantes]);
+        return view('cooperantes.verCooperantes', ['cooperantes' => $cooperantes,
+            'pais' => $pais]);
     }
 
     /**

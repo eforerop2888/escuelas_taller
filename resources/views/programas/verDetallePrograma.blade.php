@@ -41,6 +41,10 @@
 							<th>País</th>
 							<td>{{ucfirst($programa->pais)}}</td>
 						<tr/>
+						<tr>
+							<th>Estado</th>
+							<td>{{ucfirst($programa->estado)}}</td>
+						<tr/>
 					</table>
 				</div>
 			@endif

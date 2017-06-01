@@ -1,6 +1,8 @@
 @extends('layouts.principal')
 @section('title', 'Listado cursos')
-@section('subtitle', 'LISTADO DE CURSOS DE EXTENSION')
+@section('subtitle')
+	LISTADO DE CURSOS DE EXTENSION {{strtoupper($pais->pais)}}
+@endsection
 @section('content')
 	@if($cursosExtension->count())
 		<table class="table table-hover">

@@ -14,7 +14,7 @@
                             <label for="name" class="col-md-4 control-label">Usuario</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus placeholder="Ingrese su name">
+                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus placeholder="Ingrese su usuario">
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -54,9 +54,9 @@
                                     Ingresar
                                 </button>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                <!--<a class="btn btn-link" href="{{ route('password.request') }}">
                                     Olvidó su contraseña?
-                                </a>
+                                </a>-->
                             </div>
                         </div>
                     </form>

@@ -1,6 +1,8 @@
 @extends('layouts.principal')
 @section('title', 'Ver Programas')
-@section('subtitle', 'LISTADO DE PROGRAMAS')
+@section('subtitle')
+LISTADO DE PROGRAMAS {{strtoupper($pais->pais)}}
+@endsection
 @section('content')
 	@if($programas->count())
 		<table class="table table-hover">
@@ -12,6 +14,7 @@
 				<th>Duración Practicas (horas)</th>
 				<th>Escuela</th>
 				<th>País</th>
+				<th>Estado</th>
 				<th>Ver</th>
 				@if(Auth::user()->role_id == 1)
 					<th>Eliminar</th>
@@ -27,6 +30,7 @@
 					<td>{{$rowprogramas->duracion_practicas_horas}}</td>
 					<td>{{ucfirst($rowprogramas->nombre_escuela)}}</td>
 					<td>{{ucfirst($rowprogramas->pais)}}</td>
+					<td>{{ucfirst($rowprogramas->estado)}}</td>
 					<td>
 						{{ Form::open(['method' => 'Get', 'route' => ['programas.show', $rowprogramas->id]]) }}
 							<button type="submit" class="btn btn-success">

@@ -23,12 +23,14 @@ class EscuelasController extends Controller
             'escuelas.direccion',
             'escuelas.telefono',
             'escuelas.director',
-            'paises.pais as pais');
+            'paises.pais as pais')
+            ->orderBy('escuelas.nombre', 'ASC');
+        $pais = Pais::find(Auth::user()->pais_id);
         //if (Auth::user()->role_id != 1) {
         $escuelas = $escuelas->where('pais_id', Auth::user()->pais_id);       
         //}
         $escuelas = $escuelas->get();
-        return view('escuelas.verEscuelas', ['escuelas' => $escuelas]);
+        return view('escuelas.verEscuelas', ['escuelas' => $escuelas, 'pais' => $pais]);
     }
 
     /**

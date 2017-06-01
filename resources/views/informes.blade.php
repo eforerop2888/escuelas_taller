@@ -149,8 +149,12 @@
 	            dataType: "json",
 	            success: function(respuesta) {
 	            	$('#escuela').empty();
-	            	$('#escuela').append('<option value="0">Seleccione</option>' )
-	                $('#escuela').append('<option value="' + respuesta[0].id + '">'+respuesta[0].nombre+'</option>' )
+	            	$('#escuela').append('<option value="0">Seleccione</option>' );
+	            	var i = 0;
+	            	$.each(respuesta, function( index, value ) {
+					  $('#escuela').append('<option value="' + respuesta[i].id + '">'+respuesta[i].nombre+'</option>' );
+					  i++;
+					});
 	            }
 	        });
 			e.preventDefault();
