@@ -59,6 +59,11 @@
                                 </a>-->
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <p class="cpassword">"Para cambio o restablecimiento de contraseña envía un correo a: redescuelastaller@gmail.com"</p>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

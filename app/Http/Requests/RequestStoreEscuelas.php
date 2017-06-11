@@ -25,7 +25,6 @@ class RequestStoreEscuelas extends FormRequest
     {
         return [
             'nombre_escuela' => 'required',
-            'pagina_web' => 'required',
             'direccion' => 'required',
             'telefono' => 'required|numeric',
             'director' => 'required',

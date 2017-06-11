@@ -10,7 +10,12 @@
 				<img id="logo" src="{{URL::asset('logo.png')}}">
 			</a>
 		</div>
-		<span class="user_name">{{ Auth::user()->name }}</span>
+		<span class="user_name">
+			<a href="{{URL::asset('manual.pdf')}}" class="manual_uso" target="_blank">
+				<i class="fa fa-question-circle" aria-hidden="true"></i>
+			</a>
+			{{ Auth::user()->name }}
+		</span>
 		<div id="sidebar-wrapper" class="sidebar-toggle">
 			<ul class="sidebar-nav">
 		    	<li>
@@ -99,6 +104,7 @@
 	      				Informes
 	      			</a>
 		    	</li>
+		    	@if(Auth::user()->role_id == 1)
 		    	<li>
 	      			<a href="#">
 	      				<i class="fa fa-user-circle" aria-hidden="true"></i>
@@ -119,6 +125,7 @@
 		      			</li>
 		      		</ul>
 		    	</li>
+		    	@endif
 		    	<li>
 		    		<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
 		    			<i class="fa fa-times" aria-hidden="true"></i>

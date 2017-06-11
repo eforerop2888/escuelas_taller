@@ -18,7 +18,7 @@
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('pagina_web') ? ' has-error ' : ''}}">
 					<label for="pagina_web">Página web</label>
-					<input type="text" id="pagina_web" name="pagina_web" class="form-control" required value="{{old('pagina_web')}}" placeholder="Página Web">
+					<input type="text" id="pagina_web" name="pagina_web" class="form-control" value="{{old('pagina_web')}}" placeholder="Página Web">
 					@if ($errors->has('pagina_web'))
 	          <span>
 	            <strong>{{ $errors->first('pagina_web') }}</strong>

@@ -46,8 +46,10 @@
 						<label for="tipo_informe">Tipo de informe</label>
 						<select name="tipo_informe" id="tipo_informe" class="form-control">
 							<option value="0">Seleccione</option>
-							<option value="1">Cooperantes</option>
-							<option value="2">Cursos</option>
+							@if(Auth::user()->role_id == 1)
+								<option value="1">Cooperantes</option>
+								<option value="2">Cursos</option>
+							@endif	
 							<option value="3">Estudiantes</option>
 							<option value="4">Programas</option>
 						</select>
@@ -113,7 +115,6 @@
 						<div class="form-group">
 							<label for="pais">Seleccione País</label>
 							<select name="pais" id="pais" class="form-control">
-								<option value="0">Seleccione</option>
 								@foreach($paises as $rowpaises)
 									<option value="{{$rowpaises->id}}">{{ucfirst($rowpaises->pais)}}</option>
 								@endforeach

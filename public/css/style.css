@@ -2,28 +2,28 @@ body {
   background-color: #f0f0f0;
 }
 .contenido {
-	padding-left: 215px;
+  padding-left: 215px;
   padding-right: 10px;
-  padding: 80px 10px 10px 215px; 
+  padding: 100px 10px 10px 215px; 
 }
 #logo {
-	width: 40%;
+  width: 60%;
   padding: 0;
 }
 
 @media (max-width: 768px) {
-	.contenido {
-	  padding-left: 10px;
-	}
+  .contenido {
+    padding-left: 10px;
+  }
 }
 .navbar {
-  height: 71px;
+  height: 92px;
   position: fixed;
   width: 100%;
   z-index: 10;
 }
 #sidebar-wrapper {
-  top: 70px;
+  top: 92px;
 }
 .navbar-default {
   background-color: #222d32;
@@ -44,14 +44,14 @@ body {
   color: #fff;
 }
 .sidebar-nav {
-	width: 200px;
+  width: 200px;
 }
 span strong {
   color: red;
 }
 .user_name {
   float: right;
-  margin: 20px 40px;
+  margin: 35px 40px;
   display: none;
 }
 
@@ -73,6 +73,18 @@ span strong {
   }
   .user_name_menu {
     display: none !important;
+  }
+}
+@media (max-width: 768px) {
+  .navbar-brand {
+      width: 75%;
+  }
+  #logo {
+    width: 120px;
+  }
+
+  .navbar-toggle {
+    margin-top: 25px;
   }
 }
 
@@ -113,4 +125,18 @@ ul.sidebar-nav li:hover > ul
 
 .titulo_generos {
   padding-bottom: 4px; 
+}
+
+.manual_uso i {
+  padding: 4px;
+}
+
+.cpassword {
+  font-size: 0.9em;
+  margin: 0;
+  color: #337ab7;
+}
+
+.manual_uso {
+  color: #fff;
 }
