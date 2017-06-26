@@ -106,7 +106,7 @@
 	</div>
 	<div class="panel panel-warning">
 		<div class="panel-heading">
-			Graficas especificas
+			Gráficas especificas
 		</div>
 		<div class="panel-body">
 			{{Form::open(['route' => ['informes.graficoespecifico'], 'method' => 'POST', 'id' => 'form-listar-escuelas'])}}
@@ -131,8 +131,8 @@
 					<div class="col-md-12">
 						<input type="hidden" name="token" id="token" value="{{csrf_token()}}">
 						<button type="submit" class="btn btn-primary">
-							<i class="fa fa-file-excel-o" aria-hidden="true"></i>
-							Generar Informe
+							<i class="fa fa-area-chart" aria-hidden="true"></i>
+							Generar Gráficas
 						</button>
 					</div>
 				</div>

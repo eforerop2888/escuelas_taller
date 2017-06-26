@@ -59,8 +59,8 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group {{ $errors->has('tipo_cooperacion') ? ' has-error ' : ''}}">
-						<label for="tipo_cooperacion">Tipo de cooperación</label>
-						<textarea id="tipo_cooperacion" name="tipo_cooperacion" class="form-control" required>{{old('tipo_cooperacion')}}</textarea>
+						<label for="tipo_cooperacion">Tipo de cooperación (Máximo 500 caracteres)</label>
+						<textarea id="tipo_cooperacion" name="tipo_cooperacion" class="form-control" required maxlength="500">{{old('tipo_cooperacion')}}</textarea>
 						@if ($errors->has('tipo_cooperacion'))
 				            <span>
 				              <strong>{{ $errors->first('tipo_cooperacion') }}</strong>
@@ -70,8 +70,8 @@
 				</div>
 				<div class="col-md-6">
 					<div class="form-group {{ $errors->has('resultados_significativos') ? ' has-error ' : ''}}">
-						<label for="resultados_significativos">Resultados más significativos</label>
-						<textarea id="resultados_significativos" name="resultados_significativos" class="form-control" required>{{old('resultados_significativos')}}</textarea>
+						<label for="resultados_significativos">Resultados más significativos (Máximo 500 caracteres)</label>
+						<textarea id="resultados_significativos" name="resultados_significativos" class="form-control" required maxlength="500">{{old('resultados_significativos')}}</textarea>
 						@if ($errors->has('resultados_significativos'))
 				            <span>
 				              <strong>{{ $errors->first('resultados_significativos') }}</strong>

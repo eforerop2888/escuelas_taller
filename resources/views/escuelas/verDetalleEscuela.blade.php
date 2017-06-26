@@ -31,10 +31,6 @@
 				<td colspan="2">{{$escuela->acto_administrativo}}</td>
 			<tr/>
 			<tr>
-				<th>Otorgante Permiso</th>
-				<td colspan="2">{{$escuela->otorga_permiso}}</td>
-			<tr/>
-			<tr>
 				<th>Director | Coordinador</th>
 				<td>{{$escuela->director}}</td>
 				<td>{{$escuela->director_email}}</td>

@@ -18,7 +18,7 @@ class CreateEscuelasTable extends Migration
       $table->string('nombre');
       $table->string('direccion');
       $table->string('telefono');
-      $table->string('pagina_web');
+      $table->string('pagina_web')->nullable();
       $table->string('director');
       $table->string('director_email');
       $table->string('coordinador');
@@ -26,7 +26,6 @@ class CreateEscuelasTable extends Migration
       $table->string('coordinador_humano');
       $table->string('coordinador_humano_email');
       $table->string('acto_administrativo');
-      $table->string('otorga_permiso');
       $table->integer('pais_id')->unsigned();
       $table->foreign('pais_id')->references('id')->on('paises');
       $table->integer('user_id')->unsigned();

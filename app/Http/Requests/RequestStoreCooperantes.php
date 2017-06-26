@@ -28,8 +28,8 @@ class RequestStoreCooperantes extends FormRequest
             'persona_contacto' => 'required',
             'mail_contacto' => 'required|email',
             'programa' => 'required',
-            'tipo_cooperacion' => 'required',
-            'resultados_significativos' => 'required',
+            'tipo_cooperacion' => 'required|max:500',
+            'resultados_significativos' => 'required|max:500',
         ];
     }
 }

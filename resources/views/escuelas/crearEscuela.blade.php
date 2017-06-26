@@ -41,8 +41,12 @@
 			</div>
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('telefono') ? ' has-error ' : ''}}">
-					<label for="telefono">Teléfono</label>
-					<input type="number" id="telefono" name="telefono" class="form-control" required value="{{old('telefono')}}" placeholder="Teléfono">
+					<label for="telefono">Teléfono
+					<a href="#" class="tooltips" title="Ingresa el número con prefijo de tu país y código de área. Ej: +571 3283787">
+							<i class="fa fa-question-circle" aria-hidden="true"></i>
+						</a>
+					</label>
+					<input type="text" id="telefono" name="telefono" class="form-control" required value="{{old('telefono')}}" placeholder="Teléfono">
 					@if ($errors->has('telefono'))
 	          <span>
 	            <strong>{{ $errors->first('telefono') }}</strong>
@@ -54,7 +58,9 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('director') ? ' has-error ' : ''}}">
-					<label for="director">Director | Coordinador</label>
+					<label for="director">
+						Director | Coordinador General
+					</label>
 					<input type="text" id="director" name="director" class="form-control" required value="{{old('director')}}" placeholder="Director | Coordinador">
 					@if ($errors->has('director'))
 	          <span>
@@ -65,7 +71,9 @@
 			</div>
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('email') ? ' has-error ' : ''}}">
-					<label for="email">Email Director | Coordinador</label>
+					<label for="email">
+						Email Director | Coordinador General
+					</label>
 					<input type="email" id="email" name="email" class="form-control" required value="{{old('email')}}" placeholder="Email Director | Coordinador">
 					@if ($errors->has('email'))
 	          <span>
@@ -124,24 +132,13 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-12">
 				<div class="form-group {{ $errors->has('acto') ? ' has-error ' : ''}}">
 					<label for="acto">Acto Administrativo</label>
 					<input type="text" id="acto" name="acto" class="form-control" required value="{{old('acto')}}" placeholder="Acto Administrativo">
 					@if ($errors->has('acto'))
 	          <span>
 	            <strong>{{ $errors->first('acto') }}</strong>
-	          </span>
-	      	@endif
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group {{ $errors->has('permiso') ? ' has-error ' : ''}}">
-					<label for="permiso">Quién otorga el permiso</label>
-					<input type="texy" id="permiso" name="permiso" class="form-control" required value="{{old('permiso')}}" placeholder="Quién otorga el permiso">
-					@if ($errors->has('permiso'))
-	          <span>
-	            <strong>{{ $errors->first('permiso') }}</strong>
 	          </span>
 	      	@endif
 				</div>
@@ -180,4 +177,20 @@
 		</div>
 
 	{{Form::close()}}
+@endsection
+@section('scripts')
+	<script type="text/javascript">
+	$('.tooltips').poshytip({
+		className: 'tip-twitter',
+		showOn: 'none',
+		alignTo: 'target',
+		alignX: 'inner-left',
+		offsetX: 0,
+		offsetY: 5
+	});
+        $('.tooltips').click(function(e){
+        	$(this).poshytip('show');
+        	$(this).poshytip('hideDelayed', 5000);
+        });
+    </script>
 @endsection

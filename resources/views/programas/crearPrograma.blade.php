@@ -31,8 +31,8 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group {{ $errors->has('duracion_horas') ? ' has-error ' : ''}}">
-						<label for="duracion_horas">Duracion en total (horas)</label>
-						<input type="number" id="duracion_horas" name="duracion_horas" class="form-control" value="{{old('duracion_horas')}}" required placeholder="Duracion horas">
+						<label for="duracion_horas">Duración en total (horas)</label>
+						<input type="number" id="duracion_horas" name="duracion_horas" class="form-control" value="{{old('duracion_horas')}}" required placeholder="Duración horas">
 						@if ($errors->has('duracion_horas'))
 				            <span>
 				              <strong>{{ $errors->first('duracion_horas') }}</strong>
@@ -42,8 +42,8 @@
 				</div>
 				<div class="col-md-6">
 					<div class="form-group {{ $errors->has('duracion_practica') ? ' has-error ' : ''}}">
-						<label for="duracion_practica">Duracion Practica (Horas)</label>
-						<input type="number" id="duracion_practica" name="duracion_practica" class="form-control" value="{{old('duracion_practica')}}" required placeholder="Duracion Practica (Horas)">
+						<label for="duracion_practica">Duración Practica (Horas)</label>
+						<input type="number" id="duracion_practica" name="duracion_practica" class="form-control" value="{{old('duracion_practica')}}" required placeholder="Duración Practica (Horas)">
 						@if ($errors->has('duracion_practica'))
 				            <span>
 				              <strong>{{ $errors->first('duracion_practica') }}</strong>
@@ -55,8 +55,8 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group {{ $errors->has('objetivo_programa') ? ' has-error ' : ''}}">
-						<label for="objetivo_programa">Objetivo del Programa</label>
-						<textarea id="objetivo_programa" name="objetivo_programa" class="form-control" value="{{old('objetivo_programa')}}" required></textarea>
+						<label for="objetivo_programa">Objetivo del Programa (Máximo 500 caracteres)</label>
+						<textarea id="objetivo_programa" name="objetivo_programa" class="form-control" value="{{old('objetivo_programa')}}" required maxlength="500"></textarea>
 						@if ($errors->has('objetivo_programa'))
 				            <span>
 				              <strong>{{ $errors->first('objetivo_programa') }}</strong>
@@ -66,8 +66,8 @@
 				</div>
 				<div class="col-md-6">
 					<div class="form-group {{ $errors->has('requisitos_ingreso') ? ' has-error ' : ''}}">
-						<label for="requisitos_ingreso">Requisitos de Ingreso</label>
-						<textarea id="requisitos_ingreso" name="requisitos_ingreso" class="form-control" value="{{old('requisitos_ingreso')}}" required></textarea>
+						<label for="requisitos_ingreso">Requisitos de Ingreso (Máximo 500 caracteres)</label>
+						<textarea id="requisitos_ingreso" name="requisitos_ingreso" class="form-control" value="{{old('requisitos_ingreso')}}" required maxlength="500"></textarea>
 						@if ($errors->has('requisitos_ingreso'))
 				            <span>
 				              <strong>{{ $errors->first('requisitos_ingreso') }}</strong>
@@ -79,8 +79,8 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group {{ $errors->has('trabajo_egresados') ? ' has-error ' : ''}}">
-						<label for="trabajo_egresados">Perfil de espacios laborales</label>
-						<textarea id="trabajo_egresados" name="trabajo_egresados" class="form-control" value="{{old('trabajo_egresados')}}" required></textarea>
+						<label for="trabajo_egresados">Perfil de espacios laborales (Máximo 500 caracteres)</label>
+						<textarea id="trabajo_egresados" name="trabajo_egresados" class="form-control" value="{{old('trabajo_egresados')}}" required maxlength="500"></textarea>
 						@if ($errors->has('trabajo_egresados'))
 				            <span>
 				              <strong>{{ $errors->first('trabajo_egresados') }}</strong>
@@ -110,7 +110,7 @@
 						<label for="estado">Seleccionar Estado</label>
 						<select id="estado" name="estado" required class="form-control">
 							@foreach($estados as $rowEstados)
-								<option value="{{$rowEstados->id}}">{{$rowEstados->estado}}</option>
+								<option value="{{$rowEstados->id}}">{{ucfirst($rowEstados->estado)}}</option>
 							@endforeach
 						</select>
 						@if ($errors->has('estado'))

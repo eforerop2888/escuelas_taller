@@ -225,8 +225,8 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('causas_desercion') ? ' has-error ' : ''}}">
-					<label for="causas_desercion">Causas de deserción</label>
-					<textarea id="causas_desercion" name="causas_desercion" class="form-control" required>{{$estudiantes->causas_desercion}}</textarea>
+					<label for="causas_desercion">Causas de deserción (Máximo 500 caracteres)</label>
+					<textarea maxlength="500" id="causas_desercion" name="causas_desercion" class="form-control" required>{{$estudiantes->causas_desercion}}</textarea>
 					@if ($errors->has('causas_desercion'))
 			            <span>
 			              <strong>{{ $errors->first('causas_desercion') }}</strong>
@@ -236,8 +236,8 @@
 			</div>
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('Observaciones') ? ' has-error ' : ''}}">
-					<label for="observaciones">Observaciones Adicionales</label>
-					<textarea id="observaciones" name="observaciones" class="form-control" required>{{$estudiantes->observaciones}}</textarea>
+					<label for="observaciones">Observaciones Adicionales (Máximo 500 caracteres)</label>
+					<textarea maxlength="500" id="observaciones" name="observaciones" class="form-control" required>{{$estudiantes->observaciones}}</textarea>
 					@if ($errors->has('observaciones'))
 			            <span>
 			              <strong>{{ $errors->first('observaciones') }}</strong>

@@ -52,8 +52,8 @@
 			</div>
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('objetivo') ? ' has-error ' : ''}}">
-					<label for="objetivo">Objetivo del Módulo</label>
-					<textarea id="objetivo" name="objetivo" class="form-control"  required>{{old('objetivo')}}</textarea>
+					<label for="objetivo">Objetivo del Módulo (Máximo 500 caracteres)</label>
+					<textarea maxlength="500" id="objetivo" name="objetivo" class="form-control"  required>{{old('objetivo')}}</textarea>
 					@if ($errors->has('objetivo'))
 			          <span>
 			            <strong>{{ $errors->first('objetivo') }}</strong>
@@ -89,8 +89,8 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('experiencia') ? ' has-error ' : ''}}">
-					<label for="experiencia">Experiencia del Maestro</label>
-					<textarea id="experiencia" name="experiencia" class="form-control"  required>{{old('experiencia')}}</textarea>
+					<label for="experiencia">Experiencia del Maestro (Máximo 500 caracteres)</label>
+					<textarea maxlength="500" id="experiencia" name="experiencia" class="form-control"  required>{{old('experiencia')}}</textarea>
 					@if ($errors->has('experiencia'))
 			          <span>
 			            <strong>{{ $errors->first('experiencia') }}</strong>

@@ -27,10 +27,10 @@ class RequestStoreModulos extends FormRequest
             'nombre_modulos' => 'required',
             'duracion' => 'required|numeric',
             'tipo_modulo' => 'required|numeric',
-            'objetivo' => 'required',
+            'objetivo' => 'required|max:500',
             'nombre_maestro' => 'required',
             'mail_maestro' => 'required|email',
-            'experiencia' => 'required',
+            'experiencia' => 'required|max:500',
             'programa_id' => 'required'
         ];
     }

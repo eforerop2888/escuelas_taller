@@ -41,7 +41,8 @@ class RequestStoreEstudiantes extends FormRequest
             'cabeza_mujeres' => 'required|numeric',
             'certificados_hombres' => 'required|numeric',
             'certificados_mujeres' => 'required|numeric',
-            'causas_desercion' => 'required',
+            'causas_desercion' => 'required|max:500',
+            'observaciones' => 'max:500'
         ];
     }
 }

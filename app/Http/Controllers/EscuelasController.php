@@ -12,6 +12,7 @@ class EscuelasController extends Controller
 {
     /**
      * Display a listing of the resource.
+
      *
      * @return \Illuminate\Http\Response
      */
@@ -64,7 +65,6 @@ class EscuelasController extends Controller
                         'coordinador_humano' => $request->humano,
                         'coordinador_humano_email' => $request->email_h,
                         'acto_administrativo' => $request->acto,
-                        'otorga_permiso' => $request->permiso,
                         'pais_id' => $request->pais_id,
                         'user_id' => Auth::user()->id
                     ]);
@@ -96,7 +96,6 @@ class EscuelasController extends Controller
             'escuelas.pagina_web',
             'escuelas.created_at',
             'escuelas.acto_administrativo',
-            'escuelas.otorga_permiso',
             'paises.pais as pais')
             ->first();
         return view('escuelas.verDetalleEscuela', ['escuela' => $escuela]);
@@ -138,7 +137,6 @@ class EscuelasController extends Controller
                     'coordinador_humano' => $request->humano,
                     'coordinador_humano_email' => $request->email_h,
                     'acto_administrativo' => $request->acto,
-                    'otorga_permiso' => $request->permiso,
                     'pais_id' => $request->pais_id
         ]);
         $request->session()->flash('success', 'Escuela actualizada exitosamente');

@@ -26,7 +26,7 @@ class RequestStoreEscuelas extends FormRequest
         return [
             'nombre_escuela' => 'required',
             'direccion' => 'required',
-            'telefono' => 'required|numeric',
+            'telefono' => 'required',
             'director' => 'required',
             'email' => 'required|email',
             'coordinador' => 'required',
@@ -34,7 +34,6 @@ class RequestStoreEscuelas extends FormRequest
             'humano' => 'required',
             'email_h' => 'required|email',
             'acto' => 'required',
-            'permiso' => 'required',
         ];
     }
 }

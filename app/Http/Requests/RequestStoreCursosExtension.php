@@ -25,10 +25,10 @@ class RequestStoreCursosExtension extends FormRequest
     {
         return [
             'nombre_curso' => 'required',
-            'objetivo_curso' => 'required',
+            'objetivo_curso' => 'required|max:500',
             'duracion' => 'required|numeric',
             'costo' => 'required|numeric',
-            'temas' => 'required'
+            'temas' => 'required|max:500'
         ];
     }
 }

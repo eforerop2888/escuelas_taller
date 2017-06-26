@@ -28,9 +28,9 @@ class RequestStoreProgramas extends FormRequest
             'duracion_meses' => 'required|numeric',
             'duracion_horas' => 'required|numeric',
             'duracion_practica' => 'required|numeric',
-            'objetivo_programa' => 'required',
-            'requisitos_ingreso' => 'required',
-            'trabajo_egresados' => 'required',
+            'objetivo_programa' => 'required|max:500',
+            'requisitos_ingreso' => 'required|max:500',
+            'trabajo_egresados' => 'required|max:500',
             'escuelas_id' => 'required'
         ];
     }

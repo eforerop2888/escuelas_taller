@@ -18,8 +18,8 @@
 				</div>
 				<div class="col-md-6">
 					<div class="form-group {{ $errors->has('temas') ? ' has-error ' : ''}}">
-						<label for="temas">Temas</label>
-						<textarea id="temas" name="temas" class="form-control" required>{{old('temas')}}</textarea>
+						<label for="temas">Temas (Máximo 500 caracteres)</label>
+						<textarea id="temas" name="temas" class="form-control" required maxlength="500">{{old('temas')}}</textarea>
 						@if ($errors->has('temas'))
 				            <span>
 				              <strong>{{ $errors->first('temas') }}</strong>
@@ -55,8 +55,8 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group {{ $errors->has('objetivo_curso') ? ' has-error ' : ''}}">
-						<label for="objetivo_curso">Objetivo del curso</label>
-						<textarea id="objetivo_curso" name="objetivo_curso" class="form-control" value="{{old('objetivo_curso')}}" required></textarea>
+						<label for="objetivo_curso">Objetivo del curso (Máximo 500 caracteres)</label>
+						<textarea id="objetivo_curso" name="objetivo_curso" class="form-control" value="{{old('objetivo_curso')}}" required maxlength="500"></textarea>
 						@if ($errors->has('objetivo_curso'))
 				            <span>
 				              <strong>{{ $errors->first('objetivo_curso') }}</strong>

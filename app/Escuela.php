@@ -10,7 +10,6 @@ class Escuela extends Model
     protected $fillable = ['nombre',
      						'direccion',
      						'telefono',
-     						'pagina_web',
     						'director',
     						'director_email',
     						'coordinador',
@@ -18,7 +17,6 @@ class Escuela extends Model
     						'coordinador_humano',
     						'coordinador_humano_email',
     						'acto_administrativo',
-    						'otorga_permiso',
                             'pais_id',
                             'user_id'];
 }

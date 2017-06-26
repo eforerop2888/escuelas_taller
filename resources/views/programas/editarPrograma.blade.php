@@ -30,8 +30,8 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('duracion_horas') ? ' has-error ' : ''}}">
-					<label for="duracion_horas">Duracion en total (horas)</label>
-					<input type="number" id="duracion_horas" name="duracion_horas" class="form-control" required placeholder="Duracion horas" value="{{$programa->duracion_horas}}">
+					<label for="duracion_horas">Duración en total (horas)</label>
+					<input type="number" id="duracion_horas" name="duracion_horas" class="form-control" required placeholder="Duración horas" value="{{$programa->duracion_horas}}">
 					@if ($errors->has('duracion_horas'))
 			            <span>
 			              <strong>{{ $errors->first('duracion_horas') }}</strong>
@@ -41,8 +41,8 @@
 			</div>
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('duracion_practica') ? ' has-error ' : ''}}">
-					<label for="duracion_practica">Duracion Practica (Horas)</label>
-					<input type="number" id="duracion_practica" name="duracion_practica" class="form-control" required placeholder="Duracion Practica (Horas)" value="{{$programa->duracion_practicas_horas}}">
+					<label for="duracion_practica">Duración Practica (Horas)</label>
+					<input type="number" id="duracion_practica" name="duracion_practica" class="form-control" required placeholder="Duración Practica (Horas)" value="{{$programa->duracion_practicas_horas}}">
 					@if ($errors->has('duracion_practica'))
 			            <span>
 			              <strong>{{ $errors->first('duracion_practica') }}</strong>
@@ -54,8 +54,8 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('objetivo_programa') ? ' has-error ' : ''}}">
-					<label for="objetivo_programa">Objetivo del Programa</label>
-					<textarea id="objetivo_programa" name="objetivo_programa" class="form-control" required>{{$programa->objetivo_programa}}</textarea>
+					<label for="objetivo_programa">Objetivo del Programa (Máximo 500 caracteres)</label>
+					<textarea id="objetivo_programa" name="objetivo_programa" class="form-control" required maxlength="500">{{$programa->objetivo_programa}}</textarea>
 					@if ($errors->has('objetivo_programa'))
 			            <span>
 			              <strong>{{ $errors->first('objetivo_programa') }}</strong>
@@ -65,8 +65,8 @@
 			</div>
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('requisitos_ingreso') ? ' has-error ' : ''}}">
-					<label for="requisitos_ingreso">Requisitos de Ingreso</label>
-					<textarea id="requisitos_ingreso" name="requisitos_ingreso" class="form-control" required>{{$programa->requisitos_ingreso}}</textarea>
+					<label for="requisitos_ingreso">Requisitos de Ingreso (Máximo 500 caracteres)</label>
+					<textarea id="requisitos_ingreso" name="requisitos_ingreso" class="form-control" required maxlength="500">{{$programa->requisitos_ingreso}}</textarea>
 					@if ($errors->has('requisitos_ingreso'))
 			            <span>
 			              <strong>{{ $errors->first('requisitos_ingreso') }}</strong>
@@ -78,8 +78,8 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('trabajo_egresados') ? ' has-error ' : ''}}">
-					<label for="trabajo_egresados">Perfil de espacios laborales</label>
-					<textarea id="trabajo_egresados" name="trabajo_egresados" class="form-control" required>{{$programa->trabajo_egresados}}</textarea>
+					<label for="trabajo_egresados">Perfil de espacios laborales (Máximo 500 caracteres)</label>
+					<textarea id="trabajo_egresados" name="trabajo_egresados" class="form-control" required maxlength="500">{{$programa->trabajo_egresados}}</textarea>
 					@if ($errors->has('trabajo_egresados'))
 			            <span>
 			              <strong>{{ $errors->first('trabajo_egresados') }}</strong>

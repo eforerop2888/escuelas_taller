@@ -32,7 +32,7 @@ class CreateEstudiantesTable extends Migration
             $table->integer('total_mujeres');
             $table->integer('total_hombres');
             $table->text('causas_desercion');
-            $table->text('observaciones');
+            $table->text('observaciones')->nullable();
             $table->integer('programa_id')->unsigned();
             $table->foreign('programa_id')->references('id')->on('programas');
             $table->integer('user_id')->unsigned();
