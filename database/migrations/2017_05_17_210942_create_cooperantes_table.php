@@ -15,11 +15,11 @@ class CreateCooperantesTable extends Migration
     {
         Schema::create('cooperantes', function(Blueprint $table){
             $table->increments('id');
-            $table->string('nombre');
-            $table->string('mail_contacto');
-            $table->string('persona_contacto');
-            $table->text('tipo_cooperacion');
-            $table->text('resultados_significativos');
+            $table->string('nombre')->nullable();
+            $table->string('mail_contacto')->nullable();
+            $table->string('persona_contacto')->nullable();
+            $table->text('tipo_cooperacion')->nullable();
+            $table->text('resultados_significativos')->nullable();
             $table->integer('programa_id')->unsigned();
             $table->foreign('programa_id')->references('id')->on('programas');
             $table->integer('user_id')->unsigned();

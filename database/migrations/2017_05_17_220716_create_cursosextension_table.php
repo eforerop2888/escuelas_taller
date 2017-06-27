@@ -15,15 +15,15 @@ class CreateCursosextensionTable extends Migration
     {
         Schema::create('cursos_extension', function(Blueprint $table){
             $table->increments('id');
-            $table->string('nombre');
-            $table->text('objetivo_curso');
-            $table->integer('duracion');
-            $table->integer('costo');
+            $table->string('nombre')->nullable();
+            $table->text('objetivo_curso')->nullable();
+            $table->integer('duracion')->nullable();
+            $table->integer('costo')->nullable();
             $table->integer('escuela_id')->unsigned();
             $table->foreign('escuela_id')->references('id')->on('escuelas');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->text('temas');
+            $table->text('temas')->nullable();
             $table->timestamps();
         });
     }

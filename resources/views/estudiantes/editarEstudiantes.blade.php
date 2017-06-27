@@ -198,9 +198,12 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-4 col-xs-4">
-				<label>Estudiantes Certificados</label>
+			<div class="col-md-12">
+				<h3>Información Programa<h3>
 			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-xs-4">Estudiantes Certificados</div>
 			<div class="col-md-4 col-xs-4">
 				<div class="form-group {{ $errors->has('certificados_hombres') ? ' has-error ' : ''}}">
 					<input type="number" id="certificados_hombres" name="certificados_hombres" class="form-control" required value="{{$estudiantes->certificados_hombres}}" placeholder="Estudiantes Certificados Hombres" autofocus>
@@ -217,6 +220,98 @@
 					@if ($errors->has('certificados_mujeres'))
 			          <span>
 			            <strong>{{ $errors->first('certificados_mujeres') }}</strong>
+			          </span>
+			      	@endif
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-xs-4">Egresados programa</div>
+			<div class="col-md-4 col-xs-4">
+				<div class="form-group {{ $errors->has('egresados_programa_hombres') ? ' has-error ' : ''}}">
+					<input type="number" id="egresados_programa_hombres" name="egresados_programa_hombres" class="form-control" required value="{{$estudiantes->egresados_programa_hombres}}" placeholder="Estudiantes Certificados Hombres" autofocus>
+					@if ($errors->has('egresados_programa_hombres'))
+			          <span>
+			            <strong>{{ $errors->first('egresados_programa_hombres') }}</strong>
+			          </span>
+			      	@endif
+				</div>
+			</div>
+			<div class="col-md-4 col-xs-4">
+				<div class="form-group {{ $errors->has('egresados_programa_mujeres') ? ' has-error ' : ''}}">
+					<input type="number" id="egresados_programa_mujeres" name="egresados_programa_mujeres" class="form-control" required value="{{$estudiantes->egresados_programa_mujeres}}" placeholder="Estudiantes certificados Mujeres">
+					@if ($errors->has('egresados_programa_mujeres'))
+			          <span>
+			            <strong>{{ $errors->first('egresados_programa_mujeres') }}</strong>
+			          </span>
+			      	@endif
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-xs-4">Egresados con trabajo</div>
+			<div class="col-md-4 col-xs-4">
+				<div class="form-group {{ $errors->has('egresados_trabajo_hombres') ? ' has-error ' : ''}}">
+					<input type="number" id="egresados_trabajo_hombres" name="egresados_trabajo_hombres" class="form-control" required value="{{$estudiantes->egresados_trabajo_hombres}}" placeholder="Estudiantes Certificados Hombres" autofocus>
+					@if ($errors->has('egresados_trabajo_hombres'))
+			          <span>
+			            <strong>{{ $errors->first('egresados_trabajo_hombres') }}</strong>
+			          </span>
+			      	@endif
+				</div>
+			</div>
+			<div class="col-md-4 col-xs-4">
+				<div class="form-group {{ $errors->has('egresados_trabajo_mujeres') ? ' has-error ' : ''}}">
+					<input type="number" id="egresados_trabajo_mujeres" name="egresados_trabajo_mujeres" class="form-control" required value="{{$estudiantes->egresados_trabajo_mujeres}}" placeholder="Estudiantes certificados Mujeres">
+					@if ($errors->has('egresados_trabajo_mujeres'))
+			          <span>
+			            <strong>{{ $errors->first('egresados_trabajo_mujeres') }}</strong>
+			          </span>
+			      	@endif
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-xs-4">Egresados con trabajo en otro oficio</div>
+			<div class="col-md-4 col-xs-4">
+				<div class="form-group {{ $errors->has('egresados_trabajo_otro_hombres') ? ' has-error ' : ''}}">
+					<input type="number" id="egresados_trabajo_otro_hombres" name="egresados_trabajo_otro_hombres" class="form-control" required value="{{$estudiantes->egresados_trabajo_otro_hombres}}" placeholder="Estudiantes Certificados Hombres" autofocus>
+					@if ($errors->has('egresados_trabajo_otro_hombres'))
+			          <span>
+			            <strong>{{ $errors->first('egresados_trabajo_otro_hombres') }}</strong>
+			          </span>
+			      	@endif
+				</div>
+			</div>
+			<div class="col-md-4 col-xs-4">
+				<div class="form-group {{ $errors->has('egresados_trabajo_otro_mujeres') ? ' has-error ' : ''}}">
+					<input type="number" id="egresados_trabajo_otro_mujeres" name="egresados_trabajo_otro_mujeres" class="form-control" required value="{{$estudiantes->egresados_trabajo_otro_mujeres}}" placeholder="Estudiantes certificados Mujeres">
+					@if ($errors->has('egresados_trabajo_otro_mujeres'))
+			          <span>
+			            <strong>{{ $errors->first('egresados_trabajo_otro_mujeres') }}</strong>
+			          </span>
+			      	@endif
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-xs-4">Egresados desempleados</div>
+			<div class="col-md-4 col-xs-4">
+				<div class="form-group {{ $errors->has('egresados_desempleados_hombres') ? ' has-error ' : ''}}">
+					<input type="number" id="egresados_desempleados_hombres" name="egresados_desempleados_hombres" class="form-control" required value="{{$estudiantes->egresados_desempleados_hombres}}" placeholder="Estudiantes Certificados Hombres" autofocus>
+					@if ($errors->has('egresados_desempleados_hombres'))
+			          <span>
+			            <strong>{{ $errors->first('egresados_desempleados_hombres') }}</strong>
+			          </span>
+			      	@endif
+				</div>
+			</div>
+			<div class="col-md-4 col-xs-4">
+				<div class="form-group {{ $errors->has('egresados_desempleados_mujeres') ? ' has-error ' : ''}}">
+					<input type="number" id="egresados_desempleados_mujeres" name="egresados_desempleados_mujeres" class="form-control" required value="{{$estudiantes->egresados_desempleados_mujeres}}" placeholder="Estudiantes certificados Mujeres">
+					@if ($errors->has('egresados_desempleados_mujeres'))
+			          <span>
+			            <strong>{{ $errors->first('egresados_desempleados_mujeres') }}</strong>
 			          </span>
 			      	@endif
 				</div>

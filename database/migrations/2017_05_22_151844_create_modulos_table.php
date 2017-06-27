@@ -15,13 +15,13 @@ class CreateModulosTable extends Migration
     {
         Schema::create('modulos', function(Blueprint $table){
             $table->increments('id');
-            $table->string('nombre');
-            $table->integer('duracion');
-            $table->string('tipo_modulo');
-            $table->text('objetivo');
-            $table->string('nombre_maestro');
-            $table->string('mail_maestro');
-            $table->text('experiencia');
+            $table->string('nombre')->nullable();
+            $table->integer('duracion')->nullable();
+            $table->string('tipo_modulo')->nullable();
+            $table->text('objetivo')->nullable();
+            $table->string('nombre_maestro')->nullable();
+            $table->string('mail_maestro')->nullable();
+            $table->text('experiencia')->nullable();
             $table->integer('user_id');
             $table->integer('programa_id');
             $table->timestamps();

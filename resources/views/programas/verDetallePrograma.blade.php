@@ -124,6 +124,26 @@
 						<td>{{$estudiantes->certificados_hombres}}</td>
 					<tr/>
 					<tr>
+						<th>Egresados Programa</th>
+						<td>{{$estudiantes->egresados_programa_mujeres}}</td>
+						<td>{{$estudiantes->egresados_programa_hombres}}</td>
+					<tr/>
+					<tr>
+						<th>Estudiantes con trabajo</th>
+						<td>{{$estudiantes->egresados_trabajo_mujeres}}</td>
+						<td>{{$estudiantes->egresados_trabajo_hombres}}</td>
+					<tr/>
+					<tr>
+						<th>Estudiantes con trabajo en otro oficio</th>
+						<td>{{$estudiantes->egresados_trabajo_otro_mujeres}}</td>
+						<td>{{$estudiantes->egresados_trabajo_otro_hombres}}</td>
+					<tr/>
+					<tr>
+						<th>Estudiantes con trabajo en otro oficio</th>
+						<td>{{$estudiantes->egresados_desempleados_mujeres}}</td>
+						<td>{{$estudiantes->egresados_desempleados_hombres}}</td>
+					<tr/>
+					<tr>
 						<th>Causas Deserción</th>
 						<td colspan="2">{{$estudiantes->causas_desercion}}</td>
 					</tr>

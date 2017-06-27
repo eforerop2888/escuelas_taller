@@ -15,13 +15,13 @@ class CreateProgramasTable extends Migration
   {
     Schema::create('programas', function (Blueprint $table) {
       $table->increments('id');
-      $table->string('nombre');
-      $table->integer('duracion_meses');
-      $table->integer('duracion_horas');
-      $table->integer('duracion_practicas_horas');
-      $table->text('objetivo_programa');
-      $table->text('requisitos_ingreso');
-      $table->text('trabajo_egresados');
+      $table->string('nombre')->nullable();
+      $table->integer('duracion_meses')->nullable();
+      $table->integer('duracion_horas')->nullable();
+      $table->integer('duracion_practicas_horas')->nullable();
+      $table->text('objetivo_programa')->nullable();
+      $table->text('requisitos_ingreso')->nullable();
+      $table->text('trabajo_egresados')->nullable();
       $table->integer('escuela_id')->unsigned();
       $table->foreign('escuela_id')->references('id')->on('escuelas');
       $table->integer('user_id')->unsigned();

@@ -19,6 +19,14 @@
 				<th>Pobreza Mujeres</th>
 				<th>Hombres Certificados</th>
 				<th>Mujeres Certificadas</th>
+				<th>Hombres Egresados</th>
+				<th>Mujeres Egresadas</th>
+				<th>Hombres Estudiantes con trabajo</th>
+				<th>Mujeres Estudiantes con trabajo</th>
+				<th>Hombres Estudiantes con trabajo en otro oficio</th>
+				<th>Mujeres Estudiantes con trabajo en otro oficio</th>
+				<th>Hombres Estudiantes con trabajo en otro oficio</th>
+				<th>Mujeres Estudiantes con trabajo en otro oficio</th>
 				<th>Total Hombres</th>
 				<th>Total Mujeres</th>
 			</tr>
@@ -39,6 +47,14 @@
 					<td>{{$rowestudiantes->pobreza_mujeres}}</td>
 					<td>{{$rowestudiantes->certificados_hombres}}</td>
 					<td>{{$rowestudiantes->certificados_mujeres}}</td>
+					<td>{{$rowestudiantes->egresados_programa_hombres}}</td>
+					<td>{{$rowestudiantes->egresados_programa_mujeres}}</td>
+					<td>{{$rowestudiantes->egresados_trabajo_hombres}}</td>
+					<td>{{$rowestudiantes->egresados_trabajo_mujeres}}</td>
+					<td>{{$rowestudiantes->egresados_trabajo_otro_hombres}}</td>
+					<td>{{$rowestudiantes->egresados_trabajo_otro_mujeres}}</td>
+					<td>{{$rowestudiantes->egresados_desempleados_hombres}}</td>
+					<td>{{$rowestudiantes->egresados_desempleados_mujeres}}</td>
 					<td>{{$rowestudiantes->total_hombres}}</td>
 					<td>{{$rowestudiantes->total_mujeres}}</td>
 				</tr>

@@ -15,17 +15,17 @@ class CreateEscuelasTable extends Migration
   {
     Schema::create('escuelas', function (Blueprint $table) {
       $table->increments('id');
-      $table->string('nombre');
-      $table->string('direccion');
-      $table->string('telefono');
+      $table->string('nombre')->nullable();
+      $table->string('direccion')->nullable();
+      $table->string('telefono')->nullable();
       $table->string('pagina_web')->nullable();
-      $table->string('director');
-      $table->string('director_email');
-      $table->string('coordinador');
-      $table->string('coordinador_email');
-      $table->string('coordinador_humano');
-      $table->string('coordinador_humano_email');
-      $table->string('acto_administrativo');
+      $table->string('director')->nullable();
+      $table->string('director_email')->nullable();
+      $table->string('coordinador')->nullable();
+      $table->string('coordinador_email')->nullable();
+      $table->string('coordinador_humano')->nullable();
+      $table->string('coordinador_humano_email')->nullable();
+      $table->string('acto_administrativo')->nullable();
       $table->integer('pais_id')->unsigned();
       $table->foreign('pais_id')->references('id')->on('paises');
       $table->integer('user_id')->unsigned();
