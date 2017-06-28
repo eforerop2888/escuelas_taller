@@ -89,9 +89,64 @@
 						<td>{{$estudiantes->total_hombres}}</td>
 					</tr>
 					<tr>
-						<th>Etnia</th>
-						<td>{{$estudiantes->etnia_mujeres}}</td>
-						<td>{{$estudiantes->etnia_hombres}}</td>
+						<th>Blancos</th>
+						<td>{{$estudiantes->blanco_mujeres}}</td>
+						<td>{{$estudiantes->blanco_hombres}}</td>
+					</tr>
+					<tr>
+						<th>Caucásicos</th>
+						<td>{{$estudiantes->caucasico_mujeres}}</td>
+						<td>{{$estudiantes->caucasico_hombres}}</td>
+					</tr>
+					<tr>
+						<th>Afrodescendientes</th>
+						<td>{{$estudiantes->afrodescendiente_mujeres}}</td>
+						<td>{{$estudiantes->afrodescendiente_hombres}}</td>
+					</tr>
+					<tr>
+						<th>Indígenas</th>
+						<td>{{$estudiantes->indigena_mujeres}}</td>
+						<td>{{$estudiantes->indigena_hombres}}</td>
+					</tr>
+					<tr>
+						<th>Mestizos</th>
+						<td>{{$estudiantes->mestizo_mujeres}}</td>
+						<td>{{$estudiantes->mestizo_hombres}}</td>
+					</tr>
+					<tr>
+						<th>Raizal (isleño)</th>
+						<td>{{$estudiantes->raizal_isleno_mujeres}}</td>
+						<td>{{$estudiantes->raizal_isleno_hombres}}</td>
+					</tr>
+					<tr>
+						<th>Rom (Gitano)</th>
+						<td>{{$estudiantes->rom_gitano_mujeres}}</td>
+						<td>{{$estudiantes->rom_gitano_hombres}}</td>
+					</tr>
+					<tr>
+						<th>Criollo</th>
+						<td>{{$estudiantes->criollo_mujeres}}</td>
+						<td>{{$estudiantes->criollo_hombres}}</td>
+					</tr>
+					<tr>
+						<th>Amerindio</th>
+						<td>{{$estudiantes->amerindio_mujeres}}</td>
+						<td>{{$estudiantes->amerindio_hombres}}</td>
+					</tr>
+					<tr>
+						<th>Polinesio</th>
+						<td>{{$estudiantes->polinesio_mujeres}}</td>
+						<td>{{$estudiantes->polinesio_hombres}}</td>
+					</tr>
+					<tr>
+						<th>Melanesio</th>
+						<td>{{$estudiantes->melanesio_mujeres}}</td>
+						<td>{{$estudiantes->melanesio_hombres}}</td>
+					</tr>
+					<tr>
+						<th>Asiático</th>
+						<td>{{$estudiantes->asiatico_mujeres}}</td>
+						<td>{{$estudiantes->asiatico_hombres}}</td>
 					</tr>
 					<tr>
 						<th>Victimas</th>

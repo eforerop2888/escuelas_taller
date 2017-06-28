@@ -7,8 +7,30 @@
 			<tr>
 				<th>#</th>
 				<th>Escuela</th>
-				<th>Mujeres de Etnia </th>
-				<th>Hombres de Etnia </th>
+				<th>Hombres Blancos</th>
+				<th>Mujeres Blancos</th>
+				<th>Hombres Caucásicos</th>
+				<th>Mujeres Caucásicos</th>
+				<th>Hombres Afrodescendientes</th>
+				<th>Mujeres Afrodescendientes</th>
+				<th>Hombres Indígenas</th>
+				<th>Mujeres Indígenas</th>
+				<th>Hombres Mestizos</th>
+				<th>Mujeres Mestizos</th>
+				<th>Hombres Raizal (isleño)</th>
+				<th>Mujeres Raizal (isleño)</th>
+				<th>Hombres Rom (Gitano)</th>
+				<th>Mujeres Rom (Gitano)</th>
+				<th>Hombres Criollos</th>
+				<th>Mujeres Criollas</th>
+				<th>Hombres Amerindios</th>
+				<th>Mujeres Amerindios</th>
+				<th>Hombres Polinesios</th>
+				<th>Mujeres Polinesios</th>
+				<th>Hombres Melanesios</th>
+				<th>Mujeres Melanesios</th>
+				<th>Hombres Asiáticos</th>
+				<th>Mujeres Asiáticos</th>
 				<th>Victimas Hombres</th>
 				<th>Victimas Mujeres</th>
 				<th>Hombres Excombatientes</th>
@@ -35,8 +57,30 @@
 				<tr>
 					<td>{{$i}}</td>
 					<td>{{$rowestudiantes->nombre_escuela}}</td>
-					<td>{{$rowestudiantes->etnia_mujeres}}</td>
-					<td>{{$rowestudiantes->etnia_hombres}}</td>
+					<td>{{$rowestudiantes->blanco_mujeres}}</td>
+	                <td>{{$rowestudiantes->blanco_hombres}}</td>
+	                <td>{{$rowestudiantes->caucasico_mujeres}}</td>
+	                <td>{{$rowestudiantes->caucasico_hombres}}</td>
+	                <td>{{$rowestudiantes->afrodescendiente_mujeres}}</td>
+	                <td>{{$rowestudiantes->afrodescendiente_hombres}}</td>
+	                <td>{{$rowestudiantes->indigena_mujeres}}</td>
+	                <td>{{$rowestudiantes->indigena_hombres}}</td>
+	                <td>{{$rowestudiantes->mestizo_mujeres}}</td>
+	                <td>{{$rowestudiantes->mestizo_hombres}}</td>
+	                <td>{{$rowestudiantes->raizal_isleno_mujeres}}</td>
+	                <td>{{$rowestudiantes->raizal_isleno_hombres}}</td>
+	                <td>{{$rowestudiantes->rom_gitano_mujeres}}</td>
+	                <td>{{$rowestudiantes->rom_gitano_hombres}}</td>
+	                <td>{{$rowestudiantes->criollo_mujeres}}</td>
+	                <td>{{$rowestudiantes->criollo_hombres}}</td>
+	                <td>{{$rowestudiantes->amerindio_mujeres}}</td>
+	                <td>{{$rowestudiantes->amerindio_hombres}}</td>
+	                <td>{{$rowestudiantes->polinesio_mujeres}}</td>
+	                <td>{{$rowestudiantes->polinesio_hombres}}</td>
+	                <td>{{$rowestudiantes->melanesio_mujeres}}</td>
+	                <td>{{$rowestudiantes->melanesio_hombres}}</td>
+	                <td>{{$rowestudiantes->asiatico_mujeres}}</td>
+	                <td>{{$rowestudiantes->asiatico_hombres}}</td>
 					<td>{{$rowestudiantes->victimas_hombres}}</td>
 					<td>{{$rowestudiantes->victimas_mujeres}}</td>
 					<td>{{$rowestudiantes->excombatientes_hombres}}</td>

@@ -15,8 +15,30 @@ class CreateEstudiantesTable extends Migration
     {
         Schema::create('estudiantes', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('etnia_mujeres')->nullable();
-            $table->integer('etnia_hombres')->nullable();
+            $table->integer('blanco_mujeres')->nullable();
+            $table->integer('blanco_hombres')->nullable();
+            $table->integer('caucasico_mujeres')->nullable();
+            $table->integer('caucasico_hombres')->nullable();
+            $table->integer('afrodescendiente_mujeres')->nullable();
+            $table->integer('afrodescendiente_hombres')->nullable();
+            $table->integer('indigena_mujeres')->nullable();
+            $table->integer('indigena_hombres')->nullable();
+            $table->integer('mestizo_mujeres')->nullable();
+            $table->integer('mestizo_hombres')->nullable();
+            $table->integer('raizal_isleno_mujeres')->nullable();
+            $table->integer('raizal_isleno_hombres')->nullable();
+            $table->integer('rom_gitano_mujeres')->nullable();
+            $table->integer('rom_gitano_hombres')->nullable();
+            $table->integer('criollo_mujeres')->nullable();
+            $table->integer('criollo_hombres')->nullable();
+            $table->integer('amerindio_mujeres')->nullable();
+            $table->integer('amerindio_hombres')->nullable();
+            $table->integer('polinesio_mujeres')->nullable();
+            $table->integer('polinesio_hombres')->nullable();
+            $table->integer('melanesio_mujeres')->nullable();
+            $table->integer('melanesio_hombres')->nullable();
+            $table->integer('asiatico_mujeres')->nullable();
+            $table->integer('asiatico_hombres')->nullable();
             $table->integer('victimas_mujeres')->nullable();
             $table->integer('victimas_hombres')->nullable();
             $table->integer('excombatientes_mujeres')->nullable();
