@@ -99,6 +99,28 @@
 		      		</ul>
 		    	</li>
 		    	<li>
+	      			<a href="#">
+	      				<i class="fa fa-file-text" aria-hidden="true"></i>
+	      				Reportes
+	      			</a>
+	      			<ul>
+	      				@if(Auth::user()->role_id == 1)
+			      			<li>
+			      				<a href="{{route('reportes.create')}}">
+			      					<i class="fa fa-pencil" aria-hidden="true"></i>
+			      					Crear
+			      				</a>
+			      			</li>
+			      		@endif
+		      			<li>
+		      				<a href="{{route('listareportes')}}">
+		      					<i class="fa fa-list-ol" aria-hidden="true"></i>
+		      					Listar
+		      				</a>
+		      			</li>
+		      		</ul>
+		    	</li>
+		    	<li>
 	      			<a href="{{route('informes')}}">
 	      				<i class="fa fa-bar-chart" aria-hidden="true"></i>
 	      				Informes

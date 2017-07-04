@@ -35,9 +35,9 @@ class ProgramasController extends Controller
             'paises.pais')
             ->orderBy('escuelas.nombre', 'ASC')
             ->orderBy('programas.nombre', 'DESC');
-        if (Auth::user()->role_id != 1) {
+        /*if (Auth::user()->role_id != 1) {
             $programas = $programas->where('pais_id', Auth::user()->pais_id);       
-        }
+        }*/
         $programas = $programas->get();
         $pais = Pais::find(Auth::user()->pais_id);
         return view('programas.verProgramas', ['programas' => $programas, 'pais' => $pais]);
@@ -106,7 +106,8 @@ class ProgramasController extends Controller
             'programas.trabajo_egresados',
             'estados.estado',
             'escuelas.nombre as nombre_escuela',
-            'paises.pais')
+            'paises.pais',
+            'paises.id as pais_id')
             ->where('programas.id', $id)
             ->first();
         $modulos = Modulo::join('tipos_modulos','modulos.tipo_modulo','=','tipos_modulos.id')

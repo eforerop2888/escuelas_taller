@@ -48,6 +48,12 @@ Route::group(['middleware' => ['auth', 'password']], function () {
 	Route::resource('estudiantes', 'EstudiantesController');
 
 	/*
+		Rutas para el modulo de reportes
+	*/
+	Route::resource('reportes', 'ReportesController');
+	Route::get('listareportes', 'ReportesController@listar')->name('listareportes');
+
+	/*
 		Rutas para el modulo de Cooperantes
 	*/
 	Route::resource('cooperantes', 'CooperantesController');

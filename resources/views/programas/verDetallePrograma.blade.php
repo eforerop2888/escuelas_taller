@@ -48,26 +48,28 @@
 					</table>
 				</div>
 			@endif
-			<div class="row">
-				<div class="col-md-6">
-					{{ Form::open(['method' => 'Get', 'route' => ['programas.edit', $programa->id]]) }}
-						<button type="submit" class="btn btn-warning">
-							<i class="fa fa-edit" aria-hidden="true"></i>
-							Editar Programa
-						</button>
-					{{ Form::close() }}
-				</div>
-				@if(Auth::user()->role_id == 1)
+			@if(Auth::user()->pais_id == $programa->pais_id)
+				<div class="row">
 					<div class="col-md-6">
-						{{ Form::open(['method' => 'Delete', 'route' => ['programas.destroy', $programa->id], 'class' => 'form-eliminar']) }}
-							<button type="submit" class="btn btn-danger">
-								<i class="fa fa-eraser" aria-hidden="true"></i>
-								Eliminar Programa
+						{{ Form::open(['method' => 'Get', 'route' => ['programas.edit', $programa->id]]) }}
+							<button type="submit" class="btn btn-warning">
+								<i class="fa fa-edit" aria-hidden="true"></i>
+								Editar Programa
 							</button>
 						{{ Form::close() }}
 					</div>
-				@endif
-			</div>
+					@if(Auth::user()->role_id == 1)
+						<div class="col-md-6">
+							{{ Form::open(['method' => 'Delete', 'route' => ['programas.destroy', $programa->id], 'class' => 'form-eliminar']) }}
+								<button type="submit" class="btn btn-danger">
+									<i class="fa fa-eraser" aria-hidden="true"></i>
+									Eliminar Programa
+								</button>
+							{{ Form::close() }}
+						</div>
+					@endif
+				</div>
+			@endif
 		</div>
 	</div>
 	<div class="panel panel-warning">
@@ -209,6 +211,7 @@
 				</table>
 			</div>
 		@endif
+		@if(Auth::user()->pais_id == $programa->pais_id)
 			<div class="row">
 				<div class="col-md-6">
 				{{ Form::open(['method' => 'Get', 'route' => ['estudiantes.create']]) }}
@@ -229,6 +232,7 @@
 					</div>
 				@endif
 			</div>
+		@endif	
 		</div>
 	</div>
 	<div class="panel panel-success">
@@ -244,8 +248,10 @@
 							<th>Duración Meses</th>
 							<th>Tipo</th>
 							<th>Nombre Maestro</th>
-							<th>Ver</th>
-							<th>Eliminar</th>
+							@if(Auth::user()->pais_id == $programa->pais_id)
+								<th>Ver</th>
+								<th>Eliminar</th>
+							@endif
 						</tr>
 						@foreach ($modulos as $rowmodulos)
 							<tr>
@@ -253,37 +259,40 @@
 								<td>{{$rowmodulos->duracion}}</td>
 								<td>{{ucfirst($rowmodulos->tipo)}}</td>
 								<td>{{ucfirst($rowmodulos->nombre_maestro)}}</td>
-								<td>
-									{{ Form::open(['method' => 'Get', 'route' => ['modulos.show', $rowmodulos->id_modulos]]) }}
-										<button type="submit" class="btn btn-success">
-											<i class="fa fa-eye" aria-hidden="true"></i>
-										</button>
-									{{ Form::close() }}
-								</td>
-								<td>
-									{{ Form::open(['method' => 'Delete', 'route' => ['modulos.destroy', $rowmodulos->id_modulos]]) }}
-										<input type="hidden" name="id_programam" value="{{$programa->id}}">
-										<button type="submit" class="btn btn-danger">
-											<i class="fa fa-eraser" aria-hidden="true"></i>
-										</button>
-									{{ Form::close() }}
-								</td>
+								@if(Auth::user()->pais_id == $programa->pais_id)
+									<td>
+										{{ Form::open(['method' => 'Get', 'route' => ['modulos.show', $rowmodulos->id_modulos]]) }}
+											<button type="submit" class="btn btn-success">
+												<i class="fa fa-eye" aria-hidden="true"></i>
+											</button>
+										{{ Form::close() }}
+									</td>
+									<td>
+										{{ Form::open(['method' => 'Delete', 'route' => ['modulos.destroy', $rowmodulos->id_modulos]]) }}
+											<input type="hidden" name="id_programam" value="{{$programa->id}}">
+											<button type="submit" class="btn btn-danger">
+												<i class="fa fa-eraser" aria-hidden="true"></i>
+											</button>
+										{{ Form::close() }}
+									</td>
+								@endif
 							</tr>
 						@endforeach
 					</table>
 				</div>
 			@endif
-			<div class="row">
-				<div class="col-md-6">
-					{{ Form::open(['method' => 'Get', 'route' => ['modulos.create']]) }}
-						<input type="hidden" name="programa_id_m" id="programa_id_m" value="{{$programa->id}}">
-						<button type="submit" class="btn btn-primary">
-							<i class="fa fa-pencil" aria-hidden="true"></i> Crear Modulo | Matería
-						</button>
-					{{ Form::close() }}
+			@if(Auth::user()->pais_id == $programa->pais_id)
+				<div class="row">
+					<div class="col-md-6">
+						{{ Form::open(['method' => 'Get', 'route' => ['modulos.create']]) }}
+							<input type="hidden" name="programa_id_m" id="programa_id_m" value="{{$programa->id}}">
+							<button type="submit" class="btn btn-primary">
+								<i class="fa fa-pencil" aria-hidden="true"></i> Crear Modulo | Matería
+							</button>
+						{{ Form::close() }}
+					</div>			
 				</div>
-				
-			</div>
+			@endif
 		</div>
 	</div>
 @endsection
