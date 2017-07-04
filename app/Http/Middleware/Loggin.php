@@ -17,7 +17,7 @@ class Loggin
     public function handle($request, Closure $next)
     {
         if (Auth::user()) {
-            return redirect('/informes');
+            return redirect('/bienvenida');
         }
         return $next($request);
     }

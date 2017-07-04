@@ -72,5 +72,7 @@ Route::group(['middleware' => ['auth', 'password']], function () {
 	Route::post('exportarinforme', 'InformesController@showExcel')->name('informes.exportarinforme');
 	Route::post('graficoespecifico', 'InformesController@generarGraficos')->name('informes.graficoespecifico');
 
+	Route::get('bienvenida', 'Controller@bienvenida')->name('bienvenida');
+
 	Route::get('/home', 'HomeController@index')->name('home');
 });
