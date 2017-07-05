@@ -493,10 +493,19 @@
 				</div>
 			</div>
 			<div class="row">
+				<div class="col-md-4 col-xs-4"></div>
+				<div class="col-md-4 col-xs-4 titulo_generos">
+					<h4>Hombres</h4>
+				</div>
+				<div class="col-md-4 col-xs-4 titulo_generos">
+					<h4>Mujeres</h4>
+				</div>
+			</div>
+			<div class="row">
 				<div class="col-md-4 col-xs-4">Estudiantes Certificados</div>
 				<div class="col-md-4 col-xs-4">
 					<div class="form-group {{ $errors->has('certificados_hombres') ? ' has-error ' : ''}}">
-						<input type="number" class="sumar_hombres form-control" id="certificados_hombres" name="certificados_hombres" value="{{old('certificados_hombres')}}" placeholder="Hombres" autofocus>
+						<input type="number" class="sumar_hombres form-control" id="certificados_hombres" name="certificados_hombres" value="{{old('certificados_hombres')}}" placeholder="Estudiantes Certificados Hombre">
 						@if ($errors->has('certificados_hombres'))
 				          <span>
 				            <strong>{{ $errors->first('certificados_hombres') }}</strong>
@@ -506,7 +515,7 @@
 				</div>
 				<div class="col-md-4 col-xs-4">
 					<div class="form-group {{ $errors->has('certificados_mujeres') ? ' has-error ' : ''}}">
-						<input type="number" class="sumar_mujeres form-control" id="certificados_mujeres" name="certificados_mujeres" value="{{old('certificados_mujeres')}}" placeholder="Mujeres">
+						<input type="number" class="sumar_mujeres form-control" id="certificados_mujeres" name="certificados_mujeres" value="{{old('certificados_mujeres')}}" placeholder="Estudiantes certificados Mujeres">
 						@if ($errors->has('certificados_mujeres'))
 				          <span>
 				            <strong>{{ $errors->first('certificados_mujeres') }}</strong>
@@ -519,7 +528,7 @@
 				<div class="col-md-4 col-xs-4">Egresados programa</div>
 				<div class="col-md-4 col-xs-4">
 					<div class="form-group {{ $errors->has('egresados_programa_hombres') ? ' has-error ' : ''}}">
-						<input type="number" class="sumar_hombres form-control" id="egresados_programa_hombres" name="egresados_programa_hombres" value="{{old('egresados_programa_hombres')}}" placeholder="Hombres" autofocus>
+						<input type="number" class="sumar_hombres form-control" id="egresados_programa_hombres" name="egresados_programa_hombres" value="{{old('egresados_programa_hombres')}}" placeholder="Estudiantes egresados Hombres">
 						@if ($errors->has('egresados_programa_hombres'))
 				          <span>
 				            <strong>{{ $errors->first('egresados_programa_hombres') }}</strong>
@@ -529,7 +538,7 @@
 				</div>
 				<div class="col-md-4 col-xs-4">
 					<div class="form-group {{ $errors->has('egresados_programa_mujeres') ? ' has-error ' : ''}}">
-						<input type="number" class="sumar_mujeres form-control" id="egresados_programa_mujeres" name="egresados_programa_mujeres" value="{{old('egresados_programa_mujeres')}}" placeholder="Mujeres">
+						<input type="number" class="sumar_mujeres form-control" id="egresados_programa_mujeres" name="egresados_programa_mujeres" value="{{old('egresados_programa_mujeres')}}" placeholder="Estudiantes egresados Mujeres">
 						@if ($errors->has('egresados_programa_mujeres'))
 				          <span>
 				            <strong>{{ $errors->first('egresados_programa_mujeres') }}</strong>
@@ -542,7 +551,7 @@
 				<div class="col-md-4 col-xs-4">Egresados con trabajo</div>
 				<div class="col-md-4 col-xs-4">
 					<div class="form-group {{ $errors->has('egresados_trabajo_hombres') ? ' has-error ' : ''}}">
-						<input type="number" class="sumar_hombres form-control" id="egresados_trabajo_hombres" name="egresados_trabajo_hombres" value="{{old('egresados_trabajo_hombres')}}" placeholder="Hombres" autofocus>
+						<input type="number" class="sumar_hombres form-control" id="egresados_trabajo_hombres" name="egresados_trabajo_hombres" value="{{old('egresados_trabajo_hombres')}}" placeholder="Egresados con trabajo Hombres">
 						@if ($errors->has('egresados_trabajo_hombres'))
 				          <span>
 				            <strong>{{ $errors->first('egresados_trabajo_hombres') }}</strong>
@@ -552,7 +561,7 @@
 				</div>
 				<div class="col-md-4 col-xs-4">
 					<div class="form-group {{ $errors->has('egresados_trabajo_mujeres') ? ' has-error ' : ''}}">
-						<input type="number" class="sumar_mujeres form-control" id="egresados_trabajo_mujeres" name="egresados_trabajo_mujeres" value="{{old('egresados_trabajo_mujeres')}}" placeholder="Mujeres">
+						<input type="number" class="sumar_mujeres form-control" id="egresados_trabajo_mujeres" name="egresados_trabajo_mujeres" value="{{old('egresados_trabajo_mujeres')}}" placeholder="Egresados con trabajo Mujeres">
 						@if ($errors->has('egresados_trabajo_mujeres'))
 				          <span>
 				            <strong>{{ $errors->first('egresados_trabajo_mujeres') }}</strong>
@@ -565,7 +574,7 @@
 				<div class="col-md-4 col-xs-4">Egresados con trabajo en otro oficio</div>
 				<div class="col-md-4 col-xs-4">
 					<div class="form-group {{ $errors->has('egresados_trabajo_otro_hombres') ? ' has-error ' : ''}}">
-						<input type="number" class="sumar_hombres form-control" id="egresados_trabajo_otro_hombres" name="egresados_trabajo_otro_hombres" value="{{old('egresados_trabajo_otro_hombres')}}" placeholder="Hombres" autofocus>
+						<input type="number" class="sumar_hombres form-control" id="egresados_trabajo_otro_hombres" name="egresados_trabajo_otro_hombres" value="{{old('egresados_trabajo_otro_hombres')}}" placeholder="Egresados otro oficio Hombres">
 						@if ($errors->has('egresados_trabajo_otro_hombres'))
 				          <span>
 				            <strong>{{ $errors->first('egresados_trabajo_otro_hombres') }}</strong>
@@ -575,7 +584,7 @@
 				</div>
 				<div class="col-md-4 col-xs-4">
 					<div class="form-group {{ $errors->has('egresados_trabajo_otro_mujeres') ? ' has-error ' : ''}}">
-						<input type="number" class="sumar_mujeres form-control" id="egresados_trabajo_otro_mujeres" name="egresados_trabajo_otro_mujeres" value="{{old('egresados_trabajo_otro_mujeres')}}" placeholder="Mujeres">
+						<input type="number" class="sumar_mujeres form-control" id="egresados_trabajo_otro_mujeres" name="egresados_trabajo_otro_mujeres" value="{{old('egresados_trabajo_otro_mujeres')}}" placeholder="Egresados otro oficio Mujeres">
 						@if ($errors->has('egresados_trabajo_otro_mujeres'))
 				          <span>
 				            <strong>{{ $errors->first('egresados_trabajo_otro_mujeres') }}</strong>
@@ -588,7 +597,7 @@
 				<div class="col-md-4 col-xs-4">Egresados desempleados</div>
 				<div class="col-md-4 col-xs-4">
 					<div class="form-group {{ $errors->has('egresados_desempleados_hombres') ? ' has-error ' : ''}}">
-						<input type="number" class="sumar_hombres form-control" id="egresados_desempleados_hombres" name="egresados_desempleados_hombres" value="{{old('egresados_desempleados_hombres')}}" placeholder="Hombres" autofocus>
+						<input type="number" class="sumar_hombres form-control" id="egresados_desempleados_hombres" name="egresados_desempleados_hombres" value="{{old('egresados_desempleados_hombres')}}" placeholder="Egresados desempleados Hombres">
 						@if ($errors->has('egresados_desempleados_hombres'))
 				          <span>
 				            <strong>{{ $errors->first('egresados_desempleados_hombres') }}</strong>
@@ -598,7 +607,7 @@
 				</div>
 				<div class="col-md-4 col-xs-4">
 					<div class="form-group {{ $errors->has('egresados_desempleados_mujeres') ? ' has-error ' : ''}}">
-						<input type="number" class="sumar_mujeres form-control" id="egresados_desempleados_mujeres" name="egresados_desempleados_mujeres" value="{{old('egresados_desempleados_mujeres')}}" placeholder="Mujeres">
+						<input type="number" class="sumar_mujeres form-control" id="egresados_desempleados_mujeres" name="egresados_desempleados_mujeres" value="{{old('egresados_desempleados_mujeres')}}" placeholder="Egresados desempleados Mujeres">
 						@if ($errors->has('egresados_desempleados_mujeres'))
 				          <span>
 				            <strong>{{ $errors->first('egresados_desempleados_mujeres') }}</strong>

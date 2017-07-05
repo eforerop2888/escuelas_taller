@@ -161,6 +161,6 @@ class UsuariosController extends Controller
                 'passwordChange' => 1
         ]);
         $request->session()->flash('success', 'Contraseña cambiada con exito');
-        return redirect()->route('informes');
+        return redirect()->route('bienvenida');
     }
 }

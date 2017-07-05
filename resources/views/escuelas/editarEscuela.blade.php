@@ -81,7 +81,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('coordinador') ? ' has-error ' : ''}}">
-					<label for="coordinador">Coordinador Academico</label>
+					<label for="coordinador">Coordinador Académico</label>
 					<input type="text" id="coordinador" name="coordinador" class="form-control" required placeholder="Coordinador Academico" value="{{$escuela->coordinador}}">
 					@if ($errors->has('coordinador'))
 	          <span>
@@ -92,7 +92,7 @@
 			</div>
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('email_c') ? ' has-error ' : ''}}">
-					<label for="email_c">Email Coordinador Academico</label>
+					<label for="email_c">Email Coordinador Académico</label>
 					<input type="email" id="email_c" name="email_c" class="form-control" required placeholder="Email Coordinador Academico" value="{{$escuela->coordinador_email}}">
 					@if ($errors->has('email_c'))
 	          <span>
@@ -106,6 +106,9 @@
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('humano') ? ' has-error ' : ''}}">
 					<label for="humano">Coordinador Componenete Humano</label>
+					<a href="#" class="tooltips" title="Persona encargada de interactuar con los estudiantes y hacer seguimiento sobre el proceso de formación de cada uno.">
+						<i class="fa fa-question-circle" aria-hidden="true"></i>
+					</a>
 					<input type="text" id="humano" name="humano" class="form-control" required placeholder="Coordinador Academico" value="{{$escuela->coordinador_humano}}">
 					@if ($errors->has('humano'))
 	          <span>
@@ -130,6 +133,9 @@
 			<div class="col-md-12">
 				<div class="form-group {{ $errors->has('acto') ? ' has-error ' : ''}}">
 					<label for="acto">Acto Administrativo</label>
+					<a href="#" class="tooltips" title="Se refiere a aquella declaración voluntaria que el estado u organismo público realiza y que tiene efectos jurídicos individuales de manera inmediata. ">
+						<i class="fa fa-question-circle" aria-hidden="true"></i>
+					</a>
 					<input type="text" id="acto" name="acto" class="form-control" required placeholder="Acto Administrativo" value="{{$escuela->acto_administrativo}}">
 					@if ($errors->has('acto'))
 	          <span>

@@ -26,11 +26,13 @@ class CursosExtensionController extends Controller
     {
         $pais = Pais::find(Auth::user()->pais_id);
         $cursosExtension = CursoExtension::join('escuelas','cursos_extension.escuela_id','=','escuelas.id')
+            ->join('paises','escuelas.pais_id','=','paises.id')
             ->select('cursos_extension.id as id',
             'cursos_extension.nombre as nombre_curso',
             'duracion',
             'costo',
-            'escuelas.nombre as nombre_escuela')
+            'escuelas.nombre as nombre_escuela',
+            'paises.id as pais_id')
             ->get();
         return view('cursos.verCursos', ['cursosExtension' => $cursosExtension,
         'pais' => $pais]);
@@ -79,13 +81,15 @@ class CursosExtensionController extends Controller
     public function show($id)
     {
         $curso = CursoExtension::join('escuelas','cursos_extension.escuela_id','=','escuelas.id')
+            ->join('paises','escuelas.pais_id','=','paises.id')
             ->select('cursos_extension.id as id',
             'cursos_extension.nombre as nombre_curso',
             'duracion',
             'costo',
             'temas',
             'objetivo_curso',
-            'escuelas.nombre as nombre_escuela')
+            'escuelas.nombre as nombre_escuela',
+            'paises.id as pais_id')
             ->where('cursos_extension.id', $id)
             ->first();
         return view('cursos.verDetalleCurso', ['curso' => $curso]);

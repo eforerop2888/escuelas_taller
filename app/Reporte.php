@@ -11,6 +11,6 @@ class Reporte extends Model
     protected $fillable = [
 	    'nombre_archivo',
 	    'ruta',
-	    'estado'
+	    'user_id'
     ];
 }

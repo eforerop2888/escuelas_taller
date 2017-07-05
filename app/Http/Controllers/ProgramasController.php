@@ -32,7 +32,8 @@ class ProgramasController extends Controller
             'programas.duracion_practicas_horas',
             'estados.estado',
             'escuelas.nombre as nombre_escuela',
-            'paises.pais')
+            'paises.pais',
+            'paises.id as pais_id')
             ->orderBy('escuelas.nombre', 'ASC')
             ->orderBy('programas.nombre', 'DESC');
         /*if (Auth::user()->role_id != 1) {

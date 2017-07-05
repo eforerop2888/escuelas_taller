@@ -79,6 +79,9 @@
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('trabajo_egresados') ? ' has-error ' : ''}}">
 					<label for="trabajo_egresados">Perfil de espacios laborales (Máximo 500 caracteres)</label>
+					<a href="#" class="tooltips" title="Es una síntesis de sus competencias donde se incluye aspectos como la formación académica y experiencia laboral, enfatizando en habilidades demostrables y logros.">
+						<i class="fa fa-question-circle" aria-hidden="true"></i>
+					</a>
 					<textarea id="trabajo_egresados" name="trabajo_egresados" class="form-control" required maxlength="500">{{$programa->trabajo_egresados}}</textarea>
 					@if ($errors->has('trabajo_egresados'))
 			            <span>
@@ -135,4 +138,20 @@
 			</div>
 		</div>
 	{{Form::close()}}
+@endsection
+@section('scripts')
+	<script type="text/javascript">
+	$('.tooltips').poshytip({
+		className: 'tip-twitter',
+		showOn: 'none',
+		alignTo: 'target',
+		alignX: 'inner-left',
+		offsetX: 0,
+		offsetY: 5
+	});
+        $('.tooltips').click(function(e){
+        	$(this).poshytip('show');
+        	$(this).poshytip('hideDelayed', 5000);
+        });
+    </script>
 @endsection

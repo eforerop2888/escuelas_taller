@@ -1,7 +1,7 @@
 @extends('layouts.principal')
 @section('title', 'Listado cursos')
 @section('subtitle')
-	LISTADO DE CURSOS DE EXTENSION {{strtoupper($pais->pais)}}
+	LISTADO DE CURSOS DE EXTENSIÓN ESCUELAS TALLER
 @endsection
 @section('content')
 	@if($cursosExtension->count())
@@ -33,7 +33,7 @@
 						{{ Form::close() }}
 					</td>
 					</td>
-					@if(Auth::user()->role_id == 1)
+					@if(Auth::user()->role_id == 1 && Auth::user()->pais_id == $rowcursosExtension->pais_id)
 						<td>
 							{{ Form::open(['method' => 'Delete', 'route' => ['cursos.destroy', $rowcursosExtension->id], 'class' => 'form-eliminar']) }}
 								<button type="submit" class="btn btn-danger">

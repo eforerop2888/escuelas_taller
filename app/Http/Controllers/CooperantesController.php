@@ -33,7 +33,9 @@ class CooperantesController extends Controller
             'persona_contacto',
             'mail_contacto',
             'paises.pais',
-            'programas.nombre as nombre_programa')
+            'programas.nombre as nombre_programa',
+            'paises.id as pais_id')
+            ->where('paises.id', Auth::user()->pais_id)
             ->get();
         return view('cooperantes.verCooperantes', ['cooperantes' => $cooperantes,
             'pais' => $pais]);

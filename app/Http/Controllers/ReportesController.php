@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Reporte;
+use App\Pais;
 use Storage;
 use Auth;
+use File;
 
 class ReportesController extends Controller
 {
@@ -17,12 +19,15 @@ class ReportesController extends Controller
 
     public function listar()
     {
-        $reportes = Reporte::select('nombre_archivo', 'created_at', 'ruta', 'estado');
-        if (Auth::user()->role_id !=1 ) {
-            $reportes = $reportes->where('estado', 1);
-        }        
-        $reportes = $reportes->get();
-        return view('reportes.verReportes', ['reportes' => $reportes]);
+        $pais = Pais::find(Auth::user()->pais_id);
+        $reportes = Reporte::join('users', 'users.id', '=', 'reportes.user_id')
+            ->select('reportes.nombre_archivo',
+                'reportes.created_at',
+                'reportes.ruta',
+                'reportes.id as reporte_id')
+            ->where('users.pais_id', Auth::user()->pais_id)
+            ->get();
+        return view('reportes.verReportes', ['reportes' => $reportes, 'pais' => $pais]);
     }
 
     /**
@@ -51,7 +56,7 @@ class ReportesController extends Controller
         Reporte::create([
             'nombre_archivo' => $request->nombre_archivo,
             'ruta' => $reporteRoute,
-            'estado' => $request->estado
+            'user_id' => Auth::user()->id
         ]);
 
         $request->session()->flash('success', 'Archivo Cargado exitosamente');
@@ -98,8 +103,20 @@ class ReportesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        $reporte = Reporte::find($id);
+        try {
+            $path = public_path() . "/reportes_files/" . $reporte->ruta;
+            $reporte->delete();
+            File::delete($path);
+            $request->session()->flash('success', 'Reporte borrado con exito');
+        } catch ( \Exception $e) {
+            if($e->getCode() === '23000') {
+                //var_dump($e->errorInfo);
+                $request->session()->flash('fail', 'El reporte ya cuenta con relaciones');
+                }
+        }
+        return redirect()->route('listareportes');
     }
 }

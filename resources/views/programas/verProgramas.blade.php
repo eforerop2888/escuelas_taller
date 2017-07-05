@@ -1,7 +1,7 @@
 @extends('layouts.principal')
 @section('title', 'Ver Programas')
 @section('subtitle')
-LISTADO DE PROGRAMAS {{strtoupper($pais->pais)}}
+LISTADO DE PROGRAMAS ESCUELAS TALLER
 @endsection
 @section('content')
 	@if($programas->count())
@@ -39,7 +39,7 @@ LISTADO DE PROGRAMAS {{strtoupper($pais->pais)}}
 								</button>
 							{{ Form::close() }}
 						</td>
-						@if(Auth::user()->role_id == 1)
+						@if(Auth::user()->role_id == 1 && Auth::user()->pais_id == $rowprogramas->pais_id)
 							<td>
 								{{ Form::open(['method' => 'Delete', 'route' => ['programas.destroy', $rowprogramas->id], 'class' => 'form-eliminar']) }}
 									<button type="submit" class="btn btn-danger">
